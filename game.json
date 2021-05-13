@@ -102,7 +102,12 @@
   "objects": [],
   "objectsGroups": [],
   "variables": [],
-  "layouts": [],
+  "layouts": [
+    {
+      "__REFERENCE_TO_SPLIT_OBJECT": true,
+      "referenceTo": "/layouts/new-scene"
+    }
+  ],
   "externalEvents": [],
   "eventsFunctionsExtensions": [
     {

@@ -12,12 +12,14 @@
   "tags": [
     ""
   ],
+  "dependencies": [],
   "eventsFunctions": [
     {
       "description": "",
       "fullName": "",
       "functionType": "Action",
       "name": "onFirstSceneLoaded",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -46,6 +48,7 @@
       "fullName": "Console Log",
       "functionType": "Action",
       "name": "consoleLog",
+      "private": false,
       "sentence": "Log _PARAM1_",
       "events": [
         {
@@ -77,6 +80,7 @@
       "fullName": "ms",
       "functionType": "Expression",
       "name": "ms",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -118,6 +122,7 @@
       "fullName": "Word Count",
       "functionType": "Expression",
       "name": "wordCount",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -149,6 +154,7 @@
       "fullName": "String replace",
       "functionType": "StringExpression",
       "name": "strReplace",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -209,6 +215,7 @@
       "fullName": "Current playlist item",
       "functionType": "StringExpression",
       "name": "playlistCurrent",
+      "private": false,
       "sentence": "Current item  in playlist _PARAM1_",
       "events": [
         {
@@ -248,6 +255,7 @@
       "fullName": "Add to playlist",
       "functionType": "Action",
       "name": "playlistAdd",
+      "private": false,
       "sentence": "Add _PARAM2_ to playlist _PARAM1_",
       "events": [
         {
@@ -297,6 +305,7 @@
       "fullName": "Previous playlist item",
       "functionType": "Action",
       "name": "playlistPrevious",
+      "private": false,
       "sentence": "Skip to previous item in playlist _PARAM1_",
       "events": [
         {
@@ -336,6 +345,7 @@
       "fullName": "Next playlist item",
       "functionType": "Action",
       "name": "playlistNext",
+      "private": false,
       "sentence": "Skip to next item in playlist _PARAM1_",
       "events": [
         {
@@ -375,6 +385,7 @@
       "fullName": "Skip to item",
       "functionType": "Action",
       "name": "playlistSkipTo",
+      "private": false,
       "sentence": "Skip to item _PARAM2_ in playlist _PARAM1_",
       "events": [
         {
@@ -424,6 +435,7 @@
       "fullName": "Throttle",
       "functionType": "Condition",
       "name": "Throttle",
+      "private": false,
       "sentence": "_PARAM1_ Throttle invoke _PARAM2_ every _PARAM3_ ms ",
       "events": [
         {
@@ -553,6 +565,7 @@
       "fullName": "HasLimitedTimer",
       "functionType": "Condition",
       "name": "HasLimitedTimer",
+      "private": false,
       "sentence": "HasLimitedTimer _PARAM2_ on _PARAM1_",
       "events": [
         {
@@ -636,6 +649,7 @@
       "fullName": "startLimitedTimer",
       "functionType": "Action",
       "name": "startLimitedTimer",
+      "private": false,
       "sentence": "Start timer _PARAM2_ on _PARAM1_ with limit _PARAM3_",
       "events": [
         {
@@ -731,6 +745,7 @@
       "fullName": "getLimitedTimerLimit",
       "functionType": "Expression",
       "name": "getLimitedTimerLimit",
+      "private": false,
       "sentence": "Start timer _PARAM2_ on _PARAM1_ with limit _PARAM3_",
       "events": [
         {
@@ -782,6 +797,7 @@
       "fullName": "getLimitedTimerElapsed",
       "functionType": "Expression",
       "name": "getLimitedTimerElapsed",
+      "private": false,
       "sentence": "Start timer _PARAM2_ on _PARAM1_ with limit _PARAM3_",
       "events": [
         {
@@ -907,6 +923,7 @@
       "fullName": "getLimitedTimerFraction",
       "functionType": "Expression",
       "name": "getLimitedTimerFraction",
+      "private": false,
       "sentence": "Start timer _PARAM2_ on _PARAM1_ with limit _PARAM3_",
       "events": [
         {
@@ -991,6 +1008,7 @@
       "fullName": "startAnimation",
       "functionType": "Action",
       "name": "startAnimation",
+      "private": false,
       "sentence": "_PARAM1_ startAnimation _PARAM2_ ",
       "events": [
         {
@@ -1065,6 +1083,7 @@
       "fullName": "AngleBetweeen",
       "functionType": "Expression",
       "name": "AngleBetweeen",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -1205,6 +1224,7 @@
       "fullName": "Uid",
       "functionType": "Expression",
       "name": "Uid",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -1290,6 +1310,7 @@
       "fullName": "enableDebugging",
       "functionType": "Action",
       "name": "enableDebugging",
+      "private": false,
       "sentence": "enableDebugging",
       "events": [
         {
@@ -1318,6 +1339,7 @@
       "fullName": "IsDebuggingEnabled",
       "functionType": "Condition",
       "name": "IsDebuggingEnabled",
+      "private": false,
       "sentence": "IsDebuggingEnabled",
       "events": [
         {
@@ -1346,6 +1368,7 @@
       "fullName": "ArrayForEach",
       "functionType": "Condition",
       "name": "ArrayForEach",
+      "private": false,
       "sentence": "ArrayForEach _PARAM1_  as _PARAM2_ ",
       "events": [
         {
@@ -1395,6 +1418,7 @@
       "fullName": "ArrayItem",
       "functionType": "StringExpression",
       "name": "ArrayItem",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -1444,6 +1468,7 @@
       "fullName": "ArrayLength",
       "functionType": "Expression",
       "name": "ArrayLength",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -1483,6 +1508,7 @@
       "fullName": "StrMatches",
       "functionType": "Condition",
       "name": "StrMatches",
+      "private": false,
       "sentence": "_PARAM1_ StrMatches _PARAM2_",
       "events": [
         {
@@ -1541,6 +1567,7 @@
       "fullName": "TimeMs",
       "functionType": "Expression",
       "name": "TimeMs",
+      "private": false,
       "sentence": "",
       "events": [
         {
@@ -1577,6 +1604,7 @@
           "fullName": "",
           "functionType": "Action",
           "name": "doStepPreEvents",
+          "private": false,
           "sentence": "",
           "events": [
             {
@@ -1674,6 +1702,7 @@
           "fullName": "marquee",
           "functionType": "Action",
           "name": "marquee",
+          "private": false,
           "sentence": "_PARAM0_ marquee",
           "events": [
             {
@@ -1755,6 +1784,7 @@
           "fullName": "ThrottleMs",
           "functionType": "Expression",
           "name": "ThrottleMs",
+          "private": false,
           "sentence": "",
           "events": [
             {
@@ -1806,6 +1836,7 @@
           "fullName": "IsFinished",
           "functionType": "Condition",
           "name": "IsFinished",
+          "private": false,
           "sentence": "_PARAM0_ IsFinished",
           "events": [
             {
@@ -1883,6 +1914,7 @@
           "fullName": "",
           "functionType": "Action",
           "name": "doStepPreEvents",
+          "private": false,
           "sentence": "",
           "events": [
             {
