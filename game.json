@@ -13,12 +13,12 @@
     "packageName": "com.example.gamename",
     "projectUuid": "c210777f-e047-47fb-a82e-69526b07d293",
     "scaleMode": "nearest",
-    "sizeOnStartupMode": "adaptHeight",
+    "sizeOnStartupMode": "",
     "useExternalSourceFiles": false,
     "version": "1.0.0",
     "name": "Project",
     "author": "",
-    "windowWidth": 1920,
+    "windowWidth": 2120,
     "windowHeight": 1080,
     "latestCompilationDirectory": "",
     "maxFPS": 60,
@@ -96,7 +96,26 @@
     "currentPlatform": "GDevelop JS platform"
   },
   "resources": {
-    "resources": [],
+    "resources": [
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/Ball.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\Ball.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/Wall.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\Wall.png",
+        "smoothed": false,
+        "userAdded": false
+      }
+    ],
     "resourceFolders": []
   },
   "objects": [],
@@ -105,11 +124,19 @@
   "layouts": [
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
-      "referenceTo": "/layouts/new-scene"
+      "referenceTo": "/layouts/ws-test"
+    },
+    {
+      "__REFERENCE_TO_SPLIT_OBJECT": true,
+      "referenceTo": "/layouts/gnop"
     }
   ],
   "externalEvents": [],
   "eventsFunctionsExtensions": [
+    {
+      "__REFERENCE_TO_SPLIT_OBJECT": true,
+      "referenceTo": "/eventsFunctionsExtensions/screenwrap"
+    },
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
       "referenceTo": "/eventsFunctionsExtensions/srs_utils"
