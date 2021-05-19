@@ -23,7 +23,7 @@
     "gridWidth": 60,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.6199999999999997
+    "zoomFactor": 0.5399999999999996
   },
   "objectsGroups": [],
   "variables": [],
@@ -31,14 +31,14 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 200,
+      "height": 120,
       "layer": "",
       "locked": false,
       "name": "Ball",
       "persistentUuid": "24fa9afa-d649-4207-8aad-39e895a875f6",
-      "width": 200,
-      "x": 1080,
-      "y": 420,
+      "width": 120,
+      "x": 900,
+      "y": 480,
       "zOrder": 1,
       "numberProperties": [
         {
@@ -148,14 +148,14 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 200,
+      "height": 120,
       "layer": "",
       "locked": false,
       "name": "PhantomBall",
       "persistentUuid": "a93d8589-884b-4a67-a21c-ac7ac0ee3053",
-      "width": 200,
-      "x": 360,
-      "y": -300,
+      "width": 120,
+      "x": 1800,
+      "y": -180,
       "zOrder": 4,
       "numberProperties": [
         {
@@ -375,7 +375,7 @@
       "name": "Paddle",
       "persistentUuid": "3e96dffc-c480-4461-bf9c-0dadd79dd8e0",
       "width": 60,
-      "x": 960,
+      "x": 1080,
       "y": 720,
       "zOrder": 7,
       "numberProperties": [],
@@ -397,8 +397,8 @@
       "name": "Paddle",
       "persistentUuid": "a4779e61-1936-4d36-87ba-389ff2e0ac36",
       "width": 60,
-      "x": 660,
-      "y": 420,
+      "x": 780,
+      "y": 120,
       "zOrder": 7,
       "numberProperties": [],
       "stringProperties": [],
@@ -413,15 +413,127 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 960,
-      "layer": "Warps",
+      "height": 60,
+      "layer": "Debug",
       "locked": false,
-      "name": "Rail",
-      "persistentUuid": "33462b5e-4b8b-40bd-90b3-cb3331760952",
-      "width": 20,
-      "x": 660,
-      "y": 60,
-      "zOrder": 8,
+      "name": "P1Count",
+      "persistentUuid": "a7279255-c7c8-4c8c-8b4f-141f662e6333",
+      "width": 180,
+      "x": 600,
+      "y": 1020,
+      "zOrder": 9,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "Debug",
+      "locked": false,
+      "name": "P2Count",
+      "persistentUuid": "fc4e6f55-d04f-4b85-b7e4-9cfe0c31fdbe",
+      "width": 0,
+      "x": 960,
+      "y": 1020,
+      "zOrder": 10,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 60,
+      "layer": "",
+      "locked": false,
+      "name": "Wall",
+      "persistentUuid": "3acd60af-6689-43db-bd35-a87656d79398",
+      "width": 960,
+      "x": 960,
+      "y": 1620,
+      "zOrder": 11,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 60,
+      "layer": "",
+      "locked": false,
+      "name": "Wall",
+      "persistentUuid": "0c85fdd1-b957-44e9-9cba-7dddd3a8b960",
+      "width": 960,
+      "x": 0,
+      "y": 1620,
+      "zOrder": 11,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 540,
+      "layer": "",
+      "locked": false,
+      "name": "Wall",
+      "persistentUuid": "05d6fbfb-6b4c-4ef4-814a-9b31e912f2e7",
+      "width": 60,
+      "x": 960,
+      "y": -780,
+      "zOrder": 11,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 540,
+      "layer": "",
+      "locked": false,
+      "name": "Wall",
+      "persistentUuid": "d5b0ed62-a3d5-454c-bc96-a76d19931ba0",
+      "width": 60,
+      "x": 960,
+      "y": 1140,
+      "zOrder": 11,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 540,
+      "layer": "",
+      "locked": false,
+      "name": "Wall",
+      "persistentUuid": "515bf1cb-b209-4375-a555-656a65236e8c",
+      "width": 60,
+      "x": 900,
+      "y": 1140,
+      "zOrder": 11,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 540,
+      "layer": "",
+      "locked": false,
+      "name": "Wall",
+      "persistentUuid": "ce543c92-8127-4958-89f8-79fa775e8d81",
+      "width": 60,
+      "x": 900,
+      "y": -780,
+      "zOrder": 11,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -443,17 +555,17 @@
           "fixedRotation": false,
           "canSleep": false,
           "shape": "Circle",
-          "shapeDimensionA": 100,
+          "shapeDimensionA": 60,
           "shapeDimensionB": 0,
           "shapeOffsetX": 0,
           "shapeOffsetY": 0,
           "polygonOrigin": "Center",
           "vertices": [],
-          "density": 0.1,
+          "density": 0.2,
           "friction": 0.2,
           "restitution": 1,
-          "linearDamping": 0.01,
-          "angularDamping": 0.2,
+          "linearDamping": 0.05,
+          "angularDamping": 0.1,
           "gravityScale": 0,
           "layers": 1,
           "masks": 1
@@ -747,67 +859,42 @@
       ]
     },
     {
-      "name": "Rail",
+      "bold": false,
+      "italic": false,
+      "name": "P1Count",
+      "smoothed": true,
       "tags": "",
-      "type": "Sprite",
-      "updateIfNotVisible": false,
+      "type": "TextObject::Text",
+      "underlined": false,
       "variables": [],
-      "behaviors": [
-        {
-          "name": "Physics2",
-          "type": "Physics2::Physics2Behavior",
-          "bodyType": "Static",
-          "bullet": false,
-          "fixedRotation": false,
-          "canSleep": true,
-          "shape": "Box",
-          "shapeDimensionA": 1,
-          "shapeDimensionB": 960,
-          "shapeOffsetX": 0,
-          "shapeOffsetY": 0,
-          "polygonOrigin": "Center",
-          "vertices": [],
-          "density": 1,
-          "friction": 0.3,
-          "restitution": 0.1,
-          "linearDamping": 0.1,
-          "angularDamping": 0.1,
-          "gravityScale": 1,
-          "layers": 0,
-          "masks": 0
-        }
-      ],
-      "animations": [
-        {
-          "name": "",
-          "useMultipleDirections": false,
-          "directions": [
-            {
-              "looping": false,
-              "timeBetweenFrames": 0.08,
-              "sprites": [
-                {
-                  "hasCustomCollisionMask": false,
-                  "image": "Assets\\Wall.png",
-                  "points": [],
-                  "originPoint": {
-                    "name": "origine",
-                    "x": 0,
-                    "y": 0
-                  },
-                  "centerPoint": {
-                    "automatic": true,
-                    "name": "centre",
-                    "x": 0,
-                    "y": 0
-                  },
-                  "customCollisionMask": []
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "behaviors": [],
+      "string": "[count]",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "P2Count",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "[count]",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
     }
   ],
   "events": [
@@ -1815,8 +1902,8 @@
               "parameters": [
                 "Ball",
                 "Physics2",
-                "600",
-                "",
+                "100 * Ball.Physics2::Density()",
+                "0",
                 "Paddle.Physics2::MassCenterX()",
                 "Paddle.Physics2::MassCenterY()"
               ],
@@ -1842,41 +1929,6 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "Physics2::LinearVelocityX"
-                  },
-                  "parameters": [
-                    "Paddle",
-                    "Physics2",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "Physics2::LinearVelocityY"
-                  },
-                  "parameters": [
-                    "Paddle",
-                    "Physics2",
-                    "=",
-                    "clamp(-200, Paddle.Physics2::LinearVelocityY(), 200)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
                     "value": "srs_gnop::Paddle::handlePhysics"
                   },
                   "parameters": [
@@ -1891,140 +1943,39 @@
               "events": []
             },
             {
-              "disabled": true,
+              "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
+              "conditions": [],
+              "actions": [
                 {
                   "type": {
                     "inverted": false,
-                    "value": "VarObjet"
+                    "value": "ModVarObjet"
                   },
                   "parameters": [
-                    "Paddle",
-                    "Player",
+                    "Ball",
+                    "AttractionLength",
                     "=",
-                    "1"
+                    "(0.1) * Ball.Physics2::Density()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Ball",
+                    "HitLength",
+                    "=",
+                    "100 * Ball.Physics2::Density()"
                   ],
                   "subInstructions": []
                 }
               ],
-              "actions": [],
-              "events": [
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "KeyPressed"
-                      },
-                      "parameters": [
-                        "",
-                        "x"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::LinearVelocityY"
-                      },
-                      "parameters": [
-                        "Paddle",
-                        "Physics2",
-                        "=",
-                        "400"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "KeyPressed"
-                      },
-                      "parameters": [
-                        "",
-                        "z"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::LinearVelocityY"
-                      },
-                      "parameters": [
-                        "Paddle",
-                        "Physics2",
-                        "=",
-                        "-400"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": true,
-                        "value": "KeyPressed"
-                      },
-                      "parameters": [
-                        "",
-                        "x"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": true,
-                        "value": "KeyPressed"
-                      },
-                      "parameters": [
-                        "",
-                        "z"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::LinearVelocityY"
-                      },
-                      "parameters": [
-                        "Paddle",
-                        "Physics2",
-                        "=",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                }
-              ]
+              "events": []
             },
             {
               "disabled": false,
@@ -2038,10 +1989,71 @@
                     "value": "ModVarObjet"
                   },
                   "parameters": [
-                    "Paddle",
-                    "ControlLength",
+                    "Ball",
+                    "AngleToCenter",
                     "=",
-                    "300 * Paddle.Physics2::Density()"
+                    "AngleBetweenPositions(Ball.Physics2::MassCenterX(), Ball.Physics2::MassCenterY(), CameraWidth(\"\", 1) / 2 , CameraHeight(\"\", 1) / 2)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Physics2::ApplyPolarForce"
+                  },
+                  "parameters": [
+                    "Ball",
+                    "Physics2",
+                    "Ball.Variable(AngleToCenter)",
+                    "Ball.Variable(AttractionLength)",
+                    "Ball.Physics2::MassCenterX()",
+                    "Ball.Physics2::MassCenterY()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": true,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Ball",
+                    "AngleToPaddle",
+                    "=",
+                    "AngleBetweenPositions(Ball.Physics2::MassCenterX(), Ball.Physics2::MassCenterY(), Paddle.Physics2::MassCenterX(), Paddle.Physics2::MassCenterY())"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": true,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Physics2::ApplyPolarForce"
+                  },
+                  "parameters": [
+                    "Ball",
+                    "Physics2",
+                    "Ball.Variable(AngleToPaddle)",
+                    "Ball.Variable(AttractionLength)",
+                    "Ball.Physics2::MassCenterX()",
+                    "Ball.Physics2::MassCenterY()"
                   ],
                   "subInstructions": []
                 }
@@ -2056,13 +2068,13 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "VarObjet"
+                    "value": "Physics2::Collision"
                   },
                   "parameters": [
                     "Paddle",
-                    "Player",
-                    "=",
-                    "1"
+                    "Physics2",
+                    "Ball",
+                    ""
                   ],
                   "subInstructions": []
                 }
@@ -2073,32 +2085,20 @@
                   "disabled": false,
                   "folded": false,
                   "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "KeyPressed"
-                      },
-                      "parameters": [
-                        "",
-                        "z"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
+                  "conditions": [],
                   "actions": [
                     {
                       "type": {
                         "inverted": false,
-                        "value": "Physics2::ApplyForce"
+                        "value": "Physics2::ApplyPolarForce"
                       },
                       "parameters": [
-                        "Paddle",
+                        "Ball",
                         "Physics2",
-                        "0",
-                        "-1 * Paddle.Variable(ControlLength)",
-                        "Paddle.Physics2::MassCenterX()",
-                        "Paddle.Physics2::MassCenterY()"
+                        "Ball.Variable(AngleToPaddle)",
+                        "-1 * Ball.Variable(HitLength)",
+                        "Ball.Physics2::MassCenterX()",
+                        "Ball.Physics2::MassCenterY()"
                       ],
                       "subInstructions": []
                     }
@@ -2113,11 +2113,13 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "KeyPressed"
+                        "value": "srs_gnop::Paddle::IsPlayer"
                       },
                       "parameters": [
-                        "",
-                        "x"
+                        "Paddle",
+                        "Paddle",
+                        "1",
+                        ""
                       ],
                       "subInstructions": []
                     }
@@ -2126,74 +2128,13 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "Physics2::ApplyForce"
+                        "value": "ModVarObjet"
                       },
                       "parameters": [
-                        "Paddle",
-                        "Physics2",
-                        "0",
-                        "Paddle.Variable(ControlLength)",
-                        "Paddle.Physics2::MassCenterX()",
-                        "Paddle.Physics2::MassCenterY()"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                }
-              ]
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Paddle",
-                    "Player",
-                    "=",
-                    "2"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [],
-              "events": [
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "KeyPressed"
-                      },
-                      "parameters": [
-                        "",
-                        "n"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::ApplyForce"
-                      },
-                      "parameters": [
-                        "Paddle",
-                        "Physics2",
-                        "0",
-                        "-1 * Paddle.Variable(ControlLength)",
-                        "Paddle.Physics2::MassCenterX()",
-                        "Paddle.Physics2::MassCenterY()"
+                        "P1Count",
+                        "Count",
+                        "+",
+                        "1"
                       ],
                       "subInstructions": []
                     }
@@ -2208,11 +2149,13 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "KeyPressed"
+                        "value": "srs_gnop::Paddle::IsPlayer"
                       },
                       "parameters": [
-                        "",
-                        "m"
+                        "Paddle",
+                        "Paddle",
+                        "2",
+                        ""
                       ],
                       "subInstructions": []
                     }
@@ -2221,15 +2164,33 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "Physics2::ApplyForce"
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "P2Count",
+                        "Count",
+                        "+",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": true,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeColor"
                       },
                       "parameters": [
                         "Paddle",
-                        "Physics2",
-                        "0",
-                        "Paddle.Variable(ControlLength)",
-                        "Paddle.Physics2::MassCenterX()",
-                        "Paddle.Physics2::MassCenterY()"
+                        "ToString(RandomFloatInRange(100,200)) + \";\" + ToString(RandomFloatInRange(100,200)) + \";\" + ToString(RandomFloatInRange(100,200))"
                       ],
                       "subInstructions": []
                     }
@@ -2239,6 +2200,39 @@
               ]
             }
           ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "P1Count",
+                "=",
+                "ToString(P1Count.Variable(Count))"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "P2Count",
+                "=",
+                "ToString(P2Count.Variable(Count))"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "parameters": []
@@ -2276,6 +2270,17 @@
           "width": 0
         }
       ],
+      "effects": []
+    },
+    {
+      "ambientLightColorB": 1702453580,
+      "ambientLightColorG": 6022704,
+      "ambientLightColorR": 67108864,
+      "followBaseLayerCamera": false,
+      "isLightingLayer": false,
+      "name": "Debug",
+      "visibility": true,
+      "cameras": [],
       "effects": []
     }
   ],

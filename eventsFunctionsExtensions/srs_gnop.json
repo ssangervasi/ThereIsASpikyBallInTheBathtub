@@ -28,47 +28,12 @@
           "sentence": "",
           "events": [
             {
-              "disabled": false,
+              "disabled": true,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
               "actions": [],
               "events": [
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::LinearVelocityX"
-                      },
-                      "parameters": [
-                        "Paddle",
-                        "Physics2",
-                        "=",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::LinearVelocityY"
-                      },
-                      "parameters": [
-                        "Paddle",
-                        "Physics2",
-                        "=",
-                        "clamp(-200, Paddle.Physics2::LinearVelocityY(), 200)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
                 {
                   "disabled": false,
                   "folded": false,
@@ -487,19 +452,63 @@
           "objectGroups": []
         },
         {
-          "description": "handlePhysics",
-          "fullName": "handlePhysics",
-          "functionType": "Action",
-          "name": "handlePhysics",
+          "description": "IsPlayer",
+          "fullName": "IsPlayer",
+          "functionType": "Condition",
+          "name": "IsPlayer",
           "private": false,
-          "sentence": "_PARAM0_ handlePhysics ",
+          "sentence": "_PARAM0_ IsPlayer _PARAM2_",
           "events": [
             {
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
-              "actions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetReturnBoolean"
+                  },
+                  "parameters": [
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Player",
+                    "=",
+                    "GetArgumentAsNumber(\"Number\")"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetReturnBoolean"
+                  },
+                  "parameters": [
+                    "True"
+                  ],
+                  "subInstructions": []
+                }
+              ],
               "events": []
             }
           ],
@@ -527,9 +536,213 @@
             {
               "codeOnly": false,
               "defaultValue": "",
-              "description": "PhysicsBehavior",
+              "description": "Number",
               "longDescription": "",
-              "name": "PhysicsBehavior",
+              "name": "Number",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "handlePhysics",
+          "fullName": "handlePhysics",
+          "functionType": "Action",
+          "name": "handlePhysics",
+          "private": false,
+          "sentence": "_PARAM0_ handlePhysics ",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": true,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_utils::consoleLog"
+                      },
+                      "parameters": [
+                        "",
+                        "ToString(Object.Physics2::Density())",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Object",
+                        "ControlLength",
+                        "=",
+                        "300 * Object.Physics2::Density()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::LinearVelocityX"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Physics2",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::LinearVelocityY"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Physics2",
+                        "=",
+                        "clamp(-1000, Object.Physics2::LinearVelocityY(), 1000)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::Paddle::IsPressingDown"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::ApplyForce"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Physics2",
+                        "0",
+                        "Object.Variable(ControlLength)",
+                        "Object.Physics2::MassCenterX()",
+                        "Object.Physics2::MassCenterY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::Paddle::IsPressingUp"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::ApplyForce"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Physics2",
+                        "0",
+                        "-1 * Object.Variable(ControlLength)",
+                        "Object.Physics2::MassCenterX()",
+                        "Object.Physics2::MassCenterY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "srs_gnop::Paddle",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Physics2",
+              "longDescription": "",
+              "name": "Physics2",
               "optional": false,
               "supplementaryInformation": "Physics2::Physics2Behavior",
               "type": "behavior"
@@ -538,17 +751,7 @@
           "objectGroups": []
         }
       ],
-      "propertyDescriptors": [
-        {
-          "value": "300",
-          "type": "Number",
-          "label": "ControlLength",
-          "description": "",
-          "extraInformation": [],
-          "hidden": false,
-          "name": "ControlLength"
-        }
-      ]
+      "propertyDescriptors": []
     }
   ]
 }
