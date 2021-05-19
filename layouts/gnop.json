@@ -23,7 +23,7 @@
     "gridWidth": 60,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.35999999999999943
+    "zoomFactor": 0.6199999999999997
   },
   "objectsGroups": [],
   "variables": [],
@@ -37,7 +37,7 @@
       "name": "Ball",
       "persistentUuid": "24fa9afa-d649-4207-8aad-39e895a875f6",
       "width": 200,
-      "x": 900,
+      "x": 1080,
       "y": 420,
       "zOrder": 1,
       "numberProperties": [
@@ -154,8 +154,8 @@
       "name": "PhantomBall",
       "persistentUuid": "a93d8589-884b-4a67-a21c-ac7ac0ee3053",
       "width": 200,
-      "x": 780,
-      "y": 120,
+      "x": 360,
+      "y": -300,
       "zOrder": 4,
       "numberProperties": [
         {
@@ -365,6 +365,66 @@
           "value": "Right"
         }
       ]
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 240,
+      "layer": "",
+      "locked": false,
+      "name": "Paddle",
+      "persistentUuid": "3e96dffc-c480-4461-bf9c-0dadd79dd8e0",
+      "width": 60,
+      "x": 960,
+      "y": 720,
+      "zOrder": 7,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Player",
+          "type": "number",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 240,
+      "layer": "",
+      "locked": false,
+      "name": "Paddle",
+      "persistentUuid": "a4779e61-1936-4d36-87ba-389ff2e0ac36",
+      "width": 60,
+      "x": 660,
+      "y": 420,
+      "zOrder": 7,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Player",
+          "type": "number",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 960,
+      "layer": "Warps",
+      "locked": false,
+      "name": "Rail",
+      "persistentUuid": "33462b5e-4b8b-40bd-90b3-cb3331760952",
+      "width": 20,
+      "x": 660,
+      "y": 60,
+      "zOrder": 8,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
     }
   ],
   "objects": [
@@ -389,11 +449,11 @@
           "shapeOffsetY": 0,
           "polygonOrigin": "Center",
           "vertices": [],
-          "density": 0.7,
+          "density": 0.1,
           "friction": 0.2,
-          "restitution": 0.9,
-          "linearDamping": 0.1,
-          "angularDamping": 0.1,
+          "restitution": 1,
+          "linearDamping": 0.01,
+          "angularDamping": 0.2,
           "gravityScale": 0,
           "layers": 1,
           "masks": 1
@@ -485,7 +545,7 @@
           "polygonOrigin": "Center",
           "vertices": [],
           "density": 1,
-          "friction": 0.3,
+          "friction": 0.5,
           "restitution": 0.1,
           "linearDamping": 0.1,
           "angularDamping": 0.1,
@@ -611,25 +671,154 @@
       },
       "absoluteCoordinates": true,
       "clearBetweenFrames": true
+    },
+    {
+      "name": "Paddle",
+      "tags": "",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [
+        {
+          "name": "Player",
+          "type": "number",
+          "value": 0
+        }
+      ],
+      "behaviors": [
+        {
+          "name": "Paddle",
+          "type": "srs_gnop::Paddle",
+          "ControlLength": 300
+        },
+        {
+          "name": "Physics2",
+          "type": "Physics2::Physics2Behavior",
+          "bodyType": "Dynamic",
+          "bullet": false,
+          "fixedRotation": true,
+          "canSleep": true,
+          "shape": "Box",
+          "shapeDimensionA": 60,
+          "shapeDimensionB": 240,
+          "shapeOffsetX": 0,
+          "shapeOffsetY": 0,
+          "polygonOrigin": "Center",
+          "vertices": [],
+          "density": 100,
+          "friction": 0.9,
+          "restitution": 0,
+          "linearDamping": 10,
+          "angularDamping": 0.1,
+          "gravityScale": 0,
+          "layers": 1,
+          "masks": 1
+        }
+      ],
+      "animations": [
+        {
+          "name": "",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\Wall.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Rail",
+      "tags": "",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "behaviors": [
+        {
+          "name": "Physics2",
+          "type": "Physics2::Physics2Behavior",
+          "bodyType": "Static",
+          "bullet": false,
+          "fixedRotation": false,
+          "canSleep": true,
+          "shape": "Box",
+          "shapeDimensionA": 1,
+          "shapeDimensionB": 960,
+          "shapeOffsetX": 0,
+          "shapeOffsetY": 0,
+          "polygonOrigin": "Center",
+          "vertices": [],
+          "density": 1,
+          "friction": 0.3,
+          "restitution": 0.1,
+          "linearDamping": 0.1,
+          "angularDamping": 0.1,
+          "gravityScale": 1,
+          "layers": 0,
+          "masks": 0
+        }
+      ],
+      "animations": [
+        {
+          "name": "",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\Wall.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "events": [
-    {
-      "disabled": false,
-      "folded": false,
-      "type": "BuiltinCommonInstructions::Standard",
-      "conditions": [],
-      "actions": [],
-      "events": []
-    },
     {
       "colorB": 228,
       "colorG": 176,
       "colorR": 74,
       "creationTime": 0,
-      "disabled": false,
-      "folded": false,
-      "name": "Wrap",
+      "disabled": true,
+      "folded": true,
+      "name": "Debug points",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
       "events": [
@@ -652,7 +841,7 @@
           "actions": [],
           "events": [
             {
-              "disabled": true,
+              "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
@@ -660,38 +849,101 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "HideLayer"
+                    "value": "PrimitiveDrawing::FillColor"
                   },
                   "parameters": [
-                    "",
-                    "\"Warps\""
+                    "DebugDraw",
+                    "\"110;255;51\""
                   ],
                   "subInstructions": []
                 }
               ],
               "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "Warp",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PrimitiveDrawing::Star"
+                      },
+                      "parameters": [
+                        "DebugDraw",
+                        "Warp.PointX(\"Origin\")",
+                        "Warp.PointY(\"Origin\")",
+                        "5",
+                        "25",
+                        "5",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PrimitiveDrawing::Star"
+                      },
+                      "parameters": [
+                        "DebugDraw",
+                        "Warp.PointX(\"Opposite\")",
+                        "Warp.PointY(\"Origin\")",
+                        "5",
+                        "25",
+                        "5",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PrimitiveDrawing::Star"
+                      },
+                      "parameters": [
+                        "DebugDraw",
+                        "Warp.PointX(\"Origin\")",
+                        "Warp.PointY(\"Opposite\")",
+                        "5",
+                        "25",
+                        "5",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PrimitiveDrawing::Star"
+                      },
+                      "parameters": [
+                        "DebugDraw",
+                        "Warp.PointX(\"Opposite\")",
+                        "Warp.PointY(\"Opposite\")",
+                        "5",
+                        "25",
+                        "5",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
             }
           ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "PrimitiveDrawing::FillColor"
-              },
-              "parameters": [
-                "DebugDraw",
-                "\"110;255;51\""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
         },
         {
           "disabled": false,
@@ -717,89 +969,99 @@
             }
           ],
           "events": []
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "disabled": false,
+      "folded": true,
+      "name": "Wrap",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "HideLayer"
+              },
+              "parameters": [
+                "",
+                "\"Warps\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         },
         {
           "disabled": false,
           "folded": false,
-          "type": "BuiltinCommonInstructions::ForEach",
-          "object": "Warp",
+          "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
-          "actions": [],
-          "events": [
+          "actions": [
             {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "PrimitiveDrawing::Star"
-                  },
-                  "parameters": [
-                    "DebugDraw",
-                    "Warp.PointX(\"Origin\")",
-                    "Warp.PointY(\"Origin\")",
-                    "5",
-                    "25",
-                    "5",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "PrimitiveDrawing::Star"
-                  },
-                  "parameters": [
-                    "DebugDraw",
-                    "Warp.PointX(\"Opposite\")",
-                    "Warp.PointY(\"Origin\")",
-                    "5",
-                    "25",
-                    "5",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "PrimitiveDrawing::Star"
-                  },
-                  "parameters": [
-                    "DebugDraw",
-                    "Warp.PointX(\"Origin\")",
-                    "Warp.PointY(\"Opposite\")",
-                    "5",
-                    "25",
-                    "5",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "PrimitiveDrawing::Star"
-                  },
-                  "parameters": [
-                    "DebugDraw",
-                    "Warp.PointX(\"Opposite\")",
-                    "Warp.PointY(\"Opposite\")",
-                    "5",
-                    "25",
-                    "5",
-                    "0"
-                  ],
-                  "subInstructions": []
-                }
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjet"
+              },
+              "parameters": [
+                "Ball",
+                "Radius",
+                "=",
+                "(1/2) * Ball.Width() "
               ],
-              "events": []
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjet"
+              },
+              "parameters": [
+                "Ball",
+                "Left",
+                "=",
+                "Ball.Physics2::MassCenterX() - Ball.Variable(Radius)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjet"
+              },
+              "parameters": [
+                "Ball",
+                "Right",
+                "=",
+                "Ball.Physics2::MassCenterX() + Ball.Variable(Radius)"
+              ],
+              "subInstructions": []
             }
-          ]
+          ],
+          "events": []
         },
         {
           "disabled": false,
@@ -874,47 +1136,207 @@
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Warp",
+                    "Left",
+                    "=",
+                    "Warp.X()"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Warp",
+                    "Right",
+                    "=",
+                    "Warp.X() + Warp.Width()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Warp",
+                    "ContainsLeft",
+                    "False"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Warp",
+                    "ContainsRight",
+                    "False"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "Warp.Variable(Left)",
+                    "<",
+                    "Ball.Variable(Left)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "Ball.Variable(Left)",
+                    "<",
+                    "Warp.Variable(Right)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Warp",
+                    "ContainsLeft",
+                    "True"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "Warp.Variable(Left)",
+                    "<",
+                    "Ball.Variable(Right)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "Ball.Variable(Right)",
+                    "<",
+                    "Warp.Variable(Right)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Warp",
+                    "ContainsRight",
+                    "True"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ObjectVariableAsBoolean"
+                      },
+                      "parameters": [
+                        "Warp",
+                        "ContainsLeft",
+                        "True"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ObjectVariableAsBoolean"
+                      },
+                      "parameters": [
+                        "Warp",
+                        "ContainsRight",
+                        "True"
+                      ],
+                      "subInstructions": []
+                    }
+                  ]
+                }
+              ],
               "actions": [],
               "events": [
                 {
                   "disabled": false,
                   "folded": false,
                   "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "BuiltinCommonInstructions::Or"
-                      },
-                      "parameters": [],
-                      "subInstructions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "CollisionPoint"
-                          },
-                          "parameters": [
-                            "Warp",
-                            "Ball.PointX(\"Origin\") + 1",
-                            "Ball.PointY(\"Origin\") + 1"
-                          ],
-                          "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "CollisionPoint"
-                          },
-                          "parameters": [
-                            "Warp",
-                            "Ball.PointX(\"Opposite\") - 1",
-                            "Ball.PointY(\"Opposite\") - 1"
-                          ],
-                          "subInstructions": []
-                        }
-                      ]
-                    }
-                  ],
+                  "conditions": [],
                   "actions": [
                     {
                       "type": {
@@ -938,7 +1360,7 @@
                         "Ball",
                         "Warp.OffsetX",
                         "=",
-                        "Ball.PointX(\"Origin\") - Warp.PointX(\"Origin\")"
+                        "Ball.Physics2::MassCenterX() - Warp.PointX(\"Center\")"
                       ],
                       "subInstructions": []
                     },
@@ -956,76 +1378,7 @@
                       "subInstructions": []
                     }
                   ],
-                  "events": [
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "VarObjetTxt"
-                          },
-                          "parameters": [
-                            "Warp",
-                            "Source",
-                            "=",
-                            "\"Right\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ChangeColor"
-                          },
-                          "parameters": [
-                            "PhantomBall",
-                            "\"79;183;248\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    },
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "VarObjetTxt"
-                          },
-                          "parameters": [
-                            "Warp",
-                            "Source",
-                            "=",
-                            "\"Left\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ChangeColor"
-                          },
-                          "parameters": [
-                            "PhantomBall",
-                            "\"146;255;0\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    }
-                  ]
+                  "events": []
                 },
                 {
                   "disabled": false,
@@ -1035,24 +1388,24 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "CollisionPoint"
+                        "value": "ObjectVariableAsBoolean"
                       },
                       "parameters": [
                         "Warp",
-                        "Ball.PointX(\"Opposite\") - 1",
-                        "Ball.PointY(\"Opposite\") - 1"
+                        "ContainsLeft",
+                        "True"
                       ],
                       "subInstructions": []
                     },
                     {
                       "type": {
                         "inverted": false,
-                        "value": "CollisionPoint"
+                        "value": "ObjectVariableAsBoolean"
                       },
                       "parameters": [
                         "Warp",
-                        "Ball.PointX(\"Origin\") + 1",
-                        "Ball.PointY(\"Origin\") + 1"
+                        "ContainsRight",
+                        "True"
                       ],
                       "subInstructions": []
                     }
@@ -1072,28 +1425,7 @@
                       "subInstructions": []
                     }
                   ],
-                  "events": [
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ChangeColor"
-                          },
-                          "parameters": [
-                            "PhantomBall",
-                            "\"83;29;29\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    }
-                  ]
+                  "events": []
                 }
               ]
             }
@@ -1146,27 +1478,6 @@
                   "disabled": false,
                   "folded": false,
                   "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "srs_utils::consoleLog"
-                      },
-                      "parameters": [
-                        "",
-                        "Ball.VariableString(Warp.Source)",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
                   "conditions": [
                     {
                       "type": {
@@ -1193,33 +1504,23 @@
                         ""
                       ],
                       "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "MettreAutourPos"
+                      },
+                      "parameters": [
+                        "PhantomBall",
+                        "Warp.PointX(\"Center\") + Ball.Variable(Warp.OffsetX)",
+                        "Ball.Physics2::MassCenterY()",
+                        "0",
+                        "0"
+                      ],
+                      "subInstructions": []
                     }
                   ],
-                  "events": [
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "MettreXY"
-                          },
-                          "parameters": [
-                            "PhantomBall",
-                            "=",
-                            "Warp.X() + Ball.Variable(Warp.OffsetX)",
-                            "=",
-                            "Ball.Y()"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    }
-                  ]
+                  "events": []
                 },
                 {
                   "disabled": false,
@@ -1244,12 +1545,14 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "MettreX"
+                        "value": "MettreAutourPos"
                       },
                       "parameters": [
                         "Ball",
-                        "=",
-                        "Warp.PointX(\"Origin\") + Ball.Variable(Warp.OffsetX)"
+                        "Warp.PointX(\"Center\") + Ball.Variable(Warp.OffsetX)",
+                        "Ball.Physics2::MassCenterY()",
+                        "0",
+                        "0"
                       ],
                       "subInstructions": []
                     }
@@ -1283,39 +1586,15 @@
             {
               "type": {
                 "inverted": false,
-                "value": "MettreXY"
+                "value": "Cache"
               },
               "parameters": [
-                "PhantomBall",
-                "=",
-                "Ball.X()",
-                "=",
-                "Ball.Y()"
+                "PhantomBall"
               ],
               "subInstructions": []
             }
           ],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "Cache"
-                  },
-                  "parameters": [
-                    "PhantomBall"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            }
-          ]
+          "events": []
         }
       ],
       "parameters": []
@@ -1346,7 +1625,7 @@
                 "Ball",
                 "PushLength",
                 "=",
-                "150"
+                "400"
               ],
               "subInstructions": []
             }
@@ -1499,6 +1778,470 @@
         }
       ],
       "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "disabled": false,
+      "folded": false,
+      "name": "Paddles",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Physics2::ApplyForce"
+              },
+              "parameters": [
+                "Ball",
+                "Physics2",
+                "600",
+                "",
+                "Paddle.Physics2::MassCenterX()",
+                "Paddle.Physics2::MassCenterY()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Paddle",
+          "conditions": [],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Physics2::LinearVelocityX"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "Physics2",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Physics2::LinearVelocityY"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "Physics2",
+                    "=",
+                    "clamp(-200, Paddle.Physics2::LinearVelocityY(), 200)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_gnop::Paddle::handlePhysics"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "Paddle",
+                    "Physics2",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": true,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "Player",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "x"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::LinearVelocityY"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Physics2",
+                        "=",
+                        "400"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "z"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::LinearVelocityY"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Physics2",
+                        "=",
+                        "-400"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "x"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "z"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::LinearVelocityY"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Physics2",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "ControlLength",
+                    "=",
+                    "300 * Paddle.Physics2::Density()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "Player",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "z"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::ApplyForce"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Physics2",
+                        "0",
+                        "-1 * Paddle.Variable(ControlLength)",
+                        "Paddle.Physics2::MassCenterX()",
+                        "Paddle.Physics2::MassCenterY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "x"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::ApplyForce"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Physics2",
+                        "0",
+                        "Paddle.Variable(ControlLength)",
+                        "Paddle.Physics2::MassCenterX()",
+                        "Paddle.Physics2::MassCenterY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "Player",
+                    "=",
+                    "2"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "n"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::ApplyForce"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Physics2",
+                        "0",
+                        "-1 * Paddle.Variable(ControlLength)",
+                        "Paddle.Physics2::MassCenterX()",
+                        "Paddle.Physics2::MassCenterY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "KeyPressed"
+                      },
+                      "parameters": [
+                        "",
+                        "m"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::ApplyForce"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Physics2",
+                        "0",
+                        "Paddle.Variable(ControlLength)",
+                        "Paddle.Physics2::MassCenterX()",
+                        "Paddle.Physics2::MassCenterY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
     }
   ],
   "layers": [
@@ -1537,6 +2280,10 @@
     }
   ],
   "behaviorsSharedData": [
+    {
+      "name": "Paddle",
+      "type": "srs_gnop::Paddle"
+    },
     {
       "name": "Physics2",
       "type": "Physics2::Physics2Behavior",

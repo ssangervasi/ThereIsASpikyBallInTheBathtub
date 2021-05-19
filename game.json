@@ -18,7 +18,7 @@
     "version": "1.0.0",
     "name": "Project",
     "author": "",
-    "windowWidth": 2120,
+    "windowWidth": 1920,
     "windowHeight": 1080,
     "latestCompilationDirectory": "",
     "maxFPS": 60,
@@ -135,11 +135,11 @@
   "eventsFunctionsExtensions": [
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
-      "referenceTo": "/eventsFunctionsExtensions/screenwrap"
+      "referenceTo": "/eventsFunctionsExtensions/srs_utils"
     },
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
-      "referenceTo": "/eventsFunctionsExtensions/srs_utils"
+      "referenceTo": "/eventsFunctionsExtensions/srs_gnop"
     }
   ],
   "externalLayouts": [],
