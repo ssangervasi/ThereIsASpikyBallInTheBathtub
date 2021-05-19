@@ -1,16 +1,21 @@
 {
-	"name": "babblebot",
-	"main": "dist/babblebot.js",
-	"source": "src/babblebot.ts",
+	"name": "gnop",
+	"author": "Sebastian Sangervasi",
+	"license": "Copyright (c) 2021 Sebastian Sangervasi",
+	"main": "dist/gnop.js",
+	"source": "src/gnop.ts",
+	"version": "0.1.0",
 	"scripts": {
 		"build": "microbundle --format=cjs",
-		"old-build": "rimraf dist && tsc && bash ./bin/post-process",
 		"lint": "eslint --fix --cache src/**",
 		"ndb": "ndb ./dist/cli.js",
-		"shell": "ts-node",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "tsc-watch"
+	},
+	"engines": {
+		"node": "16.1.0",
+		"npm": "7.13.0"
 	},
 	"dependencies": {
 		"@types/json-stable-stringify": "^1.0.32",
@@ -41,15 +46,7 @@
 		"tslint": "^5.20.1",
 		"typescript": "^3.9.6"
 	},
-	"engines": {
-		"node": "12.13.0"
-	},
-	"description": "babblebot",
-	"author": "Sebastian Sangervasi",
-	"license": "Copyright (c) 2021 Sebastian Sangervasi",
-	"version": "0.0.1",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ssangervasi/babblebot.git"
-	}
+	"workspaces": [
+		"/n/workspace/sangervasi-site/common"
+	]
 }
