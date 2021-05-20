@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd "$(dirname $BASH_SOURCE)/.."
+
+npm run build
+cp dist/gnop.modern.js tests/gnop.js
+npx serve tests

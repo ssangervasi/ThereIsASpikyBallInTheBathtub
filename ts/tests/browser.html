@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />	
+		<meta name="theme-color" content="#000000" />
+
+		<style>
+			body {
+				background-color: grey;
+			}
+		</style>
+
+		<script type="module">
+			import { hello } from "/gnop.js";
+
+			window.test = () => {
+				document.getElementById('output').innerText = JSON.stringify(
+					{
+						cool: true,
+						hello: hello()
+					},
+					null,
+					2
+				)
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="test()">Test</button>
+		<pre id="output"></pre>
+	</body>
+
+</html>
