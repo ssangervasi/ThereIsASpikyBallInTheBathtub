@@ -19,14 +19,17 @@
 	},
 	"dependencies": {
 		"@sangervasi/common": "file:../../sangervasi-site/common",
-		"@types/json-stable-stringify": "^1.0.32",
-		"json-stable-stringify": "^1.0.1"
+		"commander": "^7.2.0",
+		"json-stable-stringify": "^1.0.1",
+		"ws": "^7.4.4"
 	},
 	"devDependencies": {
 		"@babel/types": "^7.10",
 		"@types/jest": "^24.9.1",
+		"@types/json-stable-stringify": "^1.0.32",
 		"@types/lodash": "^4.14.168",
 		"@types/node": "^12.12",
+		"@types/ws": "^7.4.1",
 		"@typescript-eslint/eslint-plugin": "^4.11.0",
 		"@typescript-eslint/parser": "^4.11.0",
 		"acorn": "^7",
