@@ -8,31 +8,31 @@ module.exports = {
 		SharedArrayBuffer: 'readonly',
 	},
 	rules: {
-		'sort-imports': "off",
-		"simple-import-sort/imports": [
-			"error",
+		'sort-imports': 'off',
+		'simple-import-sort/imports': [
+			'error',
 			{
 				groups: [
 					// Side effect imports.
-					["^\\u0000"],
+					['^\\u0000'],
 					// Packages.
 					// Things that start with a letter (or digit or underscore), or `@` followed by a letter.
-					["^@?\\w"],
+					['^@?\\w'],
 					// Absolute imports and other imports such as Vue-style `@/foo`.
 					// Anything not matched in another group.
-					["^"],
+					['^'],
 					// Custom
 					[
-						"^@sangervasi/",
-						"^src/",
+						'^@sangervasi/',
+						'^src/',
 					],
 					// Relative imports.
 					// Anything that starts with a dot.
-					["^\\."],
-				]
-			}
+					['^\\.'],
+				],
+			},
 		],
-		"simple-import-sort/exports": "error",
+		'simple-import-sort/exports': 'error',
 
 		'comma-dangle': ['error', 'always-multiline'],
 		indent: ['error', 'tab'],

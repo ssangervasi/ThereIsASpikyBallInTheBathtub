@@ -3,12 +3,14 @@ import path from 'path'
 import fs from 'fs'
 import jsonStringify from 'json-stable-stringify'
 
-
 type Rec<E> = E & {
 	events?: Array<Rec<E>>
 }
 
-function* findEvents<E>(parents: Iterable<Rec<E>>, matcher: (event: Rec<E>) => boolean): Generator<Rec<E>> {
+function* findEvents<E>(
+	parents: Iterable<Rec<E>>,
+	matcher: (event: Rec<E>) => boolean,
+): Generator<Rec<E>> {
 	for (const parent of parents) {
 		if (matcher(parent)) {
 			yield parent
@@ -21,41 +23,49 @@ function* findEvents<E>(parents: Iterable<Rec<E>>, matcher: (event: Rec<E>) => b
 	}
 }
 
-
 const tsPath = path.resolve(__dirname, '..')
-const deckingPath = path.resolve(tsPath, '../eventsFunctionsExtensions/decking.json')
+const deckingPath = path.resolve(
+	tsPath,
+	'../eventsFunctionsExtensions/decking.json',
+)
 const babblebotJsPath = path.resolve(tsPath, 'dist/babblebot.js')
 
 const deckingJson = fs.readFileSync(deckingPath)
 const deckingData: {
 	eventsFunctions: Array<{
-		name: string,
-		events: Array<Rec<{
-			type: string
-			inlineCode?: string
-		}>>
+		name: string
+		events: Array<
+			Rec<{
+				type: string
+				inlineCode?: string
+			}>
+		>
 	}>
 } = JSON.parse(deckingJson.toString())
 
-const f = deckingData?.eventsFunctions.find((eFunc) =>
-	eFunc.name === 'importCardScoresJs'
+const f = deckingData?.eventsFunctions.find(
+	eFunc => eFunc.name === 'importCardScoresJs',
 )
 
 if (f?.events) {
 	console.log('Events')
-	const events = findEvents(f.events, (event) => {
-		return event.type === 'BuiltinCommonInstructions::JsCode' &&
+	const events = findEvents(f.events, event => {
+		return (
+			event.type === 'BuiltinCommonInstructions::JsCode' &&
 			event.inlineCode !== undefined &&
 			event.inlineCode.startsWith(`// inject`)
+		)
 	})
 	const [event] = events
 	if (event) {
-		event.inlineCode = `// inject\nvar exports = exports || {};\n` + fs.readFileSync(babblebotJsPath).toString()
+		event.inlineCode =
+			`// inject\nvar exports = exports || {};\n` +
+			fs.readFileSync(babblebotJsPath).toString()
 	}
 } else {
 	console.log('No Events', {
-		fcount: deckingData.eventsFunctions.length
+		fcount: deckingData.eventsFunctions.length,
 	})
 }
 
-fs.writeFileSync(deckingPath, jsonStringify(deckingData, {space: 2}))
+fs.writeFileSync(deckingPath, jsonStringify(deckingData, { space: 2 }))
