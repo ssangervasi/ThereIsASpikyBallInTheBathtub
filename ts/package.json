@@ -4,9 +4,10 @@
 	"license": "Copyright (c) 2021 Sebastian Sangervasi",
 	"main": "dist/gnop.js",
 	"source": "src/gnop.ts",
+	"exports": "./dist/gnop.modern.js",
 	"version": "0.1.0",
 	"scripts": {
-		"build": "microbundle --format=cjs",
+		"build": "microbundle --format=modern",
 		"lint": "eslint --fix --cache src/**",
 		"ndb": "ndb ./dist/cli.js",
 		"test": "jest",
@@ -18,13 +19,12 @@
 		"npm": "7.13.0"
 	},
 	"dependencies": {
-		"@sangervasi/common": "file:../../sangervasi-site/common",
 		"commander": "^7.2.0",
-		"json-stable-stringify": "^1.0.1",
-		"ws": "^7.4.4"
+		"json-stable-stringify": "^1.0.1"
 	},
 	"devDependencies": {
 		"@babel/types": "^7.10",
+		"@sangervasi/common": "file:../../sangervasi-site/common",
 		"@types/jest": "^24.9.1",
 		"@types/json-stable-stringify": "^1.0.32",
 		"@types/lodash": "^4.14.168",
@@ -49,6 +49,7 @@
 		"ts-node": "^9.1.1",
 		"tsc-watch": "^4.2.9",
 		"tsconfig-paths": "^3.9.0",
-		"typescript": "^4.2.4"
+		"typescript": "^4.2.4",
+		"ws": "^7.4.4"
 	}
 }

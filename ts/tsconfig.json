@@ -13,6 +13,13 @@
 			],
 		},
 
+		// Syntax
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext"
+		],
+
 		// Output
 		"outDir": "dist",
 
