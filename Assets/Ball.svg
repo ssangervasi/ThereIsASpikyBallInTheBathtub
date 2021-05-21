@@ -7,55 +7,71 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="Ball.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   id="svg8"
-   version="1.1"
-   viewBox="0 0 105.83333 105.83334"
+   inkscape:export-ydpi="65.160004"
+   inkscape:export-xdpi="65.160004"
+   inkscape:export-filename="N:\workspace\Gnop\Assets\Ball.png"
+   width="400"
    height="400"
-   width="400">
+   viewBox="0 0 105.83333 105.83334"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="Ball.svg">
   <defs
      id="defs2">
     <filter
-       height="1.0057576"
-       y="-0.0028788005"
-       width="1.0057576"
-       x="-0.0028788005"
-       id="filter1517"
+       height="1.0027488"
+       y="-0.0013744213"
+       width="1.0086051"
+       x="-0.0043025362"
+       id="filter985"
        style="color-interpolation-filters:sRGB"
        inkscape:collect="always">
       <feGaussianBlur
-         id="feGaussianBlur1519"
-         stdDeviation="0.12694711"
+         id="feGaussianBlur987"
+         stdDeviation="0.04848653"
          inkscape:collect="always" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter985-9"
+       x="-0.0043025361"
+       width="1.0086051"
+       y="-0.0013744213"
+       height="1.0027488">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.04848653"
+         id="feGaussianBlur987-6" />
     </filter>
   </defs>
   <sodipodi:namedview
-     inkscape:pagecheckerboard="true"
-     inkscape:window-maximized="1"
-     inkscape:window-y="-8"
-     inkscape:window-x="-8"
-     inkscape:window-height="1377"
-     inkscape:window-width="2560"
-     inkscape:showpageshadow="false"
-     showborder="true"
-     units="px"
-     showgrid="true"
-     inkscape:document-rotation="0"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="px"
-     inkscape:cy="368.03741"
-     inkscape:cx="-56.705526"
-     inkscape:zoom="0.7"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0"
-     borderopacity="1.0"
-     bordercolor="#666666"
+     id="base"
      pagecolor="#ffffff"
-     id="base">
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="78.806275"
+     inkscape:cy="245.45387"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     units="px"
+     showborder="true"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="true">
     <inkscape:grid
-       id="grid1404"
-       type="xygrid" />
+       type="xygrid"
+       id="grid1404" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -65,35 +81,45 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     style="display:none;mix-blend-mode:normal"
-     inkscape:label="Layer 2"
+     inkscape:groupmode="layer"
      id="layer2"
-     inkscape:groupmode="layer">
+     inkscape:label="Layer 2"
+     style="display:none;mix-blend-mode:normal">
     <rect
-       y="-95.25"
-       x="-190.5"
-       height="317.5"
-       width="502.70834"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.1346;stroke-miterlimit:2.3;stroke-dashoffset:0.755906"
        id="rect1415"
-       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.1346;stroke-miterlimit:2.3;stroke-dashoffset:0.755906" />
+       width="502.70834"
+       height="317.5"
+       x="-190.5"
+       y="-95.25" />
   </g>
   <g
-     style="display:inline;filter:url(#filter1517)"
-     id="layer1"
+     inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     inkscape:label="Layer 1">
+     id="layer1"
+     style="display:inline;">
     <circle
-       inkscape:export-ydpi="65.160004"
-       inkscape:export-xdpi="65.160004"
        r="52.916668"
-       cy="52.916668"
-       cx="52.916668"
+       style="opacity:1;fill:#e6c8c8;fill-opacity:1;stroke:none;stroke-width:1.82958;stroke-miterlimit:2.3;stroke-dashoffset:0.755906"
        id="path1402"
-       style="opacity:1;fill:#e6c8c8;fill-opacity:1;stroke:none;stroke-width:1.82958;stroke-miterlimit:2.3;stroke-dashoffset:0.755906" />
+       cx="52.916668"
+       cy="52.916668"
+       inkscape:export-xdpi="65.160004"
+       inkscape:export-ydpi="65.160004" />
+    <path
+       transform="matrix(0.96994641,0,0,0.99725486,0.63421249,0.02713632)"
+       id="path859"
+       d="m 21.166667,10.583334 c 0,0 60.854168,39.687501 0,84.666668"
+       style="fill:none;stroke:#a20c25;stroke-width:1.24354;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:14.9225, 14.9225;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;filter:url(#filter985)" />
+    <path
+       transform="matrix(-0.96989259,0,0,0.99725475,130.64708,18.493992)"
+       style="display:inline;fill:none;stroke:#a20c25;stroke-width:1.24354;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:14.9225, 14.9225;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;filter:url(#filter985-9)"
+       d="m 47.625001,-7.9374994 c 0,0 60.854169,39.6875014 0,84.6666684"
+       id="path859-6" />
   </g>
 </svg>

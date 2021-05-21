@@ -1220,6 +1220,66 @@
       "objectGroups": []
     },
     {
+      "description": "",
+      "fullName": "ClampAbs",
+      "functionType": "Expression",
+      "name": "ClampAbs",
+      "private": false,
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "const clampAbs = (val, min, max) => {\n    const sign = val < 0 ? -1 : 1\n    const mag = Math.abs(val)\n    const clamped = Math.max(min, Math.min(mag, max))\n    return sign * clamped\n}\n\neventsFunctionContext.returnValue = clampAbs(\n    eventsFunctionContext.getArgument(\"Value\"),\n    eventsFunctionContext.getArgument(\"Min\"),\n    eventsFunctionContext.getArgument(\"Max\"),    \n)\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Value",
+          "longDescription": "",
+          "name": "Value",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Min magnitude",
+          "longDescription": "",
+          "name": "Min",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Max magnitude",
+          "longDescription": "",
+          "name": "Max",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
       "description": "Uid",
       "fullName": "Uid",
       "functionType": "Expression",

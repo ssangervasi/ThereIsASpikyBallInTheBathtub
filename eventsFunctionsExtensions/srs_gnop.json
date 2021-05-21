@@ -749,6 +749,140 @@
             }
           ],
           "objectGroups": []
+        },
+        {
+          "description": "handleHitZone",
+          "fullName": "handleHitZone",
+          "functionType": "Action",
+          "name": "handleHitZone",
+          "private": false,
+          "sentence": "_PARAM0_ handleHitZone",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "DepartScene"
+                  },
+                  "parameters": [
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "CollisionNP"
+                      },
+                      "parameters": [
+                        "Object",
+                        "HitZone",
+                        "",
+                        "",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "LinkedObjects::LinkObjects"
+                      },
+                      "parameters": [
+                        "",
+                        "Object",
+                        "HitZone"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "LinkedObjects::PickObjectsLinkedTo"
+                  },
+                  "parameters": [
+                    "",
+                    "HitZone",
+                    "Object"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MettreAutour"
+                  },
+                  "parameters": [
+                    "HitZone",
+                    "Object",
+                    "0",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "srs_gnop::Paddle",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "HitZone",
+              "longDescription": "",
+              "name": "HitZone",
+              "optional": false,
+              "supplementaryInformation": "Sprite",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
         }
       ],
       "propertyDescriptors": []
