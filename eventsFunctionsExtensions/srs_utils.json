@@ -1650,6 +1650,56 @@
       ],
       "parameters": [],
       "objectGroups": []
+    },
+    {
+      "description": "ToCoords(_PARAM1_, _PARAM2_",
+      "fullName": "ToCoords",
+      "functionType": "StringExpression",
+      "name": "ToCoords",
+      "private": false,
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "const toCoords = () => {\n    /** @type Number */\n    const x = eventsFunctionContext.getArgument(\"X\")\n    /** @type Number */\n    const y = eventsFunctionContext.getArgument(\"Y\")\n    return `(${x.toFixed(2)}, ${y.toFixed(2)})`\n}\n\neventsFunctionContext.returnValue = toCoords()",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "X",
+          "longDescription": "",
+          "name": "X",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Y",
+          "longDescription": "",
+          "name": "Y",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
     }
   ],
   "eventsBasedBehaviors": [

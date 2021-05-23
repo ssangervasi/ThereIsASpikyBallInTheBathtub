@@ -23,7 +23,7 @@
     "gridWidth": 60,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.5999999999999996
+    "zoomFactor": 0.7799999999999998
   },
   "objectsGroups": [],
   "variables": [],
@@ -37,7 +37,7 @@
       "name": "Ball",
       "persistentUuid": "24fa9afa-d649-4207-8aad-39e895a875f6",
       "width": 120,
-      "x": 900,
+      "x": 60,
       "y": 480,
       "zOrder": 1,
       "numberProperties": [
@@ -419,7 +419,7 @@
       "name": "P1Count",
       "persistentUuid": "a7279255-c7c8-4c8c-8b4f-141f662e6333",
       "width": 180,
-      "x": 600,
+      "x": 720,
       "y": 1020,
       "zOrder": 9,
       "numberProperties": [],
@@ -435,7 +435,7 @@
       "name": "P2Count",
       "persistentUuid": "fc4e6f55-d04f-4b85-b7e4-9cfe0c31fdbe",
       "width": 0,
-      "x": 960,
+      "x": 1080,
       "y": 1020,
       "zOrder": 10,
       "numberProperties": [],
@@ -542,7 +542,7 @@
       "angle": 0,
       "customSize": true,
       "height": 360,
-      "layer": "HitZones",
+      "layer": "Zones",
       "locked": false,
       "name": "HitZone",
       "persistentUuid": "4b1d189e-7c88-4b0e-93e9-237a298474e8",
@@ -558,7 +558,7 @@
       "angle": 0,
       "customSize": true,
       "height": 360,
-      "layer": "HitZones",
+      "layer": "Zones",
       "locked": false,
       "name": "HitZone",
       "persistentUuid": "47c736f6-3345-43dc-929e-b9028b02d45a",
@@ -566,6 +566,115 @@
       "x": 720,
       "y": 60,
       "zOrder": 12,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 180,
+      "customSize": true,
+      "height": 960,
+      "layer": "Zones",
+      "locked": false,
+      "name": "Slope",
+      "persistentUuid": "7a05ee9b-9048-46ec-b758-c1b88abf2940",
+      "width": 840,
+      "x": 1080,
+      "y": 60,
+      "zOrder": 13,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Grade",
+          "type": "string",
+          "value": "8"
+        }
+      ]
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 960,
+      "layer": "Zones",
+      "locked": false,
+      "name": "Slope",
+      "persistentUuid": "3a6f6ac5-c6fb-46eb-873d-30f1eb9048c2",
+      "width": 120,
+      "x": 960,
+      "y": 60,
+      "zOrder": 13,
+      "numberProperties": [
+        {
+          "name": "animation",
+          "value": 83886080
+        }
+      ],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Grade",
+          "type": "string",
+          "value": "0.5"
+        }
+      ]
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 960,
+      "layer": "Zones",
+      "locked": false,
+      "name": "Slope",
+      "persistentUuid": "62bc9023-403f-4339-b7ef-4ffb9e72c227",
+      "width": 840,
+      "x": 0,
+      "y": 60,
+      "zOrder": 13,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Grade",
+          "type": "string",
+          "value": "8"
+        }
+      ]
+    },
+    {
+      "angle": 180,
+      "customSize": true,
+      "height": 960,
+      "layer": "Zones",
+      "locked": false,
+      "name": "Slope",
+      "persistentUuid": "5dd0b0b3-4114-462c-b717-ff904d0ee4f1",
+      "width": 120,
+      "x": 840,
+      "y": 60,
+      "zOrder": 13,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Grade",
+          "type": "string",
+          "value": "0.5"
+        }
+      ]
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 60,
+      "layer": "Debug",
+      "locked": false,
+      "name": "DebugBall",
+      "persistentUuid": "8fa50015-64f8-42d5-a53b-72c427c4105b",
+      "width": 420,
+      "x": 720,
+      "y": 0,
+      "zOrder": 14,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -579,6 +688,10 @@
       "updateIfNotVisible": false,
       "variables": [],
       "behaviors": [
+        {
+          "name": "Ball",
+          "type": "srs_gnop::Ball"
+        },
         {
           "name": "Physics2",
           "type": "Physics2::Physics2Behavior",
@@ -891,6 +1004,90 @@
       ]
     },
     {
+      "name": "HitZone",
+      "tags": "",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\Checkerboard.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slope",
+      "tags": "",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [
+        {
+          "name": "Grade",
+          "type": "string",
+          "value": "1"
+        }
+      ],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\Checkerboard.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "bold": false,
       "italic": false,
       "name": "P1Count",
@@ -929,43 +1126,23 @@
       }
     },
     {
-      "name": "HitZone",
+      "bold": false,
+      "italic": false,
+      "name": "DebugBall",
+      "smoothed": true,
       "tags": "",
-      "type": "Sprite",
-      "updateIfNotVisible": false,
+      "type": "TextObject::Text",
+      "underlined": false,
       "variables": [],
       "behaviors": [],
-      "animations": [
-        {
-          "name": "",
-          "useMultipleDirections": false,
-          "directions": [
-            {
-              "looping": false,
-              "timeBetweenFrames": 0.08,
-              "sprites": [
-                {
-                  "hasCustomCollisionMask": false,
-                  "image": "Assets\\Checkerboard.png",
-                  "points": [],
-                  "originPoint": {
-                    "name": "origine",
-                    "x": 0,
-                    "y": 0
-                  },
-                  "centerPoint": {
-                    "automatic": true,
-                    "name": "centre",
-                    "x": 0,
-                    "y": 0
-                  },
-                  "customCollisionMask": []
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "string": "[X, Y]",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
     }
   ],
   "events": [
@@ -974,8 +1151,8 @@
       "colorG": 176,
       "colorR": 74,
       "creationTime": 0,
-      "disabled": true,
-      "folded": true,
+      "disabled": false,
+      "folded": false,
       "name": "Debug points",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -1104,7 +1281,7 @@
           ]
         },
         {
-          "disabled": false,
+          "disabled": true,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
@@ -1122,6 +1299,60 @@
                 "25",
                 "5",
                 "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "DebugBall",
+                "=",
+                "srs_utils::ToCoords(Ball.Physics2::MassCenterX(), Ball.Physics2::MassCenterY())"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "P1Count",
+                "=",
+                "ToString(P1Count.Variable(Count))"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "P2Count",
+                "=",
+                "ToString(P2Count.Variable(Count))"
               ],
               "subInstructions": []
             }
@@ -1964,236 +2195,115 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
+          "conditions": [],
+          "actions": [
             {
               "type": {
                 "inverted": false,
-                "value": "DepartScene"
+                "value": "srs_gnop::Ball::handlePhysics"
               },
               "parameters": [
+                "Ball",
+                "Ball",
+                "Physics2",
                 ""
               ],
               "subInstructions": []
             }
           ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "Physics2::LinearVelocityX"
-              },
-              "parameters": [
-                "Ball",
-                "Physics2",
-                "=",
-                "500"
-              ],
-              "subInstructions": []
-            }
-          ],
           "events": []
-        },
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "disabled": false,
+      "folded": false,
+      "name": "Slopes",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
         {
           "disabled": false,
           "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Ball",
-                "VelocityMinX",
-                "=",
-                "100"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Ball",
-                "VelocityMinY",
-                "=",
-                "1"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Ball",
-                "VelocityMax",
-                "=",
-                "2000"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "Physics2::LinearVelocityX"
-              },
-              "parameters": [
-                "Ball",
-                "Physics2",
-                "=",
-                "srs_utils::ClampAbs(Ball.Physics2::LinearVelocityX(), Ball.Variable(VelocityMinX), Ball.Variable(VelocityMax))"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Physics2::LinearVelocityY"
-              },
-              "parameters": [
-                "Ball",
-                "Physics2",
-                "=",
-                "srs_utils::ClampAbs(Ball.Physics2::LinearVelocityY(), Ball.Variable(VelocityMinY), Ball.Variable(VelocityMax))"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": true,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Ball",
-                "Angle",
-                "=",
-                "AngleBetweenPositions(0, 0, Ball.Physics2::LinearVelocityX(), Ball.Physics2::LinearVelocityY())"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Ball",
-                "VelocityClamped",
-                "=",
-                "clamp(Ball.Physics2::LinearVelocity(), Ball.Variable(VelocityMin), Ball.Variable(VelocityMax))"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Physics2::LinearVelocityX"
-              },
-              "parameters": [
-                "Ball",
-                "Physics2",
-                "=",
-                "XFromAngleAndDistance(Ball.Variable(Angle), Ball.Variable(VelocityClamped))"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Physics2::LinearVelocityY"
-              },
-              "parameters": [
-                "Ball",
-                "Physics2",
-                "=",
-                "YFromAngleAndDistance(Ball.Variable(Angle), Ball.Variable(VelocityClamped))"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": true,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Ball",
-                "AttractionLength",
-                "=",
-                "(0.1) * Ball.Physics2::Density()"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Ball",
-                "AngleToCenter",
-                "=",
-                "AngleBetweenPositions(Ball.Physics2::MassCenterX(), Ball.Physics2::MassCenterY(), CameraWidth(\"\", 1) / 2 , CameraHeight(\"\", 1) / 2)"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Physics2::ApplyPolarForce"
-              },
-              "parameters": [
-                "Ball",
-                "Physics2",
-                "Ball.Variable(AngleToCenter)",
-                "Ball.Variable(AttractionLength)",
-                "Ball.Physics2::MassCenterX()",
-                "Ball.Physics2::MassCenterY()"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Slope",
           "conditions": [],
           "actions": [],
-          "events": []
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "CollisionPoint"
+                  },
+                  "parameters": [
+                    "Slope",
+                    "Ball.Physics2::MassCenterX()",
+                    "Ball.Physics2::MassCenterY()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Slope",
+                        "ForceLength",
+                        "=",
+                        "Slope.Variable(Grade) * Ball.Physics2::Density()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Physics2::ApplyPolarForce"
+                      },
+                      "parameters": [
+                        "Ball",
+                        "Physics2",
+                        "Slope.Angle()",
+                        "Slope.Variable(ForceLength)",
+                        "Ball.Physics2::MassCenterX()",
+                        "Ball.Physics2::MassCenterY()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ]
         }
       ],
       "parameters": []
@@ -2252,74 +2362,6 @@
           "conditions": [],
           "actions": [],
           "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Ball",
-                    "HitLength",
-                    "=",
-                    "200 * Ball.Physics2::Density()"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": true,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Ball",
-                    "AngleToPaddle",
-                    "=",
-                    "AngleBetweenPositions(Ball.Physics2::MassCenterX(), Ball.Physics2::MassCenterY(), Paddle.Physics2::MassCenterX(), Paddle.Physics2::MassCenterY())"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": true,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "Physics2::ApplyPolarForce"
-                  },
-                  "parameters": [
-                    "Ball",
-                    "Physics2",
-                    "Ball.Variable(AngleToPaddle)",
-                    "Ball.Variable(AttractionLength)",
-                    "Ball.Physics2::MassCenterX()",
-                    "Ball.Physics2::MassCenterY()"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
             {
               "disabled": false,
               "folded": false,
@@ -2539,13 +2581,57 @@
                         {
                           "type": {
                             "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Paddle",
+                            "HitLength",
+                            "=",
+                            "200 * Ball.Physics2::Density()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Paddle",
+                            "AngleToBall",
+                            "=",
+                            "AngleBetweenPositions(Paddle.Physics2::MassCenterX(), Paddle.Physics2::MassCenterY(), Ball.Physics2::MassCenterX(), Ball.Physics2::MassCenterY())"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
                             "value": "Physics2::ApplyPolarForce"
                           },
                           "parameters": [
                             "Ball",
                             "Physics2",
-                            "Ball.Variable(AngleToPaddle)",
-                            "-1 * Ball.Variable(HitLength)",
+                            "Paddle.Variable(AngleToBall)",
+                            "Paddle.Variable(HitLength)",
                             "Ball.Physics2::MassCenterX()",
                             "Ball.Physics2::MassCenterY()"
                           ],
@@ -2673,42 +2759,17 @@
               ]
             }
           ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "TextObject::String"
-              },
-              "parameters": [
-                "P1Count",
-                "=",
-                "ToString(P1Count.Variable(Count))"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "TextObject::String"
-              },
-              "parameters": [
-                "P2Count",
-                "=",
-                "ToString(P2Count.Variable(Count))"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
         }
       ],
       "parameters": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [],
+      "actions": [],
+      "events": []
     }
   ],
   "layers": [
@@ -2729,7 +2790,7 @@
       "ambientLightColorR": 117440512,
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
-      "name": "HitZones",
+      "name": "Zones",
       "visibility": true,
       "cameras": [],
       "effects": []
@@ -2769,6 +2830,10 @@
     }
   ],
   "behaviorsSharedData": [
+    {
+      "name": "Ball",
+      "type": "srs_gnop::Ball"
+    },
     {
       "name": "Paddle",
       "type": "srs_gnop::Paddle"
