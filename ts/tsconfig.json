@@ -2,15 +2,16 @@
 	"compilerOptions": {
 		// Modules
 		"baseUrl": ".",
-		"module": "commonjs",
+		// "module": "commonjs",
 		"moduleResolution": "node",
+		"module": "ESNext",
 		"paths": {
 			"@gnop/*": [
 				"./src/*"
 			],
-			"@sangervasi/common/*": [
-				"node_modules/@sangervasi/common/dist/*"
-			],
+			// "@sangervasi/common/*": [
+			// 	"node_modules/@sangervasi/common/lib/*"
+			// ],
 		},
 
 		// Syntax
