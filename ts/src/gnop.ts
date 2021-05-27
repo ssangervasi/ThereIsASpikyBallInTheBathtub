@@ -1,5 +1,3 @@
-import WebSocket from 'ws'
-
 import { guardEcho } from '@sangervasi/common/lib/messages/echo'
 import {
 	guardJoin,
@@ -8,8 +6,6 @@ import {
 } from '@sangervasi/common/lib/messages/gnop'
 import { guardCreated } from '@sangervasi/common/lib/messages/session'
 import { parseMessage } from '@sangervasi/common/lib/messages/index'
-
-import { fmtJSON } from '@sangervasi/common/lib/utils/fmt'
 
 type MetaPromise<T> = {
 	promise: Promise<T>
@@ -177,12 +173,15 @@ class WsClient {
 	}
 }
 
-const Gnop = {
+const GnopC = {
 	WsClient
 } as const
 
-export default Gnop
 
 Object.assign(globalThis, {
-	Gnop,
+	Gnop: GnopC,
 })
+
+declare global {
+	const Gnop: typeof GnopC
+}

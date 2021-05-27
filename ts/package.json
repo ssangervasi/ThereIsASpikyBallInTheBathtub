@@ -3,18 +3,16 @@
 	"author": "Sebastian Sangervasi",
 	"license": "Copyright (c) 2021 Sebastian Sangervasi",
 	"source": "src/gnop.ts",
-	"exports": "./dist/gnop.modern.js",
-	"main": "./dist/gnop.cjs",
-	"unpkg": "./dist/gnop.umd.js",
+
 	"version": "0.1.0",
 	"scripts": {
-		"build": "npm run build-modern && npm run build-node",
+		"build": "rm -rf dist/* && npm run build-modern && npm run build-node",
 		"build-modern": "microbundle --target=web --format=modern",
 		"build-node": "microbundle --target=node --format=cjs",
 		"build-umd": "microbundle --format=umd --tsconfig=cli.tsconfig.json",
 		"build-cjs": "microbundle --format=cjs --tsconfig=cli.tsconfig.json",
 		"lint": "eslint --fix --cache src/**",
-		"cli": "ts-node --project=bin/cli.tsconfig.json bin/cli.ts",
+		"cli": "ts-node --project=cli.tsconfig.json bin/cli.ts",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "tsc-watch"

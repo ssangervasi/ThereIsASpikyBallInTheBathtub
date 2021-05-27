@@ -1,6 +1,12 @@
+import WebSocket from "ws"
 import { Command } from 'commander'
 
-import Gnop from '../src/gnop'
+import '../src/gnop'
+
+// Trick the module that depends on a global browser implementation into using the node package.
+Object.assign(globalThis, {
+	WebSocket
+})
 
 const program = new Command()
 program
