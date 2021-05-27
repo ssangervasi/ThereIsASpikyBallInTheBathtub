@@ -1,8 +1,26 @@
-import * as Messages from "@sangervasi/common/dist/messages"
-import * as M from "@sangervasi/common/dist/utils/fmt"
+import { fmtJSON } from "@sangervasi/common/dist/utils/fmt"
+import {
+	guardJoin
+} from "@sangervasi/common/dist/messages/gnop"
 
 export const hello = () => {
-	return 'hi'
+	const m = guardJoin.build({
+		type: "gnop.join",
+		sessionUuid: "asdf",
+		payload: {
+			name: "Jorsh"
+		}
+	})
+	return fmtJSON(m)
 }
 
-Messages.guard.type('horse')
+
+const Gnop = {
+	hello
+} as const
+
+Object.assign(
+	globalThis, {
+		Gnop
+	}
+)

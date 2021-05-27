@@ -7,7 +7,8 @@
 	"exports": "./dist/gnop.modern.js",
 	"version": "0.1.0",
 	"scripts": {
-		"build": "microbundle --format=modern",
+		"build": "microbundle --format=cjs",
+		"build-modern": "microbundle --format=modern",
 		"lint": "eslint --fix --cache src/**",
 		"ndb": "ndb ./dist/cli.js",
 		"test": "jest",

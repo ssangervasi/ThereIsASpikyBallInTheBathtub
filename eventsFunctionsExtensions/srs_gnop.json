@@ -11,7 +11,37 @@
   "version": "",
   "tags": [],
   "dependencies": [],
-  "eventsFunctions": [],
+  "eventsFunctions": [
+    {
+      "description": "",
+      "fullName": "",
+      "functionType": "Action",
+      "name": "import",
+      "private": false,
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "class e{constructor(e){this.M=null,this.P=null,this.T=e}type(t){return new e(t)}payload(){return new e(this.T)}message(e){return this.T===e.type}build(e){return e}}const t=new e(\"\");t.type(\"echo\").payload(),t.type(\"session.created\").payload(),t.type(\"session.closed\").payload();const s=()=>\"hi\";t.type(\"horse\");export{s as hello};\n//# sourceMappingURL=gnop.modern.js.map\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    }
+  ],
   "eventsBasedBehaviors": [
     {
       "description": "",
