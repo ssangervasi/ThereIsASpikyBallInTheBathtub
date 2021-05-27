@@ -11,7 +11,7 @@
 		"build": "microbundle --format=modern",
 		"build-modern": "microbundle --format=modern",
 		"lint": "eslint --fix --cache src/**",
-		"ndb": "ndb ./dist/cli.js",
+		"cli": "ts-node --project=bin/cli.tsconfig.json bin/cli.ts",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "tsc-watch"
