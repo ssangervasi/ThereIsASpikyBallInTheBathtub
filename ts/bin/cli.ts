@@ -7,15 +7,16 @@ program
 	.option('--host <type>', 'Host', 'local')
 	.option('--port <port>', 'Port', '42992')
 
-const getHost = (options: Record<string, unknown>) => {
+const getHost = () => {
+	const options =  program.opts()
 	return options.host === 'remote' ? 'ws://sangervasi.net' : `ws://localhost:${options.port}`
 }
 
 program
 	.command('echo')
-	.action(async (options) => {
+	.action(async () => {
 		const client = new Gnop.WsClient({
-			host: getHost(options),
+			host: getHost(),
 			name: "Echo client"
 		})
 
@@ -29,9 +30,9 @@ program
 
 program
 	.command('point')
-	.action(async (options) => {
+	.action(async () => {
 		const client = new Gnop.WsClient({
-			host: getHost(options),
+			host: getHost(),
 			name: "Point client"
 		})
 		await client.connect()
@@ -53,10 +54,10 @@ program
 	})
 
 program
-	.command('listen <name>')
-	.action(async (name: string, options) => {
+	.command('listen')
+	.action(async () => {
 		const client = new Gnop.WsClient({
-			host: getHost(options),
+			host: getHost(),
 			name: "Listen client"
 		})
 		await client.connect()

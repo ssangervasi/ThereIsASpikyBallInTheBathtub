@@ -11,20 +11,29 @@ import { parseMessage } from '@sangervasi/common/lib/messages/index'
 
 import { fmtJSON } from '@sangervasi/common/lib/utils/fmt'
 
+type MetaPromise<T> = {
+	promise: Promise<T>
+	resolve: (value?: T) => void
+	reject: (reason?: any) => void
+}
+
+const metafy = (): MetaPromise<unknown> => {
+	const meta: Partial<MetaPromise<unknown>> = {}
+	meta.promise = new Promise((resolve, reject) => {
+		meta.resolve = resolve
+		meta.reject = reject
+	})
+	return meta as MetaPromise<unknown>
+}
+
 class WsClient {
 	ws?: WebSocket
 	sessionUuid?: string
 	state: "init" | "creating" | "created" | "joining" | "joined" = "init"
 	
 	promises: {
-		connect?: {
-			promise: Promise<unknown>
-			resolve: (value?: unknown) => void
-		}
-		join?: {
-			promise: Promise<unknown>
-			resolve: (value?: unknown) => void
-		}
+		connect?: MetaPromise<unknown>
+		join?: MetaPromise<unknown>
 	} = {}
 
 	constructor(
@@ -46,14 +55,9 @@ class WsClient {
 
 		this.state = "creating"
 
-		const promise = new Promise((resolve) => {
-			this.promises.connect = {
-				promise,
-				resolve
-			}
-		})
+		this.promises.connect = metafy()
 
-		return promise
+		return this.promises.connect
 	}
 
 	handleMessage = (event: { data: string }) => {
@@ -61,7 +65,8 @@ class WsClient {
 
 		if (this.state === "creating") {
 			if (guardCreated.message(message)) {
-				console.info('Connected', message.sessionUuid)
+				console.info('Created', message.sessionUuid)
+				this.state = "created"
 				this.sessionUuid = message.sessionUuid
 				this.promises.connect?.resolve()
 			} else {
@@ -130,13 +135,8 @@ class WsClient {
 
 		this.ws.send(JSON.stringify(mJoin))
 
-		const promise = new Promise((resolve) => {
-			this.promises.join = {
-				promise,
-				resolve
-			}
-		})
-		return promise
+		this.promises.join = metafy()
+		return this.promises.join
 	}
 
 	speak() {

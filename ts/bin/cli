@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-set -x -e
-d=$(dirname $BASH_SOURCE)
-ts-node --project="$d"/cli.tsconfig.json "$d"/cli.ts
