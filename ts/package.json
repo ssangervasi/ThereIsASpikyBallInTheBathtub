@@ -2,14 +2,17 @@
 	"name": "gnop",
 	"author": "Sebastian Sangervasi",
 	"license": "Copyright (c) 2021 Sebastian Sangervasi",
-	"main": "dist/gnop.js",
 	"source": "src/gnop.ts",
 	"exports": "./dist/gnop.modern.js",
+	"main": "./dist/gnop.cjs",
+	"unpkg": "./dist/gnop.umd.js",
 	"version": "0.1.0",
 	"scripts": {
-		"build-cjs": "microbundle --format=cjs",
-		"build": "microbundle --format=modern",
-		"build-modern": "microbundle --format=modern",
+		"build": "npm run build-modern && npm run build-node",
+		"build-modern": "microbundle --target=web --format=modern",
+		"build-node": "microbundle --target=node --format=cjs",
+		"build-umd": "microbundle --format=umd --tsconfig=cli.tsconfig.json",
+		"build-cjs": "microbundle --format=cjs --tsconfig=cli.tsconfig.json",
 		"lint": "eslint --fix --cache src/**",
 		"cli": "ts-node --project=bin/cli.tsconfig.json bin/cli.ts",
 		"test": "jest",
@@ -22,7 +25,8 @@
 	},
 	"dependencies": {
 		"commander": "^7.2.0",
-		"json-stable-stringify": "^1.0.1"
+		"json-stable-stringify": "^1.0.1",
+		"ws": "^7.4.4"
 	},
 	"devDependencies": {
 		"@babel/types": "^7.10",
@@ -51,7 +55,6 @@
 		"ts-node": "^9.1.1",
 		"tsc-watch": "^4.2.9",
 		"tsconfig-paths": "^3.9.0",
-		"typescript": "^4.2.4",
-		"ws": "^7.4.4"
+		"typescript": "^4.2.4"
 	}
 }

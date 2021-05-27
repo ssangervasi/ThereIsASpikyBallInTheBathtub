@@ -177,20 +177,7 @@ class WsClient {
 	}
 }
 
-
-const hello = () => {
-	const m = guardJoin.build({
-		type: 'gnop.join',
-		sessionUuid: 'asdf',
-		payload: {
-			name: 'Jorsh',
-		},
-	})
-	return fmtJSON(m)
-}
-
 const Gnop = {
-	hello,
 	WsClient
 } as const
 
