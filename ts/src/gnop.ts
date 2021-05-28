@@ -39,7 +39,7 @@ class WsClient {
 		},
 	) { }
 
-	async connect() {
+	connect() {
 		console.log('Connecting')
 		const ws = new WebSocket(this.options.host)
 		this.ws = ws
@@ -53,7 +53,7 @@ class WsClient {
 
 		this.promises.connect = metafy()
 
-		return this.promises.connect
+		return this.promises.connect.promise
 	}
 
 	handleMessage = (event: { data: string }) => {
@@ -106,18 +106,18 @@ class WsClient {
 	}
 
 	isReady(): this is { sessionUuid: string, ws: WebSocket } {
-		return Boolean(this.sessionUuid)
-			&& Boolean(this.ws)
-			&& this.state === "created"
+		return Boolean(this.sessionUuid) && Boolean(this.ws)
 	}
 
-	async join() {
+	join() {
 		if (!this.isReady()) {
-			console.warn('Cannot join from state:', this.state)
 			return
 		}
-		
 
+		if (this.state !== "created") {
+			console.warn('Cannot join from state:', this.state)
+		}
+		
 		const mJoin = guardJoin.build({
 			type: 'gnop.join',
 			sessionUuid: this.sessionUuid,
@@ -132,13 +132,16 @@ class WsClient {
 		this.ws.send(JSON.stringify(mJoin))
 
 		this.promises.join = metafy()
-		return this.promises.join
+		return this.promises.join.promise
 	}
 
 	speak() {
 		if (!this.isReady()) {
-			console.warn('Cannot speak from state:', this.state)
 			return
+		}
+
+		if (this.state !== "created") {
+			console.warn('Cannot speak from state:', this.state)
 		}
 
 		const m = guardEcho.build({
@@ -154,8 +157,11 @@ class WsClient {
 
 	point(x: number, y: number) {
 		if (!this.isReady()) {
-			console.warn('Cannot send point from state:', this.state)
 			return
+		}
+
+		if (this.state !== "joined") {
+			console.warn('Cannot send point from state:', this.state)
 		}
 
 		const mPoint = guardPoint.build({
