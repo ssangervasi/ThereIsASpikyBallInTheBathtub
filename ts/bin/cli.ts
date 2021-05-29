@@ -10,19 +10,24 @@ Object.assign(globalThis, {
 
 const program = new Command()
 program
-	.option('--host <type>', 'Host', 'local')
+	.option('--net <net>', 'Host', 'local')
 	.option('--port <port>', 'Port', '42992')
+	.option('--session [uuid]', 'Session')
 
-const getHost = () => {
-	const options =  program.opts()
-	return options.host === 'remote' ? 'ws://sangervasi.net' : `ws://localhost:${options.port}`
+const getOpts = () => {
+	const opts = program.opts()
+	const host = opts.net === 'remote' ? 'ws://sangervasi.net' : `ws://localhost:${opts.port}`
+	return {
+		host,
+		session: typeof opts.session === 'string' ? opts.session : undefined
+	}
 }
 
 program
 	.command('echo')
 	.action(async () => {
 		const client = new Gnop.WsClient({
-			host: getHost(),
+			host: getOpts().host,
 			name: "Echo client"
 		})
 
@@ -37,12 +42,18 @@ program
 program
 	.command('point')
 	.action(async () => {
+		const opts = getOpts()
 		const client = new Gnop.WsClient({
-			host: getHost(),
+			host: getOpts().host,
 			name: "Point client"
 		})
 		await client.connect()
-		await client.join()
+
+		if (opts.session) {
+			await client.rejoin(opts.session)
+		} else {
+			await client.join()
+		}
 
 		for (let i = 0; i < 10; i++) {
 			setTimeout(() => {
@@ -63,7 +74,7 @@ program
 	.command('listen')
 	.action(async () => {
 		const client = new Gnop.WsClient({
-			host: getHost(),
+			host: getOpts().host,
 			name: "Listen client"
 		})
 		await client.connect()

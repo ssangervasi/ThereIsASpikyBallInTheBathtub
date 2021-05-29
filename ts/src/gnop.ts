@@ -3,6 +3,7 @@ import {
 	guardJoin,
 	guardJoined,
 	guardPoint,
+	guardRejoin,
 } from '@sangervasi/common/lib/messages/gnop'
 import { guardCreated } from '@sangervasi/common/lib/messages/session'
 import { parseMessage } from '@sangervasi/common/lib/messages/index'
@@ -130,6 +131,32 @@ class WsClient {
 		this.state = "joining"
 
 		this.ws.send(JSON.stringify(mJoin))
+
+		this.promises.join = metafy()
+		return this.promises.join.promise
+	}
+
+	rejoin(previousSessionUuid: string) {
+		if (!this.isReady()) {
+			return
+		}
+
+		if (this.state !== "created") {
+			console.warn('Cannot join from state:', this.state)
+		}
+		
+		const m = guardRejoin.build({
+			type: 'gnop.rejoin',
+			sessionUuid: this.sessionUuid,
+			payload: {
+				previousSessionUuid,
+			},
+		})
+
+		console.info('Client joining:', m)
+		this.state = "joining"
+
+		this.ws.send(JSON.stringify(m))
 
 		this.promises.join = metafy()
 		return this.promises.join.promise
