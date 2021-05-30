@@ -566,7 +566,7 @@
       "functionType": "Condition",
       "name": "HasLimitedTimer",
       "private": false,
-      "sentence": "HasLimitedTimer _PARAM2_ on _PARAM1_",
+      "sentence": "HasLimitedTimer _PARAM2_",
       "events": [
         {
           "disabled": false,
@@ -595,10 +595,9 @@
             {
               "type": {
                 "inverted": false,
-                "value": "ObjectVariableChildExists"
+                "value": "VariableChildExists"
               },
               "parameters": [
-                "Object",
                 "TimerNameToLimitMs",
                 "GetArgumentAsString(\"TimerName\")"
               ],
@@ -621,16 +620,6 @@
         }
       ],
       "parameters": [
-        {
-          "codeOnly": false,
-          "defaultValue": "",
-          "description": "Object",
-          "longDescription": "",
-          "name": "Object",
-          "optional": false,
-          "supplementaryInformation": "",
-          "type": "objectList"
-        },
         {
           "codeOnly": false,
           "defaultValue": "",
@@ -661,10 +650,9 @@
             {
               "type": {
                 "inverted": false,
-                "value": "ModVarObjet"
+                "value": "ModVarScene"
               },
               "parameters": [
-                "Object",
                 "TimerNameToLimitMs[GetArgumentAsString(\"TimerName\")]",
                 "=",
                 "GetArgumentAsNumber(\"LimitMs\")"
@@ -683,7 +671,7 @@
             {
               "type": {
                 "inverted": false,
-                "value": "ResetObjectTimer"
+                "value": "ResetTimer"
               },
               "parameters": [
                 "Object",
@@ -694,7 +682,7 @@
             {
               "type": {
                 "inverted": false,
-                "value": "UnPauseObjectTimer"
+                "value": "PauseTimer"
               },
               "parameters": [
                 "Object",
@@ -707,16 +695,6 @@
         }
       ],
       "parameters": [
-        {
-          "codeOnly": false,
-          "defaultValue": "",
-          "description": "Object",
-          "longDescription": "",
-          "name": "Object",
-          "optional": false,
-          "supplementaryInformation": "",
-          "type": "objectList"
-        },
         {
           "codeOnly": false,
           "defaultValue": "",
@@ -760,7 +738,7 @@
                 "value": "SetReturnNumber"
               },
               "parameters": [
-                "Object.Variable(TimerNameToLimitMs[GetArgumentAsString(\"TimerName\")])"
+                "Variable(TimerNameToLimitMs[GetArgumentAsString(\"TimerName\")])"
               ],
               "subInstructions": []
             }
@@ -769,16 +747,6 @@
         }
       ],
       "parameters": [
-        {
-          "codeOnly": false,
-          "defaultValue": "",
-          "description": "Object",
-          "longDescription": "",
-          "name": "Object",
-          "optional": false,
-          "supplementaryInformation": "",
-          "type": "objectList"
-        },
         {
           "codeOnly": false,
           "defaultValue": "",
@@ -811,9 +779,9 @@
                 "value": "Egal"
               },
               "parameters": [
-                "srs_utils::getLimitedTimerLimit(Object, GetArgumentAsString(\"TimerName\"))",
+                "srs_utils::getLimitedTimerLimit( GetArgumentAsString(\"TimerName\"))",
                 "<=",
-                "srs_utils::ms(Object.ObjectTimerElapsedTime(GetArgumentAsString(\"TimerName\")))"
+                "srs_utils::ms(TimerElapsedTime(GetArgumentAsString(\"TimerName\")))"
               ],
               "subInstructions": []
             }
@@ -829,21 +797,21 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "PauseObjectTimer"
+                    "value": "SetReturnNumber"
                   },
                   "parameters": [
-                    "Object",
-                    "GetArgumentAsString(\"TimerName\")"
+                    "srs_utils::getLimitedTimerLimit( GetArgumentAsString(\"TimerName\"))"
                   ],
                   "subInstructions": []
                 },
                 {
                   "type": {
                     "inverted": false,
-                    "value": "SetReturnNumber"
+                    "value": "PauseTimer"
                   },
                   "parameters": [
-                    "srs_utils::getLimitedTimerLimit(Object, GetArgumentAsString(\"TimerName\"))"
+                    "",
+                    "GetArgumentAsString(\"TimerName\")"
                   ],
                   "subInstructions": []
                 }
@@ -863,9 +831,9 @@
                 "value": "Egal"
               },
               "parameters": [
-                "srs_utils::ms(Object.ObjectTimerElapsedTime(GetArgumentAsString(\"TimerName\")) )",
+                "srs_utils::ms(TimerElapsedTime(GetArgumentAsString(\"TimerName\")))",
                 "<",
-                "srs_utils::getLimitedTimerLimit(Object, GetArgumentAsString(\"TimerName\"))"
+                "srs_utils::getLimitedTimerLimit( GetArgumentAsString(\"TimerName\"))"
               ],
               "subInstructions": []
             }
@@ -884,7 +852,7 @@
                     "value": "SetReturnNumber"
                   },
                   "parameters": [
-                    "srs_utils::ms(Object.ObjectTimerElapsedTime(GetArgumentAsString(\"TimerName\")))"
+                    "srs_utils::ms(TimerElapsedTime(GetArgumentAsString(\"TimerName\")))"
                   ],
                   "subInstructions": []
                 }
@@ -895,16 +863,6 @@
         }
       ],
       "parameters": [
-        {
-          "codeOnly": false,
-          "defaultValue": "",
-          "description": "Object",
-          "longDescription": "",
-          "name": "Object",
-          "optional": false,
-          "supplementaryInformation": "",
-          "type": "objectList"
-        },
         {
           "codeOnly": false,
           "defaultValue": "",
@@ -957,9 +915,8 @@
               },
               "parameters": [
                 "",
-                "Object",
                 "GetArgumentAsString(\"TimerName\")",
-                ""
+                "GetArgumentAsString(\"TimerName\")"
               ],
               "subInstructions": []
             }
@@ -971,7 +928,7 @@
                 "value": "SetReturnNumber"
               },
               "parameters": [
-                "srs_utils::getLimitedTimerElapsed(Object, GetArgumentAsString(\"TimerName\")) / srs_utils::getLimitedTimerLimit(Object, GetArgumentAsString(\"TimerName\"))"
+                " srs_utils::getLimitedTimerElapsed( GetArgumentAsString(\"TimerName\")) / srs_utils::getLimitedTimerLimit( GetArgumentAsString(\"TimerName\"))"
               ],
               "subInstructions": []
             }

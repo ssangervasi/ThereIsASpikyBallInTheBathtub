@@ -307,7 +307,7 @@ class WsClient {
 	}
 
 	getUpdate() {
-		return this.updates.pop()
+		return this.updates.shift()
 	}
 }
 

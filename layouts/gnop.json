@@ -23,7 +23,7 @@
     "gridWidth": 60,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.35999999999999943
+    "zoomFactor": 0.2999999999999994
   },
   "objectsGroups": [],
   "variables": [],
@@ -704,9 +704,25 @@
       "name": "UI",
       "persistentUuid": "ddfc965a-22da-4ff4-af19-07666d9575db",
       "width": 0,
-      "x": 600,
-      "y": 300,
+      "x": 120,
+      "y": 240,
       "zOrder": 16,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "Debug",
+      "locked": false,
+      "name": "DebugUpdate",
+      "persistentUuid": "0116892d-8bb0-48bf-8676-9a8151e95b9c",
+      "width": 0,
+      "x": 1440,
+      "y": 120,
+      "zOrder": 17,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -1177,6 +1193,25 @@
       }
     },
     {
+      "bold": false,
+      "italic": false,
+      "name": "DebugUpdate",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "LatestUpdateJSON",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 232,
+        "g": 255,
+        "r": 217
+      }
+    },
+    {
       "bottomMargin": 10,
       "height": 60,
       "leftMargin": 10,
@@ -1540,6 +1575,27 @@
                 "P2Count",
                 "=",
                 "ToString(P2Count.Variable(Count))"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "DebugUpdate",
+                "=",
+                "srs_gnop::LatestUpdate()"
               ],
               "subInstructions": []
             }
@@ -2543,7 +2599,7 @@
         },
         {
           "disabled": false,
-          "folded": true,
+          "folded": false,
           "type": "BuiltinCommonInstructions::ForEach",
           "object": "Paddle",
           "conditions": [],
