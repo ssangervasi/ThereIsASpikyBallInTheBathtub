@@ -16,9 +16,101 @@
       "description": "",
       "fullName": "",
       "functionType": "Action",
-      "name": "import",
+      "name": "onFirstSceneLoaded",
       "private": false,
       "sentence": "",
+      "events": [],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "injectGnop",
+      "functionType": "Action",
+      "name": "injectGnop",
+      "private": false,
+      "sentence": "injectGnop",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "// inject \"dist/gnop.js\"\n\nfunction t(){return(t=Object.assign||function(t){for(var s=1;s<arguments.length;s++){var e=arguments[s];for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])}return t}).apply(this,arguments)}class s{constructor(t){this.M=null,this.P=null,this.T=t}type(t){return new s(t)}payload(){return new s(this.T)}message(t){return this.T===t.type}build(t){return t}}const e=new s(\"\"),n=e.type(\"echo\").payload(),i=e.type(\"gnop.join\").payload(),o=e.type(\"gnop.rejoin\").payload(),a=e.type(\"gnop.joined\").payload(),r=e.type(\"gnop.playerUpdate\").payload(),d=e.type(\"gnop.point\").payload(),l=e.type(\"session.created\").payload();e.type(\"session.closed\").payload();const p=()=>{const t={};return t.promise=new Promise((s,e)=>{t.resolve=s,t.reject=e}),t};Object.assign(globalThis,{Gnop:{WsClient:class{constructor(s){this.options=s,this.state={state:\"init\"},this.promises={},this.updates=[],this.handleMessage=t=>{const s=(t=>{let s,e=\"\";try{s=JSON.parse(t.toString())}catch(t){e=t.message}return\"\"!==e?{type:\"error\",sessionUuid:\"\",payload:{error:e}}:\"object\"==typeof(n=s)&&null!==n&&\"type\"in n?s:{type:\"error\",sessionUuid:\"\",payload:{error:\"Invalid message structure\"}};var n})(t.data);return l.message(s)?this.handleCreated(s):a.message(s)||a.message(s)?this.handleJoined(s):void(n.message(s)?console.log(\"Client heard:\",s):console.warn(\"Unhandled message:\",s))},this.handleCreated=s=>{var e;\"creating\"===this.state.state?(console.info(\"Created\",s.sessionUuid),this.state=t({},this.state,{state:\"created\",sessionUuid:s.sessionUuid}),null==(e=this.promises.connect)||e.resolve()):console.warn(\"Received created message while in state:\",this.state.state)},this.handleJoined=s=>{var e;if(\"joining\"!==this.state.state)return void console.warn(\"Received joined message while in state:\",this.state.state);const{sessionUuid:n}=this.state;console.log(\"Joined\",n);const i=s.payload.find(t=>t.sessionUuid===n),o=s.payload.find(t=>t.sessionUuid!==n);this.state=t({},this.state,{self:i,opponent:o}),i&&o?(this.state=t({},this.state,{state:\"joined\",self:i,opponent:o}),null==(e=this.promises.join)||e.resolve()):console.warn(\"Partially joined\",s)},this.handlePlayerUpdate=s=>{\"joined\"===this.state.state?(this.state=t({},this.state,{opponent:s.payload.player}),this.updates.push(t({receivedAt:Date.now()},s.payload))):console.warn(\"Received update message while in state:\",this.state.state)},this.handleOpen=()=>{console.info(\"Opened\")},this.handleClose=()=>{this.state={state:\"init\"},console.info(\"Closed\")},this.handleError=()=>{this.state={state:\"init\"},console.info(\"Errored\")}}connect(){console.log(\"Connecting\");const t=new WebSocket(this.options.host);return this.state={state:\"creating\",ws:t},t.onopen=this.handleOpen,t.onclose=this.handleClose,t.onerror=this.handleError,t.addEventListener(\"message\",this.handleMessage),this.promises.connect=p(),this.promises.connect.promise}join(){if(\"created\"!==this.state.state)return void console.warn(\"Cannot join from state:\",this.state);const s=i.build({type:\"gnop.join\",sessionUuid:this.state.sessionUuid,payload:{name:this.options.name||\"Name\"}});return console.info(\"Client joining:\",s),this.state=t({},this.state,{state:\"joining\"}),this.state.ws.send(JSON.stringify(s)),this.promises.join=p(),this.promises.join.promise}rejoin(s){if(\"created\"!==this.state.state)return void console.warn(\"Cannot join from state:\",this.state);const e=o.build({type:\"gnop.rejoin\",sessionUuid:this.state.sessionUuid,payload:{previousSessionUuid:s}});return console.info(\"Client joining:\",e),this.state=t({},this.state,{state:\"joining\"}),this.state.ws.send(JSON.stringify(e)),this.promises.join=p(),this.promises.join.promise}speak(){if(\"created\"!==this.state.state)return void console.warn(\"Cannot speak from state:\",this.state);const t=n.build({type:\"echo\",sessionUuid:this.state.sessionUuid,payload:(new Date).toISOString()});console.info(\"Client speaking:\",t),this.state.ws.send(JSON.stringify(t))}point(t,s){if(\"joined\"!==this.state.state)return void console.warn(\"Cannot send point from state:\",this.state);const e=d.build({type:\"gnop.point\",sessionUuid:this.state.sessionUuid,payload:{x:t,y:s}});console.info(\"Client sending point:\",e),this.state.ws.send(JSON.stringify(e))}sendUpdate(t){if(\"joined\"!==this.state.state)return void console.warn(\"Cannot send point from state:\",this.state);const s=r.build({type:\"gnop.playerUpdate\",sessionUuid:this.state.sessionUuid,payload:{player:this.state.self,position:t}});console.info(\"Client sending point:\",s),this.state.ws.send(JSON.stringify(s))}getUpdate(){return this.updates.pop()}}}});\n//# sourceMappingURL=gnop.modern.js.map\n",
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "connect",
+      "functionType": "Action",
+      "name": "connect",
+      "private": false,
+      "sentence": "connect",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "const { Gnop } = globalThis\n\nif (!Gnop.client) {\n    Gnop.client = new Gnop.WsClient({\n        // host: 'ws://sangervasi.net',\n        host: 'ws://localhost:42992',\n        name: \"Game WS test\"\n    })\n}\n\nconst connect = async () => {\n    const client = Gnop.client\n    \n    console.log('Connecting', client)\n    await client.connect()\n    console.log('Connected', client)\n} \n\nconnect()\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "join",
+      "functionType": "Action",
+      "name": "join",
+      "private": false,
+      "sentence": "join",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "const { Gnop } = globalThis\n\nif (!Gnop.client) {\n    console.warn('Cannot join with no client')\n    return\n}\n\nconst join = async () => {\n    const client = Gnop.client\n    \n    console.log('Joining', client)\n    await client.join()\n    console.log('Joined', client)\n} \n\njoin()\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": true
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Client State",
+      "fullName": "State",
+      "functionType": "StringExpression",
+      "name": "State",
+      "private": false,
+      "sentence": "IsConnected",
       "events": [
         {
           "disabled": false,
@@ -32,10 +124,136 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::JsCode",
-          "inlineCode": "class e{constructor(e){this.M=null,this.P=null,this.T=e}type(t){return new e(t)}payload(){return new e(this.T)}message(e){return this.T===e.type}build(e){return e}}const t=new e(\"\");t.type(\"echo\").payload(),t.type(\"session.created\").payload(),t.type(\"session.closed\").payload();const s=()=>\"hi\";t.type(\"horse\");export{s as hello};\n//# sourceMappingURL=gnop.modern.js.map\n",
+          "inlineCode": "const { Gnop } = globalThis\n\neventsFunctionContext.returnValue = (() => {\n    const client = Gnop.client\n    if (!client) {\n        return 'none'\n    }\n    return client.state.state\n})()\n",
           "parameterObjects": "",
           "useStrict": true,
           "eventsSheetExpanded": false
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "IsConnected",
+      "functionType": "Condition",
+      "name": "IsConnected",
+      "private": false,
+      "sentence": "IsConnected",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "False"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "srs_gnop::State()",
+                "=",
+                "\"created\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "True"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "IsJoined",
+      "functionType": "Condition",
+      "name": "IsJoined",
+      "private": false,
+      "sentence": "IsJoined",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "False"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "srs_gnop::State()",
+                "=",
+                "\"joined\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "True"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "parameters": [],

@@ -67,7 +67,7 @@ program
 			}, 11 * 1000)
 		})
 
-		client.ws?.close()
+		client.state.ws?.close()
 	})
 
 program
