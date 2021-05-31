@@ -1,5 +1,9 @@
+import { sample } from "lodash"
+
 import { guardEcho } from '@sangervasi/common/lib/messages/echo'
 import {
+	BallUpdate,
+	guardBallUpdate,
 	guardJoin,
 	guardJoined,
 	guardPlayerUpdate,
@@ -10,7 +14,7 @@ import {
 	Position,
 } from '@sangervasi/common/lib/messages/gnop'
 import { guardCreated } from '@sangervasi/common/lib/messages/session'
-import { parseMessage } from '@sangervasi/common/lib/messages/index'
+import { Message, parseMessage } from '@sangervasi/common/lib/messages/index'
 
 type MetaPromise<T> = {
 	promise: Promise<T>
@@ -18,7 +22,7 @@ type MetaPromise<T> = {
 	reject: (reason?: any) => void
 }
 
-const metafy = (): MetaPromise<unknown> => {
+const metaPromise = (): MetaPromise<unknown> => {
 	const meta: Partial<MetaPromise<unknown>> = {}
 	meta.promise = new Promise((resolve, reject) => {
 		meta.resolve = resolve
@@ -56,27 +60,38 @@ type StateAny =
 	| StateJoining
 	| StateJoined
 
+interface Options {
+	host: string
+	verbose: boolean
+}
+
 class WsClient {
+	options = {
+		host: 'ws://sangervasi.net',
+		verbose: false,
+	}
+
 	state: StateAny = {
 		state: 'init',
 	}
 
 	promises: {
-		connect?: MetaPromise<unknown>
-		join?: MetaPromise<unknown>
-	} = {}
+		connect: MetaPromise<unknown>
+		join: MetaPromise<unknown>
+	} = {
+		connect: metaPromise(),
+		join: metaPromise()
+	}
 
-	updates: Array<PlayerUpdate & { receivedAt: number}> = []
+	playerUpdates: Array<PlayerUpdate & { receivedAt: number }> = []
+	ballUpdates: Array<BallUpdate & { receivedAt: number }> = []
 
-	constructor(
-		public options: {
-			host: string
-			name?: string
-		},
-	) {}
+	constructor(options: Partial<Options>) {
+		Object.assign(this.options, options)
+	}
 
 	connect() {
-		console.log('Connecting')
+		this.info('Connecting')
 		const ws = new WebSocket(this.options.host)
 		this.state = {
 			state: 'creating',
@@ -87,8 +102,6 @@ class WsClient {
 		ws.onclose = this.handleClose
 		ws.onerror = this.handleError
 		ws.addEventListener('message', this.handleMessage)
-
-		this.promises.connect = metafy()
 
 		return this.promises.connect.promise
 	}
@@ -108,9 +121,8 @@ class WsClient {
 			return this.handlePlayerUpdate(message)
 		}
 
-		if (guardEcho.message(message)) {
-			console.log('Client heard:', message)
-			return
+		if (guardBallUpdate.message(message)) {
+			return this.handleBallUpdate(message)
 		}
 
 		console.warn('Unhandled message:', message)
@@ -122,13 +134,13 @@ class WsClient {
 			return
 		}
 
-		console.info('Created', message.sessionUuid)
+		this.info('Created', message.sessionUuid)
 		this.state = {
 			...this.state,
 			state: 'created',
 			sessionUuid: message.sessionUuid,
 		}
-		this.promises.connect?.resolve()
+		this.promises.connect.resolve()
 	}
 
 	handleJoined = (message: typeof guardJoined['M']) => {
@@ -138,13 +150,13 @@ class WsClient {
 		}
 
 		const { sessionUuid } = this.state
-		console.log('Joined', sessionUuid)
+		this.info('Joined', sessionUuid)
 
 		const self = message.payload.find(
-			(player) => player.sessionUuid === sessionUuid,
+			player => player.sessionUuid === sessionUuid,
 		)
 		const opponent = message.payload.find(
-			(player) => player.sessionUuid !== sessionUuid,
+			player => player.sessionUuid !== sessionUuid,
 		)
 
 		this.state = {
@@ -164,7 +176,7 @@ class WsClient {
 			self,
 			opponent,
 		}
-		this.promises.join?.resolve()
+		this.promises.join.resolve()
 	}
 
 	handlePlayerUpdate = (message: typeof guardPlayerUpdate['M']) => {
@@ -173,54 +185,63 @@ class WsClient {
 			return
 		}
 
-		console.log("Received update", message.payload)
-		this.state = {
-			...this.state,
-			opponent: message.payload.player
+		this.info('Received player update', message.payload)
+		this.state.opponent = message.payload.player
+		this.playerUpdates.push({
+			receivedAt: Date.now(),
+			...message.payload,
+		})
+	}
+
+	handleBallUpdate = (message: typeof guardBallUpdate['M']) => {
+		if (this.state.state !== 'joined') {
+			console.warn('Received update message while in state:', this.state.state)
+			return
 		}
-		this.updates.push({
+
+		this.info('Received ball update', message.payload)
+		this.ballUpdates.push({
 			receivedAt: Date.now(),
 			...message.payload
 		})
 	}
 
 	handleOpen = () => {
-		console.info('Opened')
+		this.info('Opened')
 	}
 
 	handleClose = () => {
 		this.state = { state: 'init' }
-		console.info('Closed')
+		console.warn('Closed')
 	}
 
 	handleError = () => {
 		this.state = { state: 'init' }
-		console.info('Errored')
+		console.error('Errored')
 	}
 
-	join() {
+	join(name?: string) {
 		if (this.state.state !== 'created') {
 			console.warn('Cannot join from state:', this.state)
 			return
 		}
 
-		const mJoin = guardJoin.build({
+		const m = guardJoin.build({
 			type: 'gnop.join',
 			sessionUuid: this.state.sessionUuid,
 			payload: {
-				name: this.options.name || 'Name',
+				name: name || 'Name',
 			},
 		})
 
-		console.info('Client joining:', mJoin)
+		this.info('Client joining:', m)
 		this.state = {
 			...this.state,
 			state: 'joining',
 		}
 
-		this.state.ws.send(JSON.stringify(mJoin))
+		this.send(m)
 
-		this.promises.join = metafy()
 		return this.promises.join.promise
 	}
 
@@ -238,62 +259,24 @@ class WsClient {
 			},
 		})
 
-		console.info('Client joining:', m)
+		this.info('Client joining:', m)
 		this.state = {
 			...this.state,
 			state: 'joining',
 		}
 
-		this.state.ws.send(JSON.stringify(m))
+		this.send(m)
 
-		this.promises.join = metafy()
 		return this.promises.join.promise
 	}
 
-	speak() {
-		if (this.state.state !== 'created') {
-			console.warn('Cannot speak from state:', this.state)
-			return
-		}
-
-		const m = guardEcho.build({
-			type: 'echo',
-			sessionUuid: this.state.sessionUuid,
-			payload: new Date().toISOString(),
-		})
-
-		console.info('Client speaking:', m)
-
-		this.state.ws.send(JSON.stringify(m))
-	}
-
-	point(x: number, y: number) {
+	sendPlayerUpdate(position: Position) {
 		if (this.state.state !== 'joined') {
-			console.warn('Cannot send point from state:', this.state)
+			console.warn('Cannot send player from state:', this.state)
 			return
 		}
 
-		const mPoint = guardPoint.build({
-			type: 'gnop.point',
-			sessionUuid: this.state.sessionUuid,
-			payload: {
-				x: x,
-				y: y,
-			},
-		})
-
-		console.info('Client sending point:', mPoint)
-
-		this.state.ws.send(JSON.stringify(mPoint))
-	}
-
-	sendUpdate(position: Position) {
-		if (this.state.state !== 'joined') {
-			console.warn('Cannot send point from state:', this.state)
-			return
-		}
-
-		const mPoint = guardPlayerUpdate.build({
+		const m = guardPlayerUpdate.build({
 			type: 'gnop.playerUpdate',
 			sessionUuid: this.state.sessionUuid,
 			payload: {
@@ -302,18 +285,83 @@ class WsClient {
 			},
 		})
 
-		console.info('Client sending point:', mPoint)
-
-		this.state.ws.send(JSON.stringify(mPoint))
+		this.send(m)
 	}
 
-	getUpdate() {
-		return this.updates.shift()
+	getPlayerUpdate() {
+		return this.playerUpdates.shift()
 	}
+
+	sendBallUpdate(position: Position) {
+		if (this.state.state !== 'joined') {
+			console.warn('Cannot send ball from state:', this.state)
+			return
+		}
+
+		const m = guardBallUpdate.build({
+			type: 'gnop.ballUpdate',
+			sessionUuid: this.state.sessionUuid,
+			payload: {
+				position,
+			},
+		})
+
+		this.send(m)
+	}
+
+	getBallUpdate() {
+		return this.ballUpdates.shift()
+	}
+
+	private send(m: Message<string, unknown>) {
+		if (!this.state.ws) {
+			console.warn('Cannot data without websocket:', this.state)
+			return
+		}
+
+		this.info('Client sending message:', m)
+
+		this.state.ws.send(JSON.stringify(m))
+	}
+
+	private info(...args: any[]) {
+		if (!this.options.verbose) {
+			return
+		}
+		console.info(...args)
+	}
+}
+
+const NAMES = [
+	'Air Freshener',
+	'Bath',
+	'Bathmat',
+	'Bidet',
+	'Bleach',
+	'Body Wash',
+	'Bubble Bath',
+	'Conditioner',
+	'Faucet',
+	'Floss',
+	'Loofah',
+	'Lotion',
+	'Plunger',
+	'Razor',
+	'Rubber Ducky',
+	'Shampoo',
+	'Sink',
+	'Soap',
+	'Toilet Paper',
+	'Toothbrush',
+	'Towel',
+]
+const generateName = () => {
+	sample(NAMES)
 }
 
 const GnopC = {
 	WsClient,
+	generateName,
 } as const
 
 Object.assign(globalThis, {
