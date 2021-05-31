@@ -24,3 +24,8 @@
  * @property {Gnop.Player} player
  * @property {Gnop.Position} position
  */
+
+/**
+ * @typedef {Object} Gnop.BallUpdate
+ * @property {Gnop.Position} position
+ */

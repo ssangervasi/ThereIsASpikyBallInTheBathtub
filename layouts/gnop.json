@@ -1683,7 +1683,7 @@
               "parameters": [
                 "DebugUpdate",
                 "=",
-                "srs_gnop::LatestUpdate()"
+                "srs_gnop::OpponentUpdate()"
               ],
               "subInstructions": []
             }
@@ -2517,7 +2517,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "Ball",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -2538,6 +2538,18 @@
                 "Ball",
                 "Physics2",
                 ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_gnop::Ball::handleUpdates"
+              },
+              "parameters": [
+                "Ball",
+                "Ball",
+                "Physics2"
               ],
               "subInstructions": []
             }
