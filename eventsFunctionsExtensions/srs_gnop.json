@@ -2220,22 +2220,7 @@
                   "actions": [],
                   "events": [
                     {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Comment",
-                      "color": {
-                        "b": 109,
-                        "g": 230,
-                        "r": 255,
-                        "textB": 0,
-                        "textG": 0,
-                        "textR": 0
-                      },
-                      "comment": "Anytime we receive an update, drop our",
-                      "comment2": ""
-                    },
-                    {
-                      "disabled": false,
+                      "disabled": true,
                       "folded": false,
                       "type": "BuiltinCommonInstructions::Standard",
                       "conditions": [],
@@ -2484,7 +2469,7 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst pendingAtVar = outgoingUpdateVar.getChild('PendingAt')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\n\nif (stateVar.getAsString() !== 'pending') {\n    console.log('State is not pending', stateVar.getAsString())\n    return\n}\n\nconst pendingAt = pendingAtVar.getAsNumber()\nconst pendingMs = Date.now() - pendingAt\nif (pendingMs < 100) {\n    console.log('Not pending long enough', pendingMs)\n    return\n}\n\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    yx: dyVar.getAsNumber(),\n})\n\nstateVar.setString('sent')\n",
+                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nif (client.state.self.number !== 1) {\n    return\n}\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst pendingAtVar = outgoingUpdateVar.getChild('PendingAt')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\n\nif (stateVar.getAsString() !== 'pending') {\n    console.log('State is not pending', stateVar.getAsString())\n    return\n}\n\nconst pendingAt = pendingAtVar.getAsNumber()\nconst pendingMs = Date.now() - pendingAt\nif (pendingMs < 1000) {\n    console.log('Not pending long enough', pendingMs)\n    return\n}\n\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n})\n\n// stateVar.setString('sent')\npendingAtVar.setNumber(Date.now())\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
                           "eventsSheetExpanded": true
