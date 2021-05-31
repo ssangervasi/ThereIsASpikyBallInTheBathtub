@@ -81,7 +81,7 @@
             {
               "type": {
                 "inverted": false,
-                "value": "srs_gnop::IsConnected"
+                "value": "srs_gnop::IsJoined"
               },
               "parameters": [
                 "",
@@ -168,7 +168,7 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "// inject \"dist/gnop.modern.js\"\n\nfunction t(){return(t=Object.assign||function(t){for(var s=1;s<arguments.length;s++){var e=arguments[s];for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])}return t}).apply(this,arguments)}class s{constructor(t){this.M=null,this.P=null,this.T=t}type(t){return new s(t)}payload(){return new s(this.T)}message(t){return this.T===t.type}build(t){return t}}const e=new s(\"\"),n=e.type(\"echo\").payload(),i=e.type(\"gnop.join\").payload(),o=e.type(\"gnop.rejoin\").payload(),a=e.type(\"gnop.joined\").payload(),r=e.type(\"gnop.playerUpdate\").payload(),d=e.type(\"gnop.point\").payload(),l=e.type(\"session.created\").payload();e.type(\"session.closed\").payload();const p=()=>{const t={};return t.promise=new Promise((s,e)=>{t.resolve=s,t.reject=e}),t};Object.assign(globalThis,{Gnop:{WsClient:class{constructor(s){this.options=s,this.state={state:\"init\"},this.promises={},this.updates=[],this.handleMessage=t=>{const s=(t=>{let s,e=\"\";try{s=JSON.parse(t.toString())}catch(t){e=t.message}return\"\"!==e?{type:\"error\",sessionUuid:\"\",payload:{error:e}}:\"object\"==typeof(n=s)&&null!==n&&\"type\"in n?s:{type:\"error\",sessionUuid:\"\",payload:{error:\"Invalid message structure\"}};var n})(t.data);return l.message(s)?this.handleCreated(s):a.message(s)||a.message(s)?this.handleJoined(s):void(n.message(s)?console.log(\"Client heard:\",s):console.warn(\"Unhandled message:\",s))},this.handleCreated=s=>{var e;\"creating\"===this.state.state?(console.info(\"Created\",s.sessionUuid),this.state=t({},this.state,{state:\"created\",sessionUuid:s.sessionUuid}),null==(e=this.promises.connect)||e.resolve()):console.warn(\"Received created message while in state:\",this.state.state)},this.handleJoined=s=>{var e;if(\"joining\"!==this.state.state)return void console.warn(\"Received joined message while in state:\",this.state.state);const{sessionUuid:n}=this.state;console.log(\"Joined\",n);const i=s.payload.find(t=>t.sessionUuid===n),o=s.payload.find(t=>t.sessionUuid!==n);this.state=t({},this.state,{self:i,opponent:o}),i&&o?(this.state=t({},this.state,{state:\"joined\",self:i,opponent:o}),null==(e=this.promises.join)||e.resolve()):console.warn(\"Partially joined\",s)},this.handlePlayerUpdate=s=>{\"joined\"===this.state.state?(this.state=t({},this.state,{opponent:s.payload.player}),this.updates.push(t({receivedAt:Date.now()},s.payload))):console.warn(\"Received update message while in state:\",this.state.state)},this.handleOpen=()=>{console.info(\"Opened\")},this.handleClose=()=>{this.state={state:\"init\"},console.info(\"Closed\")},this.handleError=()=>{this.state={state:\"init\"},console.info(\"Errored\")}}connect(){console.log(\"Connecting\");const t=new WebSocket(this.options.host);return this.state={state:\"creating\",ws:t},t.onopen=this.handleOpen,t.onclose=this.handleClose,t.onerror=this.handleError,t.addEventListener(\"message\",this.handleMessage),this.promises.connect=p(),this.promises.connect.promise}join(){if(\"created\"!==this.state.state)return void console.warn(\"Cannot join from state:\",this.state);const s=i.build({type:\"gnop.join\",sessionUuid:this.state.sessionUuid,payload:{name:this.options.name||\"Name\"}});return console.info(\"Client joining:\",s),this.state=t({},this.state,{state:\"joining\"}),this.state.ws.send(JSON.stringify(s)),this.promises.join=p(),this.promises.join.promise}rejoin(s){if(\"created\"!==this.state.state)return void console.warn(\"Cannot join from state:\",this.state);const e=o.build({type:\"gnop.rejoin\",sessionUuid:this.state.sessionUuid,payload:{previousSessionUuid:s}});return console.info(\"Client joining:\",e),this.state=t({},this.state,{state:\"joining\"}),this.state.ws.send(JSON.stringify(e)),this.promises.join=p(),this.promises.join.promise}speak(){if(\"created\"!==this.state.state)return void console.warn(\"Cannot speak from state:\",this.state);const t=n.build({type:\"echo\",sessionUuid:this.state.sessionUuid,payload:(new Date).toISOString()});console.info(\"Client speaking:\",t),this.state.ws.send(JSON.stringify(t))}point(t,s){if(\"joined\"!==this.state.state)return void console.warn(\"Cannot send point from state:\",this.state);const e=d.build({type:\"gnop.point\",sessionUuid:this.state.sessionUuid,payload:{x:t,y:s}});console.info(\"Client sending point:\",e),this.state.ws.send(JSON.stringify(e))}sendUpdate(t){if(\"joined\"!==this.state.state)return void console.warn(\"Cannot send point from state:\",this.state);const s=r.build({type:\"gnop.playerUpdate\",sessionUuid:this.state.sessionUuid,payload:{player:this.state.self,position:t}});console.info(\"Client sending point:\",s),this.state.ws.send(JSON.stringify(s))}getUpdate(){return this.updates.shift()}}}});\n//# sourceMappingURL=gnop.modern.js.map\n",
+              "inlineCode": "// inject \"dist/gnop.modern.js\"\n\nfunction t(){return(t=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var s=arguments[e];for(var n in s)Object.prototype.hasOwnProperty.call(s,n)&&(t[n]=s[n])}return t}).apply(this,arguments)}class e{constructor(t){this.M=null,this.P=null,this.T=t}type(t){return new e(t)}payload(){return new e(this.T)}message(t){return this.T===t.type}build(t){return t}}const s=new e(\"\"),n=s.type(\"echo\").payload(),i=s.type(\"gnop.join\").payload(),o=s.type(\"gnop.rejoin\").payload(),a=s.type(\"gnop.joined\").payload(),r=s.type(\"gnop.playerUpdate\").payload(),d=s.type(\"gnop.point\").payload(),l=s.type(\"session.created\").payload();s.type(\"session.closed\").payload();const p=()=>{const t={};return t.promise=new Promise((e,s)=>{t.resolve=e,t.reject=s}),t};Object.assign(globalThis,{Gnop:{WsClient:class{constructor(e){this.options=e,this.state={state:\"init\"},this.promises={},this.updates=[],this.handleMessage=t=>{const e=(t=>{let e,s=\"\";try{e=JSON.parse(t.toString())}catch(t){s=t.message}return\"\"!==s?{type:\"error\",sessionUuid:\"\",payload:{error:s}}:\"object\"==typeof(n=e)&&null!==n&&\"type\"in n?e:{type:\"error\",sessionUuid:\"\",payload:{error:\"Invalid message structure\"}};var n})(t.data);return l.message(e)?this.handleCreated(e):a.message(e)?this.handleJoined(e):r.message(e)?this.handlePlayerUpdate(e):void(n.message(e)?console.log(\"Client heard:\",e):console.warn(\"Unhandled message:\",e))},this.handleCreated=e=>{var s;\"creating\"===this.state.state?(console.info(\"Created\",e.sessionUuid),this.state=t({},this.state,{state:\"created\",sessionUuid:e.sessionUuid}),null==(s=this.promises.connect)||s.resolve()):console.warn(\"Received created message while in state:\",this.state.state)},this.handleJoined=e=>{var s;if(\"joining\"!==this.state.state)return void console.warn(\"Received joined message while in state:\",this.state.state);const{sessionUuid:n}=this.state;console.log(\"Joined\",n);const i=e.payload.find(t=>t.sessionUuid===n),o=e.payload.find(t=>t.sessionUuid!==n);this.state=t({},this.state,{self:i,opponent:o}),i&&o?(this.state=t({},this.state,{state:\"joined\",self:i,opponent:o}),null==(s=this.promises.join)||s.resolve()):console.warn(\"Partially joined\",e)},this.handlePlayerUpdate=e=>{\"joined\"===this.state.state?(console.log(\"Received update\",e.payload),this.state=t({},this.state,{opponent:e.payload.player}),this.updates.push(t({receivedAt:Date.now()},e.payload))):console.warn(\"Received update message while in state:\",this.state.state)},this.handleOpen=()=>{console.info(\"Opened\")},this.handleClose=()=>{this.state={state:\"init\"},console.info(\"Closed\")},this.handleError=()=>{this.state={state:\"init\"},console.info(\"Errored\")}}connect(){console.log(\"Connecting\");const t=new WebSocket(this.options.host);return this.state={state:\"creating\",ws:t},t.onopen=this.handleOpen,t.onclose=this.handleClose,t.onerror=this.handleError,t.addEventListener(\"message\",this.handleMessage),this.promises.connect=p(),this.promises.connect.promise}join(){if(\"created\"!==this.state.state)return void console.warn(\"Cannot join from state:\",this.state);const e=i.build({type:\"gnop.join\",sessionUuid:this.state.sessionUuid,payload:{name:this.options.name||\"Name\"}});return console.info(\"Client joining:\",e),this.state=t({},this.state,{state:\"joining\"}),this.state.ws.send(JSON.stringify(e)),this.promises.join=p(),this.promises.join.promise}rejoin(e){if(\"created\"!==this.state.state)return void console.warn(\"Cannot join from state:\",this.state);const s=o.build({type:\"gnop.rejoin\",sessionUuid:this.state.sessionUuid,payload:{previousSessionUuid:e}});return console.info(\"Client joining:\",s),this.state=t({},this.state,{state:\"joining\"}),this.state.ws.send(JSON.stringify(s)),this.promises.join=p(),this.promises.join.promise}speak(){if(\"created\"!==this.state.state)return void console.warn(\"Cannot speak from state:\",this.state);const t=n.build({type:\"echo\",sessionUuid:this.state.sessionUuid,payload:(new Date).toISOString()});console.info(\"Client speaking:\",t),this.state.ws.send(JSON.stringify(t))}point(t,e){if(\"joined\"!==this.state.state)return void console.warn(\"Cannot send point from state:\",this.state);const s=d.build({type:\"gnop.point\",sessionUuid:this.state.sessionUuid,payload:{x:t,y:e}});console.info(\"Client sending point:\",s),this.state.ws.send(JSON.stringify(s))}sendUpdate(t){if(\"joined\"!==this.state.state)return void console.warn(\"Cannot send point from state:\",this.state);const e=r.build({type:\"gnop.playerUpdate\",sessionUuid:this.state.sessionUuid,payload:{player:this.state.self,position:t}});console.info(\"Client sending point:\",e),this.state.ws.send(JSON.stringify(e))}getUpdate(){return this.updates.shift()}}}});\n//# sourceMappingURL=gnop.modern.js.map\n",
               "parameterObjects": "",
               "useStrict": true,
               "eventsSheetExpanded": false
@@ -401,6 +401,64 @@
               "subInstructions": []
             }
           ],
+          "events": []
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "1 => Left paddle, 2 => Right Paddle, 0 => Not joined",
+      "fullName": "Player",
+      "functionType": "Expression",
+      "name": "SelfNumber",
+      "private": false,
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "const { Gnop } = globalThis\n\neventsFunctionContext.returnValue = (() => {\n    return Gnop?.client?.state?.self?.number || 0\n})()\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "1 => Left paddle, 2 => Right Paddle, 0 => Not joined",
+      "fullName": "Player",
+      "functionType": "Expression",
+      "name": "OpponentNumber",
+      "private": false,
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "const { Gnop } = globalThis\n\neventsFunctionContext.returnValue = (() => {\n    return Gnop?.client?.state?.opponent?.number || 0\n})()\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
           "events": []
         }
       ],
@@ -951,55 +1009,16 @@
           "sentence": "_PARAM0_ handlePhysics ",
           "events": [
             {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
               "disabled": false,
               "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [],
+              "name": "Physics guards",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
               "events": [
-                {
-                  "disabled": true,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "srs_utils::consoleLog"
-                      },
-                      "parameters": [
-                        "",
-                        "ToString(Object.Physics2::Density())",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "Object",
-                        "ControlLength",
-                        "=",
-                        "300 * Object.Physics2::Density()"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
                 {
                   "disabled": false,
                   "folded": false,
@@ -1034,82 +1053,338 @@
                     }
                   ],
                   "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "srs_gnop::Paddle::IsPressingDown"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Behavior",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::ApplyForce"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Physics2",
-                        "0",
-                        "Object.Variable(ControlLength)",
-                        "Object.Physics2::MassCenterX()",
-                        "Object.Physics2::MassCenterY()"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "srs_gnop::Paddle::IsPressingUp"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Behavior",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::ApplyForce"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Physics2",
-                        "0",
-                        "-1 * Object.Variable(ControlLength)",
-                        "Object.Physics2::MassCenterX()",
-                        "Object.Physics2::MassCenterY()"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
                 }
-              ]
+              ],
+              "parameters": []
+            },
+            {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
+              "disabled": false,
+              "folded": false,
+              "name": "Controls for Self",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::Paddle::IsPlayer"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "srs_gnop::SelfNumber()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Object",
+                            "ControlLength",
+                            "=",
+                            "300 * Object.Physics2::Density()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "srs_gnop::Paddle::IsPressingDown"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            ""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Physics2::ApplyForce"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Physics2",
+                            "0",
+                            "Object.Variable(ControlLength)",
+                            "Object.Physics2::MassCenterX()",
+                            "Object.Physics2::MassCenterY()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "srs_gnop::Paddle::IsPressingUp"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            ""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Physics2::ApplyForce"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Physics2",
+                            "0",
+                            "-1 * Object.Variable(ControlLength)",
+                            "Object.Physics2::MassCenterX()",
+                            "Object.Physics2::MassCenterY()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "colorB": 228,
+                      "colorG": 176,
+                      "colorR": 74,
+                      "creationTime": 0,
+                      "disabled": false,
+                      "folded": false,
+                      "name": "Queue updates ",
+                      "source": "",
+                      "type": "BuiltinCommonInstructions::Group",
+                      "events": [
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjetTxt"
+                              },
+                              "parameters": [
+                                "Object",
+                                "OutgoingUpdate.State",
+                                "=",
+                                "\"Pending\""
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjet"
+                              },
+                              "parameters": [
+                                "Object",
+                                "OutgoingUpdate.X",
+                                "=",
+                                "Object.X()"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjet"
+                              },
+                              "parameters": [
+                                "Object",
+                                "OutgoingUpdate.Y",
+                                "=",
+                                "Object.Y()"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjet"
+                              },
+                              "parameters": [
+                                "Object",
+                                "OutgoingUpdate.DX",
+                                "=",
+                                "Object.Physics2::LinearVelocityX()"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjet"
+                              },
+                              "parameters": [
+                                "Object",
+                                "OutgoingUpdate.DY",
+                                "=",
+                                "Object.Physics2::LinearVelocityY()"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        }
+                      ],
+                      "parameters": []
+                    }
+                  ]
+                }
+              ],
+              "parameters": []
+            },
+            {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
+              "disabled": false,
+              "folded": false,
+              "name": "Updates from Opponent",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ObjectVariableChildExists"
+                      },
+                      "parameters": [
+                        "Object",
+                        "IncomingUpdate",
+                        "\"State\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "MettreY"
+                          },
+                          "parameters": [
+                            "Object",
+                            "=",
+                            "Object.Variable(IncomingUpdate.Y)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Physics2::LinearVelocityY"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Physics2",
+                            "=",
+                            "Object.Variable(IncomingUpdate.DY)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ObjectVariableClearChildren"
+                          },
+                          "parameters": [
+                            "Object",
+                            "IncomingUpdate"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                }
+              ],
+              "parameters": []
             }
           ],
           "parameters": [
@@ -1281,43 +1556,147 @@
           "objectGroups": []
         },
         {
-          "description": "",
-          "fullName": "handleLatestUpdate",
+          "description": "The network stuff",
+          "fullName": "handleUpdates",
           "functionType": "Action",
-          "name": "handleLatestUpdate",
+          "name": "handleUpdates",
           "private": false,
-          "sentence": "_PARAM0_ handleLatestUpdate",
+          "sentence": "_PARAM0_ handleUpdates",
           "events": [
             {
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjetTxt"
-                  },
-                  "parameters": [
-                    "Object",
-                    "LatestUpdateJSON",
-                    "=",
-                    "srs_gnop::LatestUpdate()"
-                  ],
-                  "subInstructions": []
-                }
-              ],
+              "actions": [],
               "events": []
             },
             {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
               "disabled": false,
               "folded": false,
-              "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "const obj = objects[0]\nconst vars = obj.getVariables()\n\nconst latestUpdateJson = vars.get(\"LatestUpdateJSON\").getAsString()\nconst latestUpdate = JSON.parse(latestUpdateJson)\n\nif (latestUpdate === null) {\n    return\n}\n\n/**\n * interface Position {\n\tx: number\n\ty: number\n\tdx: number\n\tdy: number\n}\n */\nconst { player, position } =\nobj.setPosition()\n",
-              "parameterObjects": "Object",
-              "useStrict": true,
-              "eventsSheetExpanded": true
+              "name": "Incoming updates",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::Paddle::IsPlayer"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "srs_gnop::OpponentNumber()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjetTxt"
+                          },
+                          "parameters": [
+                            "Object",
+                            "LatestUpdateJSON",
+                            "=",
+                            "srs_gnop::LatestUpdate()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::JsCode",
+                      "inlineCode": "\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Player\n * @property {string} sessionUuid\n * @property {string} state\n * @property {string} name\n * @property {number} number\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.PlayerUpdate\n * @property {Gnop.Player} player\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst latestUpdateJsonVar = vars.get(\"LatestUpdateJSON\")\nconst playerVar = vars.get(\"Player\")\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.PlayerUpdate */\nconst latestUpdate = JSON.parse(latestUpdateJsonVar.getAsString())\nif (latestUpdate === null) {\n    return\n}\n\nconst {\n    player,\n    position\n} = latestUpdate\n\nif (player.number !== playerVar.getAsNumber()) {\n    return\n}\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst dyVar = incomingUpdateVar.getChild('DY')\n\nstateVar.setString(player.state)\nxVar.setNumber(position.x)\nyVar.setNumber(position.y)\ndxVar.setNumber(position.dx)\ndyVar.setNumber(position.dy)\n\n",
+                      "parameterObjects": "Object",
+                      "useStrict": true,
+                      "eventsSheetExpanded": false
+                    }
+                  ]
+                }
+              ],
+              "parameters": []
+            },
+            {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
+              "disabled": false,
+              "folded": false,
+              "name": "Outgoing updates",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::Paddle::IsPlayer"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "srs_gnop::SelfNumber()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_utils::Throttle"
+                      },
+                      "parameters": [
+                        "",
+                        "\"OutgoingUpdates\"",
+                        "10",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::JsCode",
+                      "inlineCode": "const obj = objects[0]\nconst vars = obj.getVariables()\nconst playerVar = vars.get(\"Player\")\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nif (!outgoingUpdateVar.hasChild(\"State\")) {\n    return\n}\n\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\n\nconst { Gnop } = globalThis\nconst { client } = Gnop\n\nclient.sendUpdate({\n    x: xVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    yx: dyVar.getAsNumber(),\n})\n\noutgoingUpdateVar.clearChildren()\n",
+                      "parameterObjects": "Object",
+                      "useStrict": true,
+                      "eventsSheetExpanded": true
+                    }
+                  ]
+                }
+              ],
+              "parameters": []
             }
           ],
           "parameters": [

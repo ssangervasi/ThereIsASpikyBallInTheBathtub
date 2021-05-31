@@ -104,8 +104,8 @@ class WsClient {
 			return this.handleJoined(message)
 		}
 
-		if (guardJoined.message(message)) {
-			return this.handleJoined(message)
+		if (guardPlayerUpdate.message(message)) {
+			return this.handlePlayerUpdate(message)
 		}
 
 		if (guardEcho.message(message)) {
@@ -173,6 +173,7 @@ class WsClient {
 			return
 		}
 
+		console.log("Received update", message.payload)
 		this.state = {
 			...this.state,
 			opponent: message.payload.player

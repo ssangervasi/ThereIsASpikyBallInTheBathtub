@@ -1497,10 +1497,98 @@
         {
           "disabled": false,
           "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "That stupid bug that doesn't compile extension functions",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [],
-          "events": []
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_utils::HasLimitedTimer"
+              },
+              "parameters": [
+                "",
+                "\"debug\"",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_utils::consoleLog"
+              },
+              "parameters": [
+                "",
+                "ToString(srs_utils::getLimitedTimerElapsed(\"debug\"))",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_utils::consoleLog"
+              },
+              "parameters": [
+                "",
+                "ToString(srs_utils::getLimitedTimerFraction(\"debug\"))",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_utils::consoleLog"
+              },
+              "parameters": [
+                "",
+                "ToString(srs_utils::getLimitedTimerLimit(\"debug\"))",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_utils::Throttle"
+                  },
+                  "parameters": [
+                    "",
+                    "\"debug\"",
+                    "1",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": []
+            }
+          ]
         },
         {
           "disabled": true,
@@ -2568,6 +2656,18 @@
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
           "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_gnop::Paddle::handleUpdates"
+              },
+              "parameters": [
+                "Paddle",
+                "Paddle",
+                "Physics2"
+              ],
+              "subInstructions": []
+            },
             {
               "type": {
                 "inverted": false,
