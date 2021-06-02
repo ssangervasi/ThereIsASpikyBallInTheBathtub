@@ -486,28 +486,6 @@
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Object",
-                    "LockX",
-                    "=",
-                    "Object.X()"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
               "actions": [],
               "events": []
             }
@@ -544,6 +522,37 @@
           "private": false,
           "sentence": "",
           "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Object",
+                    "LockX",
+                    "=",
+                    "Object.X()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
             {
               "disabled": false,
               "folded": false,
@@ -2032,6 +2041,28 @@
                           },
                           "parameters": [
                             "Object",
+                            "OutgoingUpdate.DX",
+                            "=",
+                            "Object.Physics2::LinearVelocityX()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Object",
                             "OutgoingUpdate.Y",
                             "=",
                             "Object.Y()"
@@ -2045,9 +2076,31 @@
                           },
                           "parameters": [
                             "Object",
-                            "OutgoingUpdate.DX",
+                            "OutgoingUpdate.DY",
                             "=",
-                            "Object.Physics2::LinearVelocityX()"
+                            "Object.Physics2::LinearVelocityY()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Object",
+                            "OutgoingUpdate.A",
+                            "=",
+                            "Object.Angle()"
                           ],
                           "subInstructions": []
                         },
@@ -2058,9 +2111,9 @@
                           },
                           "parameters": [
                             "Object",
-                            "OutgoingUpdate.DY",
+                            "OutgoingUpdate.DA",
                             "=",
-                            "Object.Physics2::LinearVelocityY()"
+                            "Object.Physics2::AngularVelocity()"
                           ],
                           "subInstructions": []
                         }
@@ -2120,41 +2173,6 @@
                   "actions": [],
                   "events": [
                     {
-                      "disabled": true,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ModVarObjetTxt"
-                          },
-                          "parameters": [
-                            "Object",
-                            "OutgoingUpdate.State",
-                            "=",
-                            "\"pending\""
-                          ],
-                          "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ModVarObjet"
-                          },
-                          "parameters": [
-                            "Object",
-                            "OutgoingUpdate.PendingAt",
-                            "=",
-                            "srs_utils::TimeMs()"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    },
-                    {
                       "disabled": false,
                       "folded": false,
                       "type": "BuiltinCommonInstructions::Standard",
@@ -2206,6 +2224,40 @@
                             "Physics2",
                             "=",
                             "Object.Variable(IncomingUpdate.DY)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "SetAngle"
+                          },
+                          "parameters": [
+                            "Object",
+                            "=",
+                            "Object.Variable(IncomingUpdate.A)"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Physics2::AngularVelocity"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Physics2",
+                            "=",
+                            "Object.Variable(IncomingUpdate.DA)"
                           ],
                           "subInstructions": []
                         }
@@ -2323,7 +2375,7 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.BallUpdate\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.BallUpdate */\nconst latestUpdate = client.getBallUpdate()\nif (!latestUpdate) {\n    return\n}\n\nconst { position } = latestUpdate\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst dyVar = incomingUpdateVar.getChild('DY')\n\nstateVar.setString('pending')\nxVar.setNumber(position.x)\nyVar.setNumber(position.y)\ndxVar.setNumber(position.dx)\ndyVar.setNumber(position.dy)\n\n",
+                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.BallUpdate\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.BallUpdate */\nconst latestUpdate = client.getBallUpdate()\nif (!latestUpdate) {\n    return\n}\n\nconst { position } = latestUpdate\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dyVar = incomingUpdateVar.getChild('DY')\nconst aVar = incomingUpdateVar.getChild('A')\nconst daVar = incomingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nxVar.setNumber(position.x)\ndxVar.setNumber(position.dx)\nyVar.setNumber(position.y)\ndyVar.setNumber(position.dy)\naVar.setNumber(position.a)\ndaVar.setNumber(position.da)\n\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
                           "eventsSheetExpanded": true
@@ -2369,7 +2421,7 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nif (client.state.self.number !== 1) {\n    return\n}\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst pendingAtVar = outgoingUpdateVar.getChild('PendingAt')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\n\nif (stateVar.getAsString() !== 'pending') {\n    console.log('State is not pending', stateVar.getAsString())\n    return\n}\n\nconst pendingAt = pendingAtVar.getAsNumber()\nconst pendingMs = Date.now() - pendingAt\nif (pendingMs < 1000) {\n    console.log('Not pending long enough', pendingMs)\n    return\n}\n\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n})\n\n// stateVar.setString('sent')\npendingAtVar.setNumber(Date.now())\n",
+                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst pendingAtVar = outgoingUpdateVar.getChild('PendingAt')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\n\nif (stateVar.getAsString() !== 'pending') {\n    console.log('State is not pending', stateVar.getAsString())\n    return\n}\n\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n    a: aVar.getAsNumber(),\n    da: daVar.getAsNumber(),\n})\n\n// stateVar.setString('sent')\n// const pendingAt = pendingAtVar.getAsNumber()\n// const pendingMs = Date.now() - pendingAt\n// if (pendingMs < 1000) {\n//     console.log('Not pending long enough', pendingMs)\n//     return\n// }\n// stateVar.setString('pending')\n// pendingAtVar.setNumber(Date.now())\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
                           "eventsSheetExpanded": true

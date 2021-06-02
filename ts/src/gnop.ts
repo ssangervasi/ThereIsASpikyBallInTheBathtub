@@ -106,6 +106,14 @@ class WsClient {
 		return this.promises.connect.promise
 	}
 
+	isConnected(): boolean {
+		return [
+			'created',
+			'joined',
+			'joining',
+		].includes(this.state.state)
+	}
+
 	handleMessage = (event: { data: string }) => {
 		const message = parseMessage(event.data)
 
