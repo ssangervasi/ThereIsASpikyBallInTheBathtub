@@ -110,7 +110,7 @@
                   "inlineCode": "const client = globalThis.Gnop.client\n\nconst vars = runtimeScene.getVariables()\nconst opponentUpdateVar = vars.get(\"OpponentUpdateJSON\")\n\nconst opponentUpdate = client.getPlayerUpdate() || null\nopponentUpdateVar.setString(\n    JSON.stringify(opponentUpdate, null, 2)\n)\n",
                   "parameterObjects": "",
                   "useStrict": true,
-                  "eventsSheetExpanded": false
+                  "eventsSheetExpanded": true
                 }
               ],
               "parameters": []
@@ -1298,84 +1298,85 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::Standard",
-                          "conditions": [],
-                          "actions": [
+                          "conditions": [
                             {
                               "type": {
                                 "inverted": false,
-                                "value": "ModVarObjetTxt"
+                                "value": "VarObjetTxt"
                               },
                               "parameters": [
                                 "Object",
                                 "OutgoingUpdate.State",
                                 "=",
-                                "\"Pending\""
+                                "\"pending\""
                               ],
                               "subInstructions": []
                             }
                           ],
-                          "events": []
-                        },
-                        {
-                          "disabled": false,
-                          "folded": false,
-                          "type": "BuiltinCommonInstructions::Standard",
-                          "conditions": [],
-                          "actions": [
+                          "actions": [],
+                          "events": [
                             {
-                              "type": {
-                                "inverted": false,
-                                "value": "ModVarObjet"
-                              },
-                              "parameters": [
-                                "Object",
-                                "OutgoingUpdate.X",
-                                "=",
-                                "Object.X()"
+                              "disabled": false,
+                              "folded": false,
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "inverted": false,
+                                    "value": "ModVarObjet"
+                                  },
+                                  "parameters": [
+                                    "Object",
+                                    "OutgoingUpdate.X",
+                                    "=",
+                                    "Object.X()"
+                                  ],
+                                  "subInstructions": []
+                                },
+                                {
+                                  "type": {
+                                    "inverted": false,
+                                    "value": "ModVarObjet"
+                                  },
+                                  "parameters": [
+                                    "Object",
+                                    "OutgoingUpdate.Y",
+                                    "=",
+                                    "Object.Y()"
+                                  ],
+                                  "subInstructions": []
+                                },
+                                {
+                                  "type": {
+                                    "inverted": false,
+                                    "value": "ModVarObjet"
+                                  },
+                                  "parameters": [
+                                    "Object",
+                                    "OutgoingUpdate.DX",
+                                    "=",
+                                    "Object.Physics2::LinearVelocityX()"
+                                  ],
+                                  "subInstructions": []
+                                },
+                                {
+                                  "type": {
+                                    "inverted": false,
+                                    "value": "ModVarObjet"
+                                  },
+                                  "parameters": [
+                                    "Object",
+                                    "OutgoingUpdate.DY",
+                                    "=",
+                                    "Object.Physics2::LinearVelocityY()"
+                                  ],
+                                  "subInstructions": []
+                                }
                               ],
-                              "subInstructions": []
-                            },
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "ModVarObjet"
-                              },
-                              "parameters": [
-                                "Object",
-                                "OutgoingUpdate.Y",
-                                "=",
-                                "Object.Y()"
-                              ],
-                              "subInstructions": []
-                            },
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "ModVarObjet"
-                              },
-                              "parameters": [
-                                "Object",
-                                "OutgoingUpdate.DX",
-                                "=",
-                                "Object.Physics2::LinearVelocityX()"
-                              ],
-                              "subInstructions": []
-                            },
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "ModVarObjet"
-                              },
-                              "parameters": [
-                                "Object",
-                                "OutgoingUpdate.DY",
-                                "=",
-                                "Object.Physics2::LinearVelocityY()"
-                              ],
-                              "subInstructions": []
+                              "events": []
                             }
-                          ],
-                          "events": []
+                          ]
                         }
                       ],
                       "parameters": []
@@ -1404,12 +1405,13 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "ObjectVariableChildExists"
+                        "value": "VarObjetTxt"
                       },
                       "parameters": [
                         "Object",
-                        "IncomingUpdate",
-                        "\"State\""
+                        "IncomingUpdate.State",
+                        "=",
+                        "\"pending\""
                       ],
                       "subInstructions": []
                     }
@@ -1468,11 +1470,13 @@
                         {
                           "type": {
                             "inverted": false,
-                            "value": "ObjectVariableClearChildren"
+                            "value": "ModVarObjetTxt"
                           },
                           "parameters": [
                             "Object",
-                            "IncomingUpdate"
+                            "IncomingUpdate.State",
+                            "=",
+                            "\"received\""
                           ],
                           "subInstructions": []
                         }
@@ -1738,7 +1742,7 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Player\n * @property {string} sessionUuid\n * @property {string} state\n * @property {string} name\n * @property {number} number\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.PlayerUpdate\n * @property {Gnop.Player} player\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst opponentUpdateJsonVar = vars.get(\"OpponentUpdateJSON\")\nconst playerVar = vars.get(\"Player\")\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.PlayerUpdate */\nconst latestUpdate = JSON.parse(opponentUpdateJsonVar.getAsString())\nif (latestUpdate === null) {\n    return\n}\n\nconst {\n    player,\n    position\n} = latestUpdate\n\nif (player.number !== playerVar.getAsNumber()) {\n    return\n}\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst dyVar = incomingUpdateVar.getChild('DY')\n\nstateVar.setString(player.state)\nxVar.setNumber(position.x)\nyVar.setNumber(position.y)\ndxVar.setNumber(position.dx)\ndyVar.setNumber(position.dy)\n\n",
+                          "inlineCode": "\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Player\n * @property {string} sessionUuid\n * @property {string} state\n * @property {string} name\n * @property {number} number\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.PlayerUpdate\n * @property {Gnop.Player} player\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst opponentUpdateJsonVar = vars.get(\"OpponentUpdateJSON\")\nconst playerVar = vars.get(\"Player\")\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.PlayerUpdate */\nconst latestUpdate = JSON.parse(opponentUpdateJsonVar.getAsString())\nif (!latestUpdate) {\n    return\n}\n\nconst {\n    player,\n    position\n} = latestUpdate\n\nif (player.number !== playerVar.getAsNumber()) {\n    return\n}\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dyVar = incomingUpdateVar.getChild('DY')\nconst aVar = incomingUpdateVar.getChild('A')\nconst daVar = incomingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nxVar.setNumber(position.x)\ndxVar.setNumber(position.dx)\nyVar.setNumber(position.y)\ndyVar.setNumber(position.dy)\naVar.setNumber(position.a)\ndaVar.setNumber(position.da)\n\n\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
                           "eventsSheetExpanded": false
@@ -1785,7 +1789,7 @@
                           "parameters": [
                             "",
                             "\"Paddle.handleUpdates.outgoing\"",
-                            "10",
+                            "20",
                             ""
                           ],
                           "subInstructions": []
@@ -1797,7 +1801,7 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "const obj = objects[0]\nconst vars = obj.getVariables()\nconst playerVar = vars.get(\"Player\")\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nif (!outgoingUpdateVar.hasChild(\"State\")) {\n    return\n}\n\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\n\nconst { Gnop } = globalThis\nconst { client } = Gnop\n\nclient.sendPlayerUpdate({\n    x: xVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    yx: dyVar.getAsNumber(),\n})\n\noutgoingUpdateVar.clearChildren()\n",
+                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\nconst playerVar = vars.get(\"Player\")\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nclient.sendPlayerUpdate({\n    x: xVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n    a: aVar.getAsNumber(),\n    da: daVar.getAsNumber(),\n})\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
                           "eventsSheetExpanded": false
@@ -1884,7 +1888,7 @@
           "sentence": "",
           "events": [
             {
-              "disabled": false,
+              "disabled": true,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
@@ -2374,6 +2378,14 @@
                 }
               ],
               "parameters": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": []
             }
           ],
           "parameters": [
@@ -2462,7 +2474,7 @@
                           "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.BallUpdate\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.BallUpdate */\nconst latestUpdate = client.getBallUpdate()\nif (!latestUpdate) {\n    return\n}\n\nconst { position } = latestUpdate\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dyVar = incomingUpdateVar.getChild('DY')\nconst aVar = incomingUpdateVar.getChild('A')\nconst daVar = incomingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nxVar.setNumber(position.x)\ndxVar.setNumber(position.dx)\nyVar.setNumber(position.y)\ndyVar.setNumber(position.dy)\naVar.setNumber(position.a)\ndaVar.setNumber(position.da)\n\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
-                          "eventsSheetExpanded": true
+                          "eventsSheetExpanded": false
                         }
                       ]
                     }
@@ -2493,7 +2505,7 @@
                           "parameters": [
                             "",
                             "\"Ball.handleUpdates.outgoing\"",
-                            "10",
+                            "100",
                             ""
                           ],
                           "subInstructions": []
@@ -2505,10 +2517,10 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst pendingAtVar = outgoingUpdateVar.getChild('PendingAt')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\n\nif (stateVar.getAsString() !== 'pending') {\n    console.log('State is not pending', stateVar.getAsString())\n    return\n}\n\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n    a: aVar.getAsNumber(),\n    da: daVar.getAsNumber(),\n})\n\n// stateVar.setString('sent')\n// const pendingAt = pendingAtVar.getAsNumber()\n// const pendingMs = Date.now() - pendingAt\n// if (pendingMs < 1000) {\n//     console.log('Not pending long enough', pendingMs)\n//     return\n// }\n// stateVar.setString('pending')\n// pendingAtVar.setNumber(Date.now())\n",
+                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n    a: aVar.getAsNumber(),\n    da: daVar.getAsNumber(),\n})\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
-                          "eventsSheetExpanded": true
+                          "eventsSheetExpanded": false
                         }
                       ]
                     }
