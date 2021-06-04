@@ -2550,7 +2550,7 @@
                               },
                               "parameters": [
                                 "Ball",
-                                "Physics2",
+                                "BallPhysics2",
                                 "Object.Variable(AngleToBall)",
                                 "Object.Variable(HitLength)",
                                 "Ball.BallPhysics2::MassCenterX()",
@@ -2562,7 +2562,7 @@
                           "events": []
                         },
                         {
-                          "disabled": false,
+                          "disabled": true,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::Standard",
                           "conditions": [],
@@ -2574,19 +2574,7 @@
                               },
                               "parameters": [
                                 "",
-                                "\"Collision: A=\" + ToString(round(Object.Variable(AngleToBall)))",
-                                ""
-                              ],
-                              "subInstructions": []
-                            },
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "srs_utils::consoleLog"
-                              },
-                              "parameters": [
-                                "",
-                                "\"Collision: A=\" + ToString(round(Object.Variable(AngleToBall)))",
+                                "\"Collision: A=\" + ToString(round(Object.Variable(AngleToBall))) + \" L=\" + ToString(round(Object.Variable(HitLength)))",
                                 ""
                               ],
                               "subInstructions": []
