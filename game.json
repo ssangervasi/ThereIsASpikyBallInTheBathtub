@@ -64,6 +64,15 @@
         "name": "Assets\\Checkerboard.png",
         "smoothed": false,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/Butt.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\Butt.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -79,6 +88,10 @@
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
       "referenceTo": "/layouts/ws-test"
+    },
+    {
+      "__REFERENCE_TO_SPLIT_OBJECT": true,
+      "referenceTo": "/layouts/__workaround"
     }
   ],
   "externalEvents": [],
