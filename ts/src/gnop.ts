@@ -1,9 +1,10 @@
-import { sample } from "lodash"
+import { sample } from 'lodash'
 
 import { guardEcho } from '@sangervasi/common/lib/messages/echo'
 import {
 	BallUpdate,
 	guardBallUpdate,
+	guardDisconnected,
 	guardJoin,
 	guardJoined,
 	guardPlayerUpdate,
@@ -34,8 +35,9 @@ const metaPromise = (): MetaPromise<unknown> => {
 type StateInit = {
 	state: 'init'
 	ws?: WebSocket
+	sessionUuid?: string
 }
-type StateCreating = {
+type StateCreating = Omit<StateInit, 'state'> & {
 	state: 'creating'
 	ws: WebSocket
 }
@@ -80,7 +82,7 @@ class WsClient {
 		join: MetaPromise<unknown>
 	} = {
 		connect: metaPromise(),
-		join: metaPromise()
+		join: metaPromise(),
 	}
 
 	playerUpdates: Array<PlayerUpdate & { receivedAt: number }> = []
@@ -106,14 +108,6 @@ class WsClient {
 		return this.promises.connect.promise
 	}
 
-	isConnected(): boolean {
-		return [
-			'created',
-			'joined',
-			'joining',
-		].includes(this.state.state)
-	}
-
 	handleMessage = (event: { data: string }) => {
 		const message = parseMessage(event.data)
 
@@ -123,6 +117,10 @@ class WsClient {
 
 		if (guardJoined.message(message)) {
 			return this.handleJoined(message)
+		}
+
+		if (guardDisconnected.message(message)) {
+			return this.handleDisconnected(message)
 		}
 
 		if (guardPlayerUpdate.message(message)) {
@@ -157,16 +155,7 @@ class WsClient {
 			return
 		}
 
-		const { sessionUuid } = this.state
-		this.info('Joined', sessionUuid)
-
-		const self = message.payload.find(
-			player => player.sessionUuid === sessionUuid,
-		)
-		const opponent = message.payload.find(
-			player => player.sessionUuid !== sessionUuid,
-		)
-
+		const { self, opponent } = this.findPlayers(message.payload)
 		this.state = {
 			...this.state,
 			self,
@@ -177,6 +166,8 @@ class WsClient {
 			console.warn('Partially joined', message)
 			return
 		}
+		
+		this.info("Joined", message)
 
 		this.state = {
 			...this.state,
@@ -185,6 +176,27 @@ class WsClient {
 			opponent,
 		}
 		this.promises.join.resolve()
+
+	}
+
+	handleDisconnected = (message: typeof guardDisconnected['M']) => {
+		if (this.state.state !== 'joined') {
+			console.warn('Disconnected while not joined')
+			return
+		}
+
+		const { self, opponent } = this.findPlayers(message.payload)
+		if (!(self && opponent)) {
+			console.warn('Disconnected without self & opponent')
+			return
+		}
+
+
+		this.state = {
+			...this.state,
+			self,
+			opponent,
+		}
 	}
 
 	handlePlayerUpdate = (message: typeof guardPlayerUpdate['M']) => {
@@ -210,7 +222,7 @@ class WsClient {
 		this.info('Received ball update', message.payload)
 		this.ballUpdates.push({
 			receivedAt: Date.now(),
-			...message.payload
+			...message.payload,
 		})
 	}
 
@@ -228,6 +240,28 @@ class WsClient {
 		console.error('Errored')
 	}
 
+	isConnected(): this is { state: StateCreated | StateJoined | StateJoining } {
+		return ['created', 'joined', 'joining'].includes(this.state.state)
+	}
+
+	isOpponentDisconnected(): boolean {
+		if (this.state.state !== 'joined') {
+			return false
+		}
+		return this.state.opponent.state === 'disconnected'
+	}
+
+	findPlayers(players: Player[]): { self?: Player; opponent?: Player } {
+		const { sessionUuid } = this.state
+		if (!sessionUuid) {
+			return {}
+		}
+
+		const self = players.find(player => player.sessionUuid === sessionUuid)
+		const opponent = players.find(player => player.sessionUuid !== sessionUuid)
+		return { self, opponent }
+	}
+
 	join(name?: string) {
 		if (this.state.state !== 'created') {
 			console.warn('Cannot join from state:', this.state)
@@ -238,7 +272,7 @@ class WsClient {
 			type: 'gnop.join',
 			sessionUuid: this.state.sessionUuid,
 			payload: {
-				name: name || 'Name',
+				name: name || generateName(),
 			},
 		})
 
@@ -276,6 +310,13 @@ class WsClient {
 		this.send(m)
 
 		return this.promises.join.promise
+	}
+
+	disconnect() {
+		if (!this.state.ws) {
+			return
+		}
+		this.state.ws.close()
 	}
 
 	sendPlayerUpdate(position: Position) {
@@ -362,9 +403,9 @@ const NAMES = [
 	'Toilet Paper',
 	'Toothbrush',
 	'Towel',
-]
-const generateName = () => {
-	sample(NAMES)
+] as const
+const generateName = (): string => {
+	return sample(NAMES) || NAMES[0]
 }
 
 const GnopC = {

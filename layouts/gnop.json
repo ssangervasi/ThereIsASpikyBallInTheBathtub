@@ -3372,17 +3372,17 @@
           "events": [
             {
               "disabled": false,
-              "folded": false,
+              "folded": true,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
                   "type": {
-                    "inverted": false,
-                    "value": "LayerVisible"
+                    "inverted": true,
+                    "value": "srs_gnop::IsOpponentDisconnected"
                   },
                   "parameters": [
                     "",
-                    "\"UI\""
+                    ""
                   ],
                   "subInstructions": []
                 }
@@ -3396,33 +3396,142 @@
                   "conditions": [
                     {
                       "type": {
-                        "inverted": true,
-                        "value": "srs_utils::HasLimitedTimer"
-                      },
-                      "parameters": [
-                        "",
-                        "\"join.countdown\"",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
                         "inverted": false,
-                        "value": "srs_utils::startLimitedTimer"
+                        "value": "LayerVisible"
                       },
                       "parameters": [
                         "",
-                        "\"join.countdown\"",
-                        "srs_utils::ms(3)",
-                        ""
+                        "\"UI\""
                       ],
                       "subInstructions": []
                     }
                   ],
+                  "actions": [],
                   "events": [
+                    {
+                      "disabled": false,
+                      "folded": true,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "srs_utils::HasLimitedTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"join.countdown\"",
+                            ""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "srs_utils::startLimitedTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"join.countdown\"",
+                            "srs_utils::ms(3)",
+                            ""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": [
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "Montre"
+                              },
+                              "parameters": [
+                                "YouAre",
+                                ""
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "Egal"
+                              },
+                              "parameters": [
+                                "srs_gnop::SelfNumber()",
+                                "=",
+                                "1"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "TextObject::String"
+                              },
+                              "parameters": [
+                                "YouAre",
+                                "=",
+                                "\"You are player 1 (left)\""
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "Egal"
+                              },
+                              "parameters": [
+                                "srs_gnop::SelfNumber()",
+                                "=",
+                                "2"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "TextObject::String"
+                              },
+                              "parameters": [
+                                "YouAre",
+                                "=",
+                                "\"You are player 2 (right)\""
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        }
+                      ]
+                    },
                     {
                       "disabled": false,
                       "folded": false,
@@ -3432,11 +3541,12 @@
                         {
                           "type": {
                             "inverted": false,
-                            "value": "Montre"
+                            "value": "TextObject::String"
                           },
                           "parameters": [
-                            "YouAre",
-                            ""
+                            "UI",
+                            "=",
+                            "ToString(round(3 - (srs_utils::getLimitedTimerElapsed(\"join.countdown\")/1000)))"
                           ],
                           "subInstructions": []
                         }
@@ -3445,7 +3555,7 @@
                     },
                     {
                       "disabled": false,
-                      "folded": false,
+                      "folded": true,
                       "type": "BuiltinCommonInstructions::Standard",
                       "conditions": [
                         {
@@ -3454,65 +3564,81 @@
                             "value": "Egal"
                           },
                           "parameters": [
-                            "srs_gnop::SelfNumber()",
+                            "srs_utils::getLimitedTimerFraction(\"join.countdown\")",
                             "=",
                             "1"
                           ],
                           "subInstructions": []
                         }
                       ],
-                      "actions": [
+                      "actions": [],
+                      "events": [
                         {
-                          "type": {
-                            "inverted": false,
-                            "value": "TextObject::String"
-                          },
-                          "parameters": [
-                            "YouAre",
-                            "=",
-                            "\"You are player 1 (left)\""
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "Physics2::TimeScale"
+                              },
+                              "parameters": [
+                                "Ball",
+                                "Physics2",
+                                "1"
+                              ],
+                              "subInstructions": []
+                            }
                           ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    },
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [
+                          "events": []
+                        },
                         {
-                          "type": {
-                            "inverted": false,
-                            "value": "Egal"
-                          },
-                          "parameters": [
-                            "srs_gnop::SelfNumber()",
-                            "=",
-                            "2"
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "HideLayer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"UI\""
+                              ],
+                              "subInstructions": []
+                            }
                           ],
-                          "subInstructions": []
+                          "events": []
                         }
-                      ],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "TextObject::String"
-                          },
-                          "parameters": [
-                            "YouAre",
-                            "=",
-                            "\"You are player 2 (right)\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
+                      ]
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_gnop::IsOpponentDisconnected"
+                  },
+                  "parameters": [
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
                 {
                   "disabled": false,
                   "folded": false,
@@ -3522,80 +3648,28 @@
                     {
                       "type": {
                         "inverted": false,
+                        "value": "ShowLayer"
+                      },
+                      "parameters": [
+                        "",
+                        "\"UI\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
                         "value": "TextObject::String"
                       },
                       "parameters": [
                         "UI",
                         "=",
-                        "ToString(round(3 - (srs_utils::getLimitedTimerElapsed(\"join.countdown\")/1000)))"
+                        "\"Opponent disconnected\""
                       ],
                       "subInstructions": []
                     }
                   ],
                   "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Egal"
-                      },
-                      "parameters": [
-                        "srs_utils::getLimitedTimerFraction(\"join.countdown\")",
-                        "=",
-                        "1"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [],
-                  "events": [
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "Physics2::TimeScale"
-                          },
-                          "parameters": [
-                            "Ball",
-                            "Physics2",
-                            "1"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    },
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "HideLayer"
-                          },
-                          "parameters": [
-                            "",
-                            "\"UI\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    }
-                  ]
                 }
               ]
             }

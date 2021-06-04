@@ -9,10 +9,10 @@
 		"build": "rm -rf dist/* && npm run build-modern && npm run build-node",
 		"build-modern": "microbundle --target=web --format=modern",
 		"build-node": "microbundle --target=node --format=cjs",
-		"build-umd": "microbundle --format=umd --tsconfig=cli.tsconfig.json",
-		"build-cjs": "microbundle --format=cjs --tsconfig=cli.tsconfig.json",
+		"build-umd": "microbundle --format=umd --tsconfig=./bin/tsconfig.json",
+		"build-cjs": "microbundle --format=cjs --tsconfig=./bin/tsconfig.json",
 		"lint": "eslint --fix --cache src/**",
-		"cli": "ts-node --project=cli.tsconfig.json bin/cli.ts",
+		"cli": "ts-node --project=./bin/tsconfig.json bin/cli.ts",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "tsc-watch"

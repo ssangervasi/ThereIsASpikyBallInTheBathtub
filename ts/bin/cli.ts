@@ -2,6 +2,7 @@ import WebSocket from 'ws'
 import { Command } from 'commander'
 
 import '../src/gnop'
+import { buildPosition } from '@sangervasi/common/lib/messages/gnop'
 
 // Trick the module that depends on a global browser implementation into using the node package.
 Object.assign(globalThis, {
@@ -42,12 +43,10 @@ program.command('ballUpdates').action(async () => {
 
 	for (let i = 0; i < 10; i++) {
 		setTimeout(() => {
-			client.sendBallUpdate({
+			client.sendBallUpdate(buildPosition({
 				x: i,
 				y: i,
-				dx: i,
-				dy: i,
-			})
+			}))
 		}, i * 1000)
 	}
 
@@ -67,6 +66,14 @@ program.command('listen').action(async () => {
 	})
 	await client.connect()
 	await client.join()
+
+	const iid = setInterval(() => {
+		if (client.isOpponentDisconnected()) {
+			console.log('Opponent disconnected')
+			clearInterval(iid)
+			client.state.ws?.close()
+		}
+	}, 1000)
 })
 
 program.parse(process.argv)
