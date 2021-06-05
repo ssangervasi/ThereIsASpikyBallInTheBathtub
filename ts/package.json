@@ -3,7 +3,6 @@
 	"author": "Sebastian Sangervasi",
 	"license": "Copyright (c) 2021 Sebastian Sangervasi",
 	"source": "src/gnop.ts",
-
 	"version": "0.1.0",
 	"scripts": {
 		"build": "rm -rf dist/* && npm run build-modern && npm run build-node",
@@ -28,6 +27,7 @@
 	},
 	"devDependencies": {
 		"@babel/types": "^7.10",
+		"@gdevelop/gdjs": "file:../../GDevelop/GDJS",
 		"@sangervasi/common": "file:../../sangervasi-site/common",
 		"@types/jest": "^24.9.1",
 		"@types/json-stable-stringify": "^1.0.32",

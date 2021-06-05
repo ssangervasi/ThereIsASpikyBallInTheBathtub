@@ -1,6 +1,5 @@
 import { sample } from 'lodash'
 
-import { guardEcho } from '@sangervasi/common/lib/messages/echo'
 import {
 	BallUpdate,
 	guardBallUpdate,
@@ -8,7 +7,6 @@ import {
 	guardJoin,
 	guardJoined,
 	guardPlayerUpdate,
-	guardPoint,
 	guardRejoin,
 	Player,
 	PlayerUpdate,
@@ -319,18 +317,20 @@ class WsClient {
 		this.state.ws.close()
 	}
 
-	sendPlayerUpdate(position: Position) {
+	sendPlayerUpdate(payload: PlayerUpdate) {
 		if (this.state.state !== 'joined') {
 			console.warn('Cannot send player from state:', this.state)
 			return
 		}
 
+		this.state.self.hp = payload.player.hp
+		
 		const m = guardPlayerUpdate.build({
 			type: 'gnop.playerUpdate',
 			sessionUuid: this.state.sessionUuid,
 			payload: {
 				player: this.state.self,
-				position,
+				position: payload.position,
 			},
 		})
 
