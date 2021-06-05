@@ -23,7 +23,7 @@
     "gridWidth": 6,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.8684878867149353
+    "zoomFactor": 1.2684878867149356
   },
   "objectsGroups": [],
   "variables": [],
@@ -762,14 +762,14 @@
     {
       "angle": 180,
       "customSize": true,
-      "height": 240,
+      "height": 216,
       "layer": "",
       "locked": false,
       "name": "Butt",
       "persistentUuid": "4dc11649-268a-4eb7-b169-cb56cdd80a7e",
       "width": 24,
       "x": 1140,
-      "y": 720,
+      "y": 732,
       "zOrder": 20,
       "numberProperties": [],
       "stringProperties": [],
@@ -778,18 +778,62 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 240,
+      "height": 216,
       "layer": "",
       "locked": false,
       "name": "Butt",
       "persistentUuid": "da3d96a6-9521-40bb-b99d-45ea46e1d61b",
       "width": 24,
       "x": 768,
-      "y": 120,
+      "y": 132,
       "zOrder": 20,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "HP",
+      "persistentUuid": "f0f13daa-211a-4eef-addd-8695d77f2fcf",
+      "width": 0,
+      "x": 1098,
+      "y": 834,
+      "zOrder": 21,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Player",
+          "type": "string",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "HP",
+      "persistentUuid": "9dbdb29e-16e7-4281-85b0-375b013d75d6",
+      "width": 0,
+      "x": 792,
+      "y": 240,
+      "zOrder": 21,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Player",
+          "type": "string",
+          "value": "1"
+        }
+      ]
     }
   ],
   "objects": [
@@ -1385,6 +1429,31 @@
           ]
         }
       ]
+    },
+    {
+      "bold": true,
+      "italic": false,
+      "name": "HP",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [
+        {
+          "name": "Player",
+          "type": "string",
+          "value": "0"
+        }
+      ],
+      "behaviors": [],
+      "string": "HP",
+      "font": "",
+      "characterSize": 20,
+      "color": {
+        "b": 86,
+        "g": 92,
+        "r": 88
+      }
     }
   ],
   "events": [
@@ -2755,6 +2824,19 @@
             {
               "type": {
                 "inverted": false,
+                "value": "srs_gnop::Paddle::handleHP"
+              },
+              "parameters": [
+                "Paddle",
+                "Paddle",
+                "HP",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
                 "value": "srs_gnop::Paddle::handleCollision"
               },
               "parameters": [
@@ -3423,7 +3505,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Zones",
-      "visibility": true,
+      "visibility": false,
       "cameras": [],
       "effects": []
     },
