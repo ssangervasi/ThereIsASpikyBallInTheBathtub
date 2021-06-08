@@ -97,12 +97,13 @@ program.command('listen').action(async () => {
 			)
 
 			const { hp } = playerUpdate.player
+			console.log(client.playerUpdates.length)
 			if (hp !== prevHp) {
 				console.log(`HP: ${prevHp} -> ${hp}`)
 				prevHp = hp
 			}
 		}
-	}, 1000)
+	}, 500)
 })
 
 program.parse(process.argv)

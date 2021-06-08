@@ -30,7 +30,7 @@ const metaPromise = (): MetaPromise<unknown> => {
 	return meta as MetaPromise<unknown>
 }
 
-type Received<T extends {}> = T & { receivedAt: number } 
+type Received<T extends {}> = T & { receivedAt: number }
 
 type StateInit = {
 	state: 'init'
@@ -166,8 +166,8 @@ class WsClient {
 			console.warn('Partially joined', message)
 			return
 		}
-		
-		this.info("Joined", message)
+
+		this.info('Joined', message)
 
 		this.state = {
 			...this.state,
@@ -176,7 +176,6 @@ class WsClient {
 			opponent,
 		}
 		this.promises.join.resolve()
-
 	}
 
 	handleDisconnected = (message: typeof guardDisconnected['M']) => {
@@ -190,7 +189,6 @@ class WsClient {
 			console.warn('Disconnected without self & opponent')
 			return
 		}
-
 
 		this.state = {
 			...this.state,
@@ -207,6 +205,7 @@ class WsClient {
 
 		this.info('Received player update', message.payload)
 		this.state.opponent = message.payload.player
+		this.playerUpdates = []
 		this.playerUpdates.push({
 			receivedAt: Date.now(),
 			...message.payload,
@@ -220,6 +219,7 @@ class WsClient {
 		}
 
 		this.info('Received ball update', message.payload)
+		this.ballUpdates = []
 		this.ballUpdates.push({
 			receivedAt: Date.now(),
 			...message.payload,
@@ -326,7 +326,7 @@ class WsClient {
 		}
 
 		this.state.self.hp = payload.player.hp
-		
+
 		const m = guardPlayerUpdate.build({
 			type: 'gnop.playerUpdate',
 			sessionUuid: this.state.sessionUuid,
