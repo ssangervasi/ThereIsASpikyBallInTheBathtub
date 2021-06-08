@@ -12,6 +12,7 @@
 		"build-cjs": "microbundle --format=cjs --tsconfig=./bin/tsconfig.json",
 		"lint": "eslint --fix --cache src/**",
 		"cli": "ts-node --project=./bin/tsconfig.json bin/cli.ts",
+		"inject": "ts-node --project=./bin/tsconfig.json bin/inject.ts",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "tsc-watch"

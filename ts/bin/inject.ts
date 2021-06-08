@@ -74,7 +74,7 @@ const injectEvent = (event: GdEvent) => {
 		return
 	}
 
-	const pathMatch = matches[1]
+	const pathMatch = matches[2]
 	const jsPath = path.resolve(ROOT, pathMatch)
 
 	if (!fs.existsSync(jsPath)) {

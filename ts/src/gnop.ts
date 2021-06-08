@@ -205,7 +205,7 @@ class WsClient {
 
 		this.info('Received player update', message.payload)
 		this.state.opponent = message.payload.player
-		this.playerUpdates = []
+		// this.playerUpdates = []
 		this.playerUpdates.push({
 			receivedAt: Date.now(),
 			...message.payload,
@@ -219,7 +219,7 @@ class WsClient {
 		}
 
 		this.info('Received ball update', message.payload)
-		this.ballUpdates = []
+		// this.ballUpdates = []
 		this.ballUpdates.push({
 			receivedAt: Date.now(),
 			...message.payload,
@@ -361,9 +361,6 @@ class WsClient {
 	}
 
 	getBallUpdate(): Received<BallUpdate> | undefined {
-		if (true) {
-			return
-		}
 		return this.ballUpdates.shift()
 	}
 
