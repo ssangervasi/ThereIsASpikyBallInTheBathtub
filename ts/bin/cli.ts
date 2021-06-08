@@ -30,7 +30,7 @@ const getOpts = () => {
 program.command('ballUpdates').action(async () => {
 	const opts = getOpts()
 	const client = new Gnop.WsClient({
-		host: getOpts().host,
+		host: opts.host,
 		verbose: true,
 	})
 	await client.connect()
@@ -43,10 +43,12 @@ program.command('ballUpdates').action(async () => {
 
 	for (let i = 0; i < 10; i++) {
 		setTimeout(() => {
-			client.sendBallUpdate(buildPosition({
-				x: i,
-				y: i,
-			}))
+			client.sendBallUpdate(
+				buildPosition({
+					x: i,
+					y: i,
+				}),
+			)
 		}, i * 1000)
 	}
 
@@ -60,18 +62,45 @@ program.command('ballUpdates').action(async () => {
 })
 
 program.command('listen').action(async () => {
+	const opts = getOpts()
 	const client = new Gnop.WsClient({
-		host: getOpts().host,
-		verbose: true,
+		host: opts.host,
+		verbose: false,
 	})
 	await client.connect()
-	await client.join()
+
+	if (opts.session) {
+		await client.rejoin(opts.session)
+	} else {
+		await client.join()
+	}
+
+	let prevHp = 11
 
 	const iid = setInterval(() => {
 		if (client.isOpponentDisconnected()) {
 			console.log('Opponent disconnected')
 			clearInterval(iid)
 			client.state.ws?.close()
+			return
+		}
+
+		const ballUpdate = client.getBallUpdate()
+		if (ballUpdate) {
+			console.log(`Ball: (${ballUpdate.position.x}, ${ballUpdate.position.y})`)
+		}
+
+		const playerUpdate = client.getPlayerUpdate()
+		if (playerUpdate) {
+			console.log(
+				`Player: (${playerUpdate.position.x}, ${playerUpdate.position.y})`,
+			)
+
+			const { hp } = playerUpdate.player
+			if (hp !== prevHp) {
+				console.log(`HP: ${prevHp} -> ${hp}`)
+				prevHp = hp
+			}
 		}
 	}, 1000)
 })

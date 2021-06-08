@@ -34,6 +34,7 @@
 		"noUnusedParameters": false,
 		"skipLibCheck": true,
 		"strict": true,
+		"strictNullChecks": true,
 		"target": "ES6"
 	},
 	"include": [

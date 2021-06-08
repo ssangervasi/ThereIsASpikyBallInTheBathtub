@@ -4,6 +4,7 @@
 		"module": "ESNext",
 		"moduleResolution": "node",
 
+		"strictNullChecks": true,
 		// Output
 		"outDir": "dist",
 	},

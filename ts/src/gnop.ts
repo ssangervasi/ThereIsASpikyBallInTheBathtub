@@ -30,6 +30,8 @@ const metaPromise = (): MetaPromise<unknown> => {
 	return meta as MetaPromise<unknown>
 }
 
+type Received<T extends {}> = T & { receivedAt: number } 
+
 type StateInit = {
 	state: 'init'
 	ws?: WebSocket
@@ -83,8 +85,8 @@ class WsClient {
 		join: metaPromise(),
 	}
 
-	playerUpdates: Array<PlayerUpdate & { receivedAt: number }> = []
-	ballUpdates: Array<BallUpdate & { receivedAt: number }> = []
+	playerUpdates: Array<Received<PlayerUpdate>> = []
+	ballUpdates: Array<Received<BallUpdate>> = []
 
 	constructor(options: Partial<Options>) {
 		Object.assign(this.options, options)
@@ -337,7 +339,7 @@ class WsClient {
 		this.send(m)
 	}
 
-	getPlayerUpdate() {
+	getPlayerUpdate(): Received<PlayerUpdate> | undefined {
 		return this.playerUpdates.shift()
 	}
 
@@ -358,7 +360,10 @@ class WsClient {
 		this.send(m)
 	}
 
-	getBallUpdate() {
+	getBallUpdate(): Received<BallUpdate> | undefined {
+		if (true) {
+			return
+		}
 		return this.ballUpdates.shift()
 	}
 

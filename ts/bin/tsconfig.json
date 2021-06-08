@@ -2,6 +2,11 @@
 	"extends": "../base.tsconfig.json",
 	"compilerOptions": {
 		"module": "commonjs",
-		"moduleResolution": "node"
-	}
+		"moduleResolution": "node",
+
+		"strictNullChecks": true
+	},
+	"files": [
+		"cli.ts"
+	]
 }
