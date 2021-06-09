@@ -73,6 +73,36 @@
         "name": "Assets\\Butt.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "file": "Assets/Fonts/reglisse/Reglisse-0WOD9.otf",
+        "kind": "font",
+        "metadata": "",
+        "name": "Assets\\Fonts\\reglisse\\Reglisse-0WOD9.otf",
+        "userAdded": true
+      },
+      {
+        "file": "Assets/Fonts/reglisse/ReglisseBack-eZewm.otf",
+        "kind": "font",
+        "metadata": "",
+        "name": "Assets\\Fonts\\reglisse\\ReglisseBack-eZewm.otf",
+        "userAdded": true
+      },
+      {
+        "file": "Assets/Fonts/reglisse/ReglisseFill-WyWzn.otf",
+        "kind": "font",
+        "metadata": "",
+        "name": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/Button.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\Button.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -81,6 +111,10 @@
   "objectsGroups": [],
   "variables": [],
   "layouts": [
+    {
+      "__REFERENCE_TO_SPLIT_OBJECT": true,
+      "referenceTo": "/layouts/splash"
+    },
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
       "referenceTo": "/layouts/gnop"
