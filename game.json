@@ -107,7 +107,31 @@
     ],
     "resourceFolders": []
   },
-  "objects": [],
+  "objects": [
+    {
+      "bottomMargin": 10,
+      "height": 52,
+      "leftMargin": 10,
+      "name": "Button",
+      "rightMargin": 10,
+      "tags": "",
+      "texture": "Assets\\Button.png",
+      "tiled": false,
+      "topMargin": 10,
+      "type": "PanelSpriteObject::PanelSprite",
+      "width": 52,
+      "variables": [],
+      "behaviors": [
+        {
+          "name": "Button",
+          "type": "srs_utils::Button",
+          "HoverTint": "\"230;255;255\"",
+          "ActiveTint": "\"150;230;255\"",
+          "DisabledTint": "\"200;200;200\""
+        }
+      ]
+    }
+  ],
   "objectsGroups": [],
   "variables": [],
   "layouts": [

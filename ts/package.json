@@ -5,7 +5,7 @@
 	"source": "src/gnop.ts",
 	"version": "0.1.0",
 	"scripts": {
-		"build": "rm -rf dist/* && npm run build-modern && npm run build-node",
+		"build": "rm -rf dist/* && npm run build-modern && npm run inject",
 		"build-modern": "microbundle --target=web --format=modern",
 		"build-node": "microbundle --target=node --format=cjs",
 		"build-umd": "microbundle --format=umd --tsconfig=./bin/tsconfig.json",

@@ -197,9 +197,41 @@
       "name": "Connection_Message",
       "persistentUuid": "c5541e82-1d5f-4e76-be8f-c6afd625f110",
       "width": 0,
-      "x": 1338,
-      "y": 832,
+      "x": 1335,
+      "y": 775,
       "zOrder": 15,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "Join_Message",
+      "persistentUuid": "c56ec736-9423-4644-9b21-ec73d6cb4ae6",
+      "width": 0,
+      "x": 1335,
+      "y": 830,
+      "zOrder": 16,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "Waiting_Message",
+      "persistentUuid": "db186269-6228-4c99-a655-8047d8209aca",
+      "width": 0,
+      "x": 1333,
+      "y": 890,
+      "zOrder": 17,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -350,29 +382,6 @@
       "clearBetweenFrames": false
     },
     {
-      "bottomMargin": 10,
-      "height": 52,
-      "leftMargin": 10,
-      "name": "Button",
-      "rightMargin": 10,
-      "tags": "",
-      "texture": "Assets\\Button.png",
-      "tiled": false,
-      "topMargin": 10,
-      "type": "PanelSpriteObject::PanelSprite",
-      "width": 52,
-      "variables": [],
-      "behaviors": [
-        {
-          "name": "Button",
-          "type": "srs_utils::Button",
-          "HoverTint": "\"230;255;255\"",
-          "ActiveTint": "\"150;230;255\"",
-          "DisabledTint": "\"200;200;200\""
-        }
-      ]
-    },
-    {
       "bold": false,
       "italic": false,
       "name": "Play_Label",
@@ -401,7 +410,45 @@
       "underlined": false,
       "variables": [],
       "behaviors": [],
-      "string": "[connection]",
+      "string": "Connecting to server...",
+      "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
+      "characterSize": 40,
+      "color": {
+        "b": 185,
+        "g": 128,
+        "r": 192
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "Join_Message",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "Joining as Thing...",
+      "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
+      "characterSize": 40,
+      "color": {
+        "b": 185,
+        "g": 128,
+        "r": 192
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "Waiting_Message",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "Waiting for opponent...",
       "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
       "characterSize": 40,
       "color": {
@@ -437,7 +484,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "Name",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -486,7 +533,7 @@
               "colorR": 74,
               "creationTime": 0,
               "disabled": false,
-              "folded": false,
+              "folded": true,
               "name": "Entry Box",
               "source": "",
               "type": "BuiltinCommonInstructions::Group",
@@ -921,39 +968,6 @@
             {
               "type": {
                 "inverted": false,
-                "value": "DepartScene"
-              },
-              "parameters": [
-                ""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "srs_utils::Button::enable"
-              },
-              "parameters": [
-                "Button",
-                "Button",
-                "False",
-                ""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
                 "value": "srs_utils::Button::Is"
               },
               "parameters": [
@@ -1033,6 +1047,94 @@
               "events": []
             }
           ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "srs_gnop::State()",
+                "=",
+                "\"created\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_utils::Button::enable"
+                  },
+                  "parameters": [
+                    "Button",
+                    "Button",
+                    "True",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "srs_gnop::State()",
+                "!=",
+                "\"created\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_utils::Button::enable"
+                  },
+                  "parameters": [
+                    "Button",
+                    "Button",
+                    "False",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
         }
       ],
       "parameters": []
@@ -1056,14 +1158,35 @@
             {
               "type": {
                 "inverted": false,
-                "value": "StrEqual"
+                "value": "BuiltinCommonInstructions::Or"
               },
-              "parameters": [
-                "srs_gnop::State()",
-                "=",
-                "\"none\""
-              ],
-              "subInstructions": []
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "srs_gnop::State()",
+                    "=",
+                    "\"none\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "srs_gnop::State()",
+                    "=",
+                    "\"init\""
+                  ],
+                  "subInstructions": []
+                }
+              ]
             }
           ],
           "actions": [
@@ -1079,7 +1202,107 @@
               "subInstructions": []
             }
           ],
-          "events": []
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Connection_Message",
+                    "=",
+                    "150"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Connection_Message",
+                    "=",
+                    "\"...\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Join_Message",
+                    "=",
+                    "150"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Join_Message",
+                    "=",
+                    "\"...\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "150"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "\"...\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
         },
         {
           "disabled": false,
@@ -1099,21 +1322,50 @@
               "subInstructions": []
             }
           ],
-          "actions": [
+          "actions": [],
+          "events": [
             {
-              "type": {
-                "inverted": false,
-                "value": "TextObject::String"
-              },
-              "parameters": [
-                "Connection_Message",
-                "=",
-                "\"Connecting to server\""
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Connection_Message",
+                    "=",
+                    "150"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Connection_Message",
+                    "=",
+                    "\"Connecting to server...\""
+                  ],
+                  "subInstructions": []
+                }
               ],
-              "subInstructions": []
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": []
             }
-          ],
-          "events": []
+          ]
         },
         {
           "disabled": false,
@@ -1133,20 +1385,7 @@
               "subInstructions": []
             }
           ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "TextObject::String"
-              },
-              "parameters": [
-                "Connection_Message",
-                "=",
-                "\"Connected.\""
-              ],
-              "subInstructions": []
-            }
-          ],
+          "actions": [],
           "events": [
             {
               "disabled": false,
@@ -1157,13 +1396,24 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "srs_utils::Button::enable"
+                    "value": "TextObject::String"
                   },
                   "parameters": [
-                    "Button",
-                    "Button",
-                    "True",
-                    ""
+                    "Connection_Message",
+                    "=",
+                    "\"Connected\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Connection_Message",
+                    "=",
+                    "255"
                   ],
                   "subInstructions": []
                 }
@@ -1188,21 +1438,29 @@
                   "subInstructions": []
                 }
               ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "srs_utils::consoleLog"
-                  },
-                  "parameters": [
-                    "",
-                    "\"button clicked\"",
-                    ""
-                  ],
-                  "subInstructions": []
-                }
-              ],
+              "actions": [],
               "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::setName"
+                      },
+                      "parameters": [
+                        "Name_Entry",
+                        "Name_Display.String()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
                 {
                   "disabled": false,
                   "folded": false,
@@ -1245,16 +1503,222 @@
               "subInstructions": []
             }
           ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "srs_gnop::SelfNumber()",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Join_Message",
+                    "=",
+                    "150"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Join_Message",
+                    "=",
+                    "\"Joining game...\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "srs_gnop::SelfNumber()",
+                    "!=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Join_Message",
+                    "=",
+                    "255"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Join_Message",
+                    "=",
+                    "\"Joined!\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "srs_gnop::OpponentNumber()",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "150"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "\"Waiting for opponent...\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "srs_gnop::OpponentNumber()",
+                    "!=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "255"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "\"Opponent joined!\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "srs_gnop::State()",
+                "=",
+                "\"joined\""
+              ],
+              "subInstructions": []
+            }
+          ],
           "actions": [
             {
               "type": {
                 "inverted": false,
-                "value": "TextObject::String"
+                "value": "Scene"
               },
               "parameters": [
-                "Connection_Message",
-                "=",
-                "\"Joining...\""
+                "",
+                "\"Gnop\"",
+                ""
               ],
               "subInstructions": []
             }
@@ -1269,17 +1733,69 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "srs_utils::Button::enable"
+                    "value": "TextObject::Opacity"
                   },
                   "parameters": [
-                    "Button",
-                    "Button",
-                    "False",
-                    ""
+                    "Join_Message",
+                    "=",
+                    "255"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Join_Message",
+                    "=",
+                    "\"Joined!\""
                   ],
                   "subInstructions": []
                 }
               ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::Opacity"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "255"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "Waiting_Message",
+                    "=",
+                    "\"Opponent joined!\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
               "events": []
             }
           ]

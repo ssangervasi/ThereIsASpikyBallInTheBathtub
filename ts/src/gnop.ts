@@ -73,6 +73,8 @@ class WsClient {
 		verbose: false,
 	}
 
+	name = generateName()
+
 	state: StateAny = {
 		state: 'init',
 	}
@@ -268,11 +270,15 @@ class WsClient {
 			return
 		}
 
+		if (name) {
+			this.name = name
+		}
+
 		const m = guardJoin.build({
 			type: 'gnop.join',
 			sessionUuid: this.state.sessionUuid,
 			payload: {
-				name: name || generateName(),
+				name: this.name,
 			},
 		})
 
