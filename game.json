@@ -103,6 +103,15 @@
         "name": "Assets\\Button.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/BG.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\BG.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -130,6 +139,44 @@
           "DisabledTint": "\"200;200;200\""
         }
       ]
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "Instructions_Title",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "How to play:",
+      "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
+      "characterSize": 40,
+      "color": {
+        "b": 185,
+        "g": 128,
+        "r": 192
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "Instructions_Body",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "- Move your paddle with Up & Down (W & S)\n- Hit the ball with your flat sides\n- Do not let your butt get poked!",
+      "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
+      "characterSize": 40,
+      "color": {
+        "b": 185,
+        "g": 128,
+        "r": 192
+      }
     }
   ],
   "objectsGroups": [],
@@ -142,10 +189,6 @@
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
       "referenceTo": "/layouts/gnop"
-    },
-    {
-      "__REFERENCE_TO_SPLIT_OBJECT": true,
-      "referenceTo": "/layouts/ws-test"
     },
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,

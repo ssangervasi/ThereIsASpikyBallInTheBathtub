@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+while npm run cli listen; do
+	echo "Listening"
+done
+
+echo "Exit"

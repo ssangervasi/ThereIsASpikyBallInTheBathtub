@@ -279,44 +279,6 @@
     {
       "bold": false,
       "italic": false,
-      "name": "Instructions_Title",
-      "smoothed": true,
-      "tags": "",
-      "type": "TextObject::Text",
-      "underlined": false,
-      "variables": [],
-      "behaviors": [],
-      "string": "How to play:",
-      "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
-      "characterSize": 40,
-      "color": {
-        "b": 185,
-        "g": 128,
-        "r": 192
-      }
-    },
-    {
-      "bold": false,
-      "italic": false,
-      "name": "Instructions_Body",
-      "smoothed": true,
-      "tags": "",
-      "type": "TextObject::Text",
-      "underlined": false,
-      "variables": [],
-      "behaviors": [],
-      "string": "- Move your paddle with Up & Down (W & S)\n- Hit the ball with your flat sides\n- Do not let your butt get poked!",
-      "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
-      "characterSize": 40,
-      "color": {
-        "b": 185,
-        "g": 128,
-        "r": 192
-      }
-    },
-    {
-      "bold": false,
-      "italic": false,
       "name": "Name_Label",
       "smoothed": true,
       "tags": "",
