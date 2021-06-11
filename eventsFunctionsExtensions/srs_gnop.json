@@ -3323,7 +3323,7 @@
               "colorR": 74,
               "creationTime": 0,
               "disabled": false,
-              "folded": false,
+              "folded": true,
               "name": "Clamp to remove ball problems",
               "source": "",
               "type": "BuiltinCommonInstructions::Group",
@@ -3420,7 +3420,7 @@
               "colorR": 74,
               "creationTime": 0,
               "disabled": false,
-              "folded": false,
+              "folded": true,
               "name": "Queue updates ",
               "source": "",
               "type": "BuiltinCommonInstructions::Group",
@@ -3562,7 +3562,7 @@
               "colorR": 74,
               "creationTime": 0,
               "disabled": false,
-              "folded": false,
+              "folded": true,
               "name": "Updates from Opponent",
               "source": "",
               "type": "BuiltinCommonInstructions::Group",
@@ -3729,6 +3729,45 @@
               "conditions": [],
               "actions": [],
               "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": []
+            },
+            {
+              "colorB": 228,
+              "colorG": 176,
+              "colorR": 74,
+              "creationTime": 0,
+              "disabled": false,
+              "folded": false,
+              "name": "Collision",
+              "source": "",
+              "type": "BuiltinCommonInstructions::Group",
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const obj = objects[0]\n\nconst behaviorName = 'Physics2'\n/** @type {gdjs.Physics2SharedData} */\nconst physics2SharedData = gdjs.Physics2SharedData.getSharedData(runtimeScene, behaviorName)\n\n/**\n * @type gdjs.Physics2RuntimeBehavior\n */\nconst physics2 = obj.getBehavior(behaviorName)\n\n/**\n * @typedef {Object} b2Contact\n * @property {FGetWorldManifold} GetWorldManifold\n * \n * @callback FGetWorldManifold\n * @param {b2WorldManifold} wm\n * \n * @typedef {Object} b2WorldManifold\n * @property {Array<b2Vec2>} points\n * \n * @typedef {Object} b2Vec2 \n * @property {number} x\n * @property {number} y\n */\n\n/**\n * @type Array<b2Contact>\n */\nconst currentContacts = physics2.currentContacts\n\nif (currentContacts.length == 0) {\n    return\n} \n\n/**\n * There seems to be a way to get the points of the collision from the world\n * manifold: http://www.iforce2d.net/b2dtut/collision-anatomy\n * But that comes in a later version of Box2d.\n * RIP.\n */\n\nconst world =  physics2SharedData.world\nconsole.log(\"World contacts:\", world, world.GetContactList())\nfor (let i = 0, con = world.GetContactList(), len = world.GetContactCount(); i < len; i++) {\n    const man = con.GetManifold()\n    const lp = man.get_localPoint()\n    console.log(\"Con\", {\n        con,\n        man,\n        lp,\n        x: lp.get_x(),\n        y: lp.get_y()\n    })\n    con = con.GetNext()\n}\n\nconsole.log(\"Current contacts:\", currentContacts.length)\nfor (let i = 0, len = currentContacts.length; i < len; ++i) {\n    console.log(currentContacts[i])\n}",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": true
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [],
+                  "events": []
+                }
+              ],
+              "parameters": []
             }
           ],
           "parameters": [
@@ -4079,6 +4118,95 @@
               "optional": false,
               "supplementaryInformation": "srs_gnop::Ball",
               "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "handleParticles",
+          "fullName": "handleParticles",
+          "functionType": "Action",
+          "name": "handleParticles",
+          "private": false,
+          "sentence": "_PARAM0_ handleParticles _PARAM2_",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_utils::Throttle"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Ball.handleParticles\"",
+                    "2000",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "Particles",
+                        "Object.X()",
+                        "Object.Y()",
+                        "Object.Layer()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "srs_gnop::Ball",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "",
+              "longDescription": "",
+              "name": "Particles",
+              "optional": false,
+              "supplementaryInformation": "ParticleSystem::ParticleEmitter",
+              "type": "objectList"
             }
           ],
           "objectGroups": []
