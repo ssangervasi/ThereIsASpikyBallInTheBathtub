@@ -12,7 +12,7 @@
   "title": "",
   "v": 3,
   "uiSettings": {
-    "grid": true,
+    "grid": false,
     "gridB": 255,
     "gridG": 180,
     "gridHeight": 6,
@@ -21,7 +21,7 @@
     "gridR": 158,
     "gridType": "rectangular",
     "gridWidth": 6,
-    "snap": true,
+    "snap": false,
     "windowMask": false,
     "zoomFactor": 0.9484878867149353
   },
@@ -1554,13 +1554,13 @@
       "destroyWhenNoParticles": true,
       "emissionEditionSimpleMode": true,
       "emitterAngleA": 0,
-      "emitterAngleB": 90,
-      "emitterForceMax": 85,
-      "emitterForceMin": 45,
+      "emitterAngleB": 45,
+      "emitterForceMax": 300,
+      "emitterForceMin": 200,
       "emitterXDirection": 0,
       "emitterYDirection": 1,
       "emitterZDirection": 0,
-      "flow": 100,
+      "flow": 500,
       "friction": 2,
       "gravityEditionSimpleMode": true,
       "greenParam": "Random",
@@ -1582,12 +1582,12 @@
       "particleGravityZ": 0,
       "particleGreen1": 251,
       "particleGreen2": 136,
-      "particleLifeTimeMax": 2.5,
-      "particleLifeTimeMin": 0.5,
+      "particleLifeTimeMax": 0.25,
+      "particleLifeTimeMin": 0.10000000149011612,
       "particleRed1": 251,
       "particleRed2": 136,
       "particleSize1": 100,
-      "particleSize2": 100,
+      "particleSize2": 25,
       "particleSizeRandomness1": 0,
       "particleSizeRandomness2": 0,
       "redParam": "Enabled",
@@ -1599,7 +1599,7 @@
       "tank": 100,
       "textureParticleName": "",
       "type": "ParticleSystem::ParticleEmitter",
-      "zoneRadius": 3,
+      "zoneRadius": 60,
       "variables": [],
       "behaviors": []
     }
@@ -3233,7 +3233,7 @@
                       "actions": [],
                       "events": [
                         {
-                          "disabled": false,
+                          "disabled": true,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::Standard",
                           "conditions": [
@@ -3260,6 +3260,41 @@
                                 "",
                                 "\"join.countdown\"",
                                 "srs_utils::ms(3)",
+                                ""
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "inverted": true,
+                                "value": "srs_utils::HasLimitedTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"join.countdown\"",
+                                ""
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "srs_utils::startLimitedTimer"
+                              },
+                              "parameters": [
+                                "",
+                                "\"join.countdown\"",
+                                "srs_utils::ms(1)",
                                 ""
                               ],
                               "subInstructions": []
