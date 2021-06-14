@@ -182,6 +182,65 @@
       "objectGroups": []
     },
     {
+      "description": "StrMatches",
+      "fullName": "StrMatches",
+      "functionType": "Condition",
+      "name": "StrMatches",
+      "private": false,
+      "sentence": "_PARAM1_ StrMatches _PARAM2_",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "eventsFunctionContext.returnValue = (() => {\n    const patternArg = eventsFunctionContext.getArgument('Pattern')\n    let pattern = new RegExp(patternArg)\n    const reMatch = patternArg.match(new RegExp('^/(.*)/.*$'))\n\n    if (reMatch) {\n        pattern = new RegExp(reMatch[1], reMatch[2])\n    }\n\n    const strToMatch = eventsFunctionContext.getArgument('StrToMatch')\n    return pattern.test(strToMatch)\n})()\n",
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": false
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "ToMatch",
+          "longDescription": "",
+          "name": "StrToMatch",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        },
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "Pattern",
+          "longDescription": "",
+          "name": "Pattern",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
       "description": "StrToRepl, Pattern, Replacement",
       "fullName": "String replace",
       "functionType": "StringExpression",
@@ -1523,65 +1582,6 @@
           "description": "ArrayJSON",
           "longDescription": "",
           "name": "ArrayJSON",
-          "optional": false,
-          "supplementaryInformation": "",
-          "type": "string"
-        }
-      ],
-      "objectGroups": []
-    },
-    {
-      "description": "StrMatches",
-      "fullName": "StrMatches",
-      "functionType": "Condition",
-      "name": "StrMatches",
-      "private": false,
-      "sentence": "_PARAM1_ StrMatches _PARAM2_",
-      "events": [
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::JsCode",
-              "inlineCode": "eventsFunctionContext.returnValue = (() => {\n    const patternArg = eventsFunctionContext.getArgument('Pattern')\n    let pattern = new RegExp(patternArg)\n    const reMatch = patternArg.match(new RegExp('^/(.*)/.*$'))\n\n    if (reMatch) {\n        pattern = new RegExp(reMatch[1], reMatch[2])\n    }\n\n    const strToMatch = eventsFunctionContext.getArgument('StrToMatch')\n    return pattern.test(strToMatch)\n})()\n",
-              "parameterObjects": "",
-              "useStrict": true,
-              "eventsSheetExpanded": true
-            }
-          ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [],
-          "events": []
-        }
-      ],
-      "parameters": [
-        {
-          "codeOnly": false,
-          "defaultValue": "",
-          "description": "ToMatch",
-          "longDescription": "",
-          "name": "StrToMatch",
-          "optional": false,
-          "supplementaryInformation": "",
-          "type": "string"
-        },
-        {
-          "codeOnly": false,
-          "defaultValue": "",
-          "description": "Pattern",
-          "longDescription": "",
-          "name": "Pattern",
           "optional": false,
           "supplementaryInformation": "",
           "type": "string"

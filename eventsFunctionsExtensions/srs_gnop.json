@@ -722,6 +722,28 @@
                 }
               ],
               "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjetTxt"
+                  },
+                  "parameters": [
+                    "Object",
+                    "HitState",
+                    "=",
+                    "\"ready\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
             }
           ],
           "parameters": [
@@ -1676,7 +1698,21 @@
                       "subInstructions": []
                     }
                   ],
-                  "actions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjetTxt"
+                      },
+                      "parameters": [
+                        "Object",
+                        "IncomingUpdate.State",
+                        "=",
+                        "\"received\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
                   "events": [
                     {
                       "disabled": false,
@@ -1726,21 +1762,7 @@
                       "folded": false,
                       "type": "BuiltinCommonInstructions::Standard",
                       "conditions": [],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ModVarObjetTxt"
-                          },
-                          "parameters": [
-                            "Object",
-                            "IncomingUpdate.State",
-                            "=",
-                            "\"received\""
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
+                      "actions": [],
                       "events": []
                     }
                   ]
@@ -2575,10 +2597,10 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Player\n * @property {string} sessionUuid\n * @property {string} state\n * @property {string} name\n * @property {number} number\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.PlayerUpdate\n * @property {Gnop.Player} player\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst opponentUpdateJsonVar = vars.get(\"OpponentUpdateJSON\")\nconst playerVar = vars.get(\"Player\")\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.PlayerUpdate */\nconst latestUpdate = JSON.parse(opponentUpdateJsonVar.getAsString())\nif (!latestUpdate) {\n    return\n}\n\nconst {\n    player,\n    position\n} = latestUpdate\n\nif (player.number !== playerVar.getAsNumber()) {\n    return\n}\n\nconst hpVar = vars.get('HP')\nhpVar.setNumber(player.hp)\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dyVar = incomingUpdateVar.getChild('DY')\nconst aVar = incomingUpdateVar.getChild('A')\nconst daVar = incomingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nxVar.setNumber(position.x)\ndxVar.setNumber(position.dx)\nyVar.setNumber(position.y)\ndyVar.setNumber(position.dy)\naVar.setNumber(position.a)\ndaVar.setNumber(position.da)\n\n\n",
+                          "inlineCode": "\n/**\n * @namespace Gnop\n */\n\n/**\n * @typedef {Object} Gnop.Player\n * @property {string} sessionUuid\n * @property {string} state\n * @property {string} name\n * @property {number} number\n * @property {number} hp\n */\n\n/**\n * @typedef {Object} Gnop.Position\n * @property {number} x\n * @property {number} y\n * @property {number} dx\n * @property {number} dy\t\n */\n\n/**\n * @typedef {Object} Gnop.PlayerUpdate\n * @property {Gnop.Player} player\n * @property {Gnop.Position} position\n */\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst opponentUpdateJsonVar = vars.get(\"OpponentUpdateJSON\")\nconst playerVar = vars.get(\"Player\")\n\nconst incomingUpdateVar = vars.get(\"IncomingUpdate\")\nincomingUpdateVar.clearChildren()\n\n/** @type Gnop.PlayerUpdate */\nconst latestUpdate = JSON.parse(opponentUpdateJsonVar.getAsString())\nif (!latestUpdate) {\n    return\n}\n\nconst {\n    player,\n    position\n} = latestUpdate\n\nif (player.number !== playerVar.getAsNumber()) {\n    return\n}\n\nconst stateVar = incomingUpdateVar.getChild('State')\nconst xVar = incomingUpdateVar.getChild('X')\nconst dxVar = incomingUpdateVar.getChild('DX')\nconst yVar = incomingUpdateVar.getChild('Y')\nconst dyVar = incomingUpdateVar.getChild('DY')\nconst aVar = incomingUpdateVar.getChild('A')\nconst daVar = incomingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nxVar.setNumber(position.x)\ndxVar.setNumber(position.dx)\nyVar.setNumber(position.y)\ndyVar.setNumber(position.dy)\naVar.setNumber(position.a)\ndaVar.setNumber(position.da)\n\nconst hpVar = vars.get('HP')\nconst hitStateVar = vars.get('HitState')\nconst nextHpVar = vars.get('NextHP')\n\nconst prevHp = hpVar.getAsNumber()\n\nif (prevHp !== player.hp) {\n    console.log(\"triggering\", {\n        player,\n        prevHp,\n    })\n    hitStateVar.setString('triggered')\n    nextHpVar.setNumber(player.hp)\n}\n\n\n\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
-                          "eventsSheetExpanded": false
+                          "eventsSheetExpanded": true
                         }
                       ]
                     }
@@ -2634,10 +2656,10 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst hpVar = vars.get('HP')\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\n\nstateVar.setString('pending')\nclient.sendPlayerUpdate({\n    player: {\n        hp: hpVar.getAsNumber()\n    },\n    position: {\n        x: xVar.getAsNumber(),\n        dx: dxVar.getAsNumber(),\n        y: yVar.getAsNumber(),\n        dy: dyVar.getAsNumber(),\n        a: aVar.getAsNumber(),\n        da: daVar.getAsNumber(),\n    }\n})\n",
+                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\nconst xVar = outgoingUpdateVar.getChild('X')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\nstateVar.setString('pending')\n\nconst position = {\n    x: xVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n    a: aVar.getAsNumber(),\n    da: daVar.getAsNumber(),\n}\n\nconst hitStateVar = vars.get('HitState')\nconst nextHpVar = vars.get('NextHP')\n\nconst hitState = hitStateVar.getAsString()\nconst nextHp = nextHpVar.getAsNumber()\n\nconst player = {}\n\nif (hitState === 'triggered') {\n    player.hp = nextHp\n}\n\n\nclient.sendPlayerUpdate({\n    player,\n    position,\n})\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
-                          "eventsSheetExpanded": true
+                          "eventsSheetExpanded": false
                         }
                       ]
                     }
@@ -2990,27 +3012,6 @@
                             }
                           ],
                           "events": []
-                        },
-                        {
-                          "disabled": true,
-                          "folded": false,
-                          "type": "BuiltinCommonInstructions::Standard",
-                          "conditions": [],
-                          "actions": [
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "srs_utils::consoleLog"
-                              },
-                              "parameters": [
-                                "",
-                                "\"Collision: A=\" + ToString(round(Object.Variable(AngleToBall))) + \" L=\" + ToString(round(Object.Variable(HitLength)))",
-                                ""
-                              ],
-                              "subInstructions": []
-                            }
-                          ],
-                          "events": []
                         }
                       ]
                     },
@@ -3044,7 +3045,7 @@
                             {
                               "type": {
                                 "inverted": false,
-                                "value": "srs_gnop::Paddle::hitButt"
+                                "value": "srs_gnop::Paddle::triggerHit"
                               },
                               "parameters": [
                                 "Object",
@@ -3148,40 +3149,129 @@
           "objectGroups": []
         },
         {
-          "description": "hitButt",
-          "fullName": "hitButt",
+          "description": "triggerHit",
+          "fullName": "triggerHit",
           "functionType": "Action",
-          "name": "hitButt",
+          "name": "triggerHit",
           "private": false,
-          "sentence": "_PARAM0_ hitButt",
+          "sentence": "_PARAM0_ triggerHit",
           "events": [
             {
               "disabled": false,
               "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Object",
-                    "HP",
-                    "-",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "Hits to opponent are triggered by the net updates",
+              "comment2": ""
             },
             {
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_gnop::Paddle::IsPlayer"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "srs_gnop::SelfNumber()",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjetTxt"
+                      },
+                      "parameters": [
+                        "Object",
+                        "HitState",
+                        "=",
+                        "\"ready\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjetTxt"
+                      },
+                      "parameters": [
+                        "Object",
+                        "HitState",
+                        "=",
+                        "\"triggered\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Object",
+                            "NextHP",
+                            "=",
+                            "Object.Variable(HP) - 1"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": true,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_gnop::Paddle::IsPlayer"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "srs_gnop::SelfNumber()",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
               "actions": [],
               "events": []
             }
@@ -3206,6 +3296,193 @@
               "optional": false,
               "supplementaryInformation": "srs_gnop::Paddle",
               "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "finishHit",
+          "fullName": "finishHit",
+          "functionType": "Action",
+          "name": "finishHit",
+          "private": false,
+          "sentence": "_PARAM0_ finishHit",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjetTxt"
+                  },
+                  "parameters": [
+                    "Object",
+                    "HitState",
+                    "=",
+                    "\"triggered\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjetTxt"
+                  },
+                  "parameters": [
+                    "Object",
+                    "HitState",
+                    "=",
+                    "\"ready\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Object",
+                        "HP",
+                        "=",
+                        "Object.Variable(NextHP)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "srs_gnop::Paddle",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "HitState",
+          "fullName": "HitState",
+          "functionType": "Condition",
+          "name": "HitState",
+          "private": false,
+          "sentence": "_PARAM0_ HitState _PARAM2_",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetReturnBoolean"
+                  },
+                  "parameters": [
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjetTxt"
+                  },
+                  "parameters": [
+                    "Object",
+                    "HitState",
+                    "=",
+                    "GetArgumentAsString(\"HitState\")"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetReturnBoolean"
+                  },
+                  "parameters": [
+                    "True"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Object",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "object"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "srs_gnop::Paddle",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "HitState",
+              "longDescription": "",
+              "name": "HitState",
+              "optional": false,
+              "supplementaryInformation": "[\"ready\",\"triggered\"]",
+              "type": "stringWithSelector"
             }
           ],
           "objectGroups": []

@@ -23,10 +23,32 @@
     "gridWidth": 6,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 1.808487886714936
+    "zoomFactor": 0.6484878867149351
   },
   "objectsGroups": [],
-  "variables": [],
+  "variables": [
+    {
+      "name": "State",
+      "type": "structure",
+      "children": [
+        {
+          "name": "Ball",
+          "type": "string",
+          "value": "reset"
+        },
+        {
+          "name": "Play",
+          "type": "string",
+          "value": "pause"
+        }
+      ]
+    },
+    {
+      "name": "StartPoint",
+      "type": "string",
+      "value": "1"
+    }
+  ],
   "instances": [
     {
       "angle": 0,
@@ -37,8 +59,8 @@
       "name": "Ball",
       "persistentUuid": "24fa9afa-d649-4207-8aad-39e895a875f6",
       "width": 120,
-      "x": 1176,
-      "y": 780,
+      "x": 180,
+      "y": 480,
       "zOrder": 1,
       "numberProperties": [
         {
@@ -891,7 +913,13 @@
         }
       ],
       "stringProperties": [],
-      "initialVariables": []
+      "initialVariables": [
+        {
+          "name": "Number",
+          "type": "string",
+          "value": "2"
+        }
+      ]
     },
     {
       "angle": 0,
@@ -911,6 +939,28 @@
           "value": 0
         }
       ],
+      "stringProperties": [],
+      "initialVariables": [
+        {
+          "name": "Number",
+          "type": "string",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "Debug",
+      "locked": false,
+      "name": "DebugState",
+      "persistentUuid": "d0cac734-c9cc-4573-9807-5bddffa4923f",
+      "width": 0,
+      "x": 1080,
+      "y": 6,
+      "zOrder": 34,
+      "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
     }
@@ -1343,27 +1393,27 @@
               "y": 240
             },
             {
-              "x": 22,
+              "x": 26,
               "y": 231
             },
             {
-              "x": 8,
+              "x": 16,
               "y": 211
             },
             {
-              "x": 1,
+              "x": 8,
               "y": 175
             },
             {
-              "x": 1,
+              "x": 8,
               "y": 61
             },
             {
-              "x": 8,
+              "x": 16,
               "y": 29
             },
             {
-              "x": 22,
+              "x": 26,
               "y": 9
             }
           ],
@@ -1503,11 +1553,6 @@
           "name": "Number",
           "type": "string",
           "value": "0"
-        },
-        {
-          "name": "Force",
-          "type": "number",
-          "value": 0
         }
       ],
       "behaviors": [],
@@ -1573,6 +1618,25 @@
       "variables": [],
       "behaviors": [],
       "string": "[count]",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "DebugState",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "state",
       "font": "",
       "characterSize": 40,
       "color": {
@@ -2083,8 +2147,48 @@
           "actions": [],
           "events": [
             {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ShowLayer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Debug\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
               "disabled": true,
               "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ShowLayer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Zones\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": true,
+              "folded": true,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [
                 {
@@ -2266,57 +2370,6 @@
               ]
             },
             {
-              "disabled": true,
-              "folded": true,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "DepartScene"
-                  },
-                  "parameters": [
-                    ""
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [],
-              "events": [
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ShowLayer"
-                      },
-                      "parameters": [
-                        "",
-                        "\"Debug\""
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ShowLayer"
-                      },
-                      "parameters": [
-                        "",
-                        "\"Zones\""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                }
-              ]
-            },
-            {
               "colorB": 228,
               "colorG": 176,
               "colorR": 74,
@@ -2348,12 +2401,12 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "Physics2::TimeScale"
+                        "value": "ModVarSceneTxt"
                       },
                       "parameters": [
-                        "Ball",
-                        "Physics2",
-                        "1"
+                        "State.Play",
+                        "=",
+                        "\"play\""
                       ],
                       "subInstructions": []
                     }
@@ -2381,12 +2434,12 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "Physics2::TimeScale"
+                        "value": "ModVarSceneTxt"
                       },
                       "parameters": [
-                        "Ball",
-                        "Physics2",
-                        "0.5"
+                        "State.Play",
+                        "=",
+                        "\"slow\""
                       ],
                       "subInstructions": []
                     }
@@ -2414,45 +2467,12 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "Physics2::TimeScale"
+                        "value": "ModVarSceneTxt"
                       },
                       "parameters": [
-                        "Ball",
-                        "Physics2",
-                        "0.1"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "KeyReleased"
-                      },
-                      "parameters": [
-                        "",
-                        "Num4"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Physics2::TimeScale"
-                      },
-                      "parameters": [
-                        "Ball",
-                        "Physics2",
-                        "0"
+                        "State.Play",
+                        "=",
+                        "\"pause\""
                       ],
                       "subInstructions": []
                     }
@@ -2560,19 +2580,32 @@
                     }
                   ],
                   "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [],
-                  "events": []
                 }
               ]
             },
             {
               "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "DebugState",
+                    "=",
+                    "ToJSON(State)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": true,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
@@ -2603,7 +2636,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "Wrap",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -3300,12 +3333,13 @@
           "conditions": [
             {
               "type": {
-                "inverted": true,
-                "value": "LayerVisible"
+                "inverted": false,
+                "value": "StrEqual"
               },
               "parameters": [
-                "",
-                "\"UI\""
+                "VariableString(State.Ball)",
+                "=",
+                "\"reset\""
               ],
               "subInstructions": []
             }
@@ -3315,32 +3349,64 @@
             {
               "disabled": false,
               "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "StartPoint",
               "conditions": [
                 {
                   "type": {
                     "inverted": false,
-                    "value": "Physics2::TimeScale"
+                    "value": "VarObjet"
                   },
                   "parameters": [
-                    "Ball",
-                    "Physics2",
+                    "StartPoint",
+                    "Number",
                     "=",
-                    "0"
+                    "Variable(StartPoint)"
                   ],
                   "subInstructions": []
                 }
               ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "MettreAutour"
+                      },
+                      "parameters": [
+                        "Ball",
+                        "StartPoint",
+                        "0",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
               "actions": [
                 {
                   "type": {
                     "inverted": false,
-                    "value": "Physics2::TimeScale"
+                    "value": "ModVarSceneTxt"
                   },
                   "parameters": [
-                    "Ball",
-                    "Physics2",
-                    "1"
+                    "State.Ball",
+                    "=",
+                    "\"play\""
                   ],
                   "subInstructions": []
                 }
@@ -3348,39 +3414,6 @@
               "events": []
             }
           ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "LayerVisible"
-              },
-              "parameters": [
-                "",
-                "\"UI\""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "Physics2::TimeScale"
-              },
-              "parameters": [
-                "Ball",
-                "Physics2",
-                "0"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
         }
       ],
       "parameters": []
@@ -3591,14 +3624,6 @@
             }
           ],
           "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [],
-          "events": []
         }
       ],
       "parameters": []
@@ -3609,7 +3634,389 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
+      "name": "Time scale",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "VariableString(State.Play)",
+                "=",
+                "\"play\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Physics2::TimeScale"
+              },
+              "parameters": [
+                "Ball",
+                "Physics2",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "VariableString(State.Play)",
+                "=",
+                "\"pause\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Physics2::TimeScale"
+              },
+              "parameters": [
+                "Ball",
+                "Physics2",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "VariableString(State.Play)",
+                "=",
+                "\"slow\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Physics2::TimeScale"
+              },
+              "parameters": [
+                "Ball",
+                "Physics2",
+                "0.25"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "VariableString(State.Play)",
+                "=",
+                "\"play\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Physics2::TimeScale"
+              },
+              "parameters": [
+                "Ball",
+                "Physics2",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "Paddle",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_gnop::Paddle::HitState"
+                  },
+                  "parameters": [
+                    "Paddle",
+                    "Paddle",
+                    "\"triggered\"",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarSceneTxt"
+                      },
+                      "parameters": [
+                        "State.Play",
+                        "=",
+                        "\"slow\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "StartPoint",
+                        "=",
+                        "Paddle.Variable(Player)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_utils::startLimitedTimer"
+                      },
+                      "parameters": [
+                        "",
+                        "\"hit\"",
+                        "srs_utils::ms(2)",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "VariableString(State.Play)",
+                "=",
+                "\"slow\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_utils::consoleLog"
+                  },
+                  "parameters": [
+                    "",
+                    "ToString(srs_utils::getLimitedTimerFraction(\"hit\"))",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Egal"
+                  },
+                  "parameters": [
+                    "srs_utils::getLimitedTimerFraction(\"hit\")",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarSceneTxt"
+                      },
+                      "parameters": [
+                        "State.Play",
+                        "=",
+                        "\"play\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarSceneTxt"
+                      },
+                      "parameters": [
+                        "State.Ball",
+                        "=",
+                        "\"reset\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::ForEach",
+                  "object": "Paddle",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::Paddle::HitState"
+                      },
+                      "parameters": [
+                        "Paddle",
+                        "Paddle",
+                        "\"triggered\"",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "srs_gnop::Paddle::finishHit"
+                          },
+                          "parameters": [
+                            "Paddle",
+                            "Paddle",
+                            ""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "disabled": false,
+      "folded": false,
       "name": "Net",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -3710,18 +4117,37 @@
                       "actions": [],
                       "events": [
                         {
-                          "disabled": true,
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarScene"
+                              },
+                              "parameters": [
+                                "Countdown",
+                                "=",
+                                "3"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::Standard",
                           "conditions": [
                             {
                               "type": {
-                                "inverted": true,
-                                "value": "srs_utils::HasLimitedTimer"
+                                "inverted": false,
+                                "value": "SystemInfo::IsPreview"
                               },
                               "parameters": [
-                                "",
-                                "\"join.countdown\"",
                                 ""
                               ],
                               "subInstructions": []
@@ -3731,13 +4157,12 @@
                             {
                               "type": {
                                 "inverted": false,
-                                "value": "srs_utils::startLimitedTimer"
+                                "value": "ModVarScene"
                               },
                               "parameters": [
-                                "",
-                                "\"join.countdown\"",
-                                "srs_utils::ms(3)",
-                                ""
+                                "Countdown",
+                                "=",
+                                "1"
                               ],
                               "subInstructions": []
                             }
@@ -3771,7 +4196,7 @@
                               "parameters": [
                                 "",
                                 "\"join.countdown\"",
-                                "srs_utils::ms(1)",
+                                "srs_utils::ms(Variable(Countdown))",
                                 ""
                               ],
                               "subInstructions": []
@@ -3793,7 +4218,7 @@
                               "parameters": [
                                 "Timer",
                                 "=",
-                                "ToString(round(3 - (srs_utils::getLimitedTimerElapsed(\"join.countdown\")/1000)))"
+                                "ToString(round(Variable(Countdown) - (srs_utils::getLimitedTimerElapsed(\"join.countdown\")/1000)))"
                               ],
                               "subInstructions": []
                             }
@@ -3834,6 +4259,51 @@
                                   "parameters": [
                                     "",
                                     "\"UI\""
+                                  ],
+                                  "subInstructions": []
+                                }
+                              ],
+                              "events": []
+                            },
+                            {
+                              "disabled": false,
+                              "folded": false,
+                              "type": "BuiltinCommonInstructions::Standard",
+                              "conditions": [],
+                              "actions": [
+                                {
+                                  "type": {
+                                    "inverted": false,
+                                    "value": "ModVarSceneTxt"
+                                  },
+                                  "parameters": [
+                                    "State.Play",
+                                    "=",
+                                    "\"play\""
+                                  ],
+                                  "subInstructions": []
+                                },
+                                {
+                                  "type": {
+                                    "inverted": false,
+                                    "value": "ModVarSceneTxt"
+                                  },
+                                  "parameters": [
+                                    "State.Ball",
+                                    "=",
+                                    "\"reset\""
+                                  ],
+                                  "subInstructions": []
+                                },
+                                {
+                                  "type": {
+                                    "inverted": false,
+                                    "value": "ModVarScene"
+                                  },
+                                  "parameters": [
+                                    "StartPoint",
+                                    "=",
+                                    "1"
                                   ],
                                   "subInstructions": []
                                 }
@@ -3894,6 +4364,27 @@
                         {
                           "type": {
                             "inverted": false,
+                            "value": "ModVarSceneTxt"
+                          },
+                          "parameters": [
+                            "State.Play",
+                            "=",
+                            "\"pause\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
                             "value": "TextObject::String"
                           },
                           "parameters": [
@@ -3938,6 +4429,27 @@
                   ],
                   "actions": [],
                   "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarSceneTxt"
+                          },
+                          "parameters": [
+                            "State.Play",
+                            "=",
+                            "\"pause\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
                     {
                       "disabled": false,
                       "folded": false,
@@ -4011,6 +4523,27 @@
                         {
                           "type": {
                             "inverted": false,
+                            "value": "ModVarSceneTxt"
+                          },
+                          "parameters": [
+                            "State.Play",
+                            "=",
+                            "\"pause\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
                             "value": "ShowLayer"
                           },
                           "parameters": [
@@ -4068,6 +4601,27 @@
               ],
               "actions": [],
               "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarSceneTxt"
+                      },
+                      "parameters": [
+                        "State.Play",
+                        "=",
+                        "\"pause\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
                 {
                   "disabled": false,
                   "folded": false,
@@ -4152,6 +4706,27 @@
                 {
                   "type": {
                     "inverted": false,
+                    "value": "ModVarSceneTxt"
+                  },
+                  "parameters": [
+                    "State.Play",
+                    "=",
+                    "\"pause\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
                     "value": "ShowLayer"
                   },
                   "parameters": [
@@ -4206,7 +4781,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "UI",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -4516,7 +5091,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "You are",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -4668,7 +5243,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "Button",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -4876,7 +5451,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Zones",
-      "visibility": false,
+      "visibility": true,
       "cameras": [],
       "effects": []
     },
@@ -4942,7 +5517,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Debug",
-      "visibility": false,
+      "visibility": true,
       "cameras": [],
       "effects": []
     }

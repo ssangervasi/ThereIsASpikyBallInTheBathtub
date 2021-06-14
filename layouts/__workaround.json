@@ -28,7 +28,22 @@
   "objectsGroups": [],
   "variables": [],
   "instances": [],
-  "objects": [],
+  "objects": [
+    {
+      "name": "NewObject",
+      "tags": "",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "behaviors": [
+        {
+          "name": "Paddle",
+          "type": "srs_gnop::Paddle"
+        }
+      ],
+      "animations": []
+    }
+  ],
   "events": [
     {
       "colorB": 228,
@@ -166,7 +181,21 @@
               "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_gnop::Paddle::IsPlayer"
+                  },
+                  "parameters": [
+                    "NewObject",
+                    "Paddle",
+                    "1",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
               "actions": [],
               "events": []
             }
@@ -208,5 +237,14 @@
       "effects": []
     }
   ],
-  "behaviorsSharedData": []
+  "behaviorsSharedData": [
+    {
+      "name": "Button",
+      "type": "srs_utils::Button"
+    },
+    {
+      "name": "Paddle",
+      "type": "srs_gnop::Paddle"
+    }
+  ]
 }
