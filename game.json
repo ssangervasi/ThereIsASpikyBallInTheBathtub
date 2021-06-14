@@ -112,6 +112,51 @@
         "name": "Assets\\BG.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtPaddle.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtPaddle.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtHitbox.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtHitbox.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/Ball.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\Ball.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/Tub.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\Tub.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/Portal.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\Portal.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
