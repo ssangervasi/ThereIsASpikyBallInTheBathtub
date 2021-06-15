@@ -1,4 +1,4 @@
-import { sample } from 'lodash'
+import _ from 'lodash'
 
 import {
 	BallUpdate,
@@ -29,8 +29,6 @@ const metaPromise = (): MetaPromise<unknown> => {
 	})
 	return meta as MetaPromise<unknown>
 }
-
-type Received<T extends {}> = T & { receivedAt: number }
 
 type StateInit = {
 	state: 'init'
@@ -87,8 +85,8 @@ class WsClient {
 		join: metaPromise(),
 	}
 
-	playerUpdates: Array<Received<PlayerUpdate>> = []
-	ballUpdates: Array<Received<BallUpdate>> = []
+	playerUpdates: Array<PlayerUpdate> = []
+	ballUpdates: Array<BallUpdate> = []
 
 	constructor(options: Partial<Options>) {
 		Object.assign(this.options, options)
@@ -208,10 +206,7 @@ class WsClient {
 		this.info('Received player update', message.payload)
 		this.state.opponent = message.payload.player
 		// this.playerUpdates = []
-		this.playerUpdates.push({
-			receivedAt: Date.now(),
-			...message.payload,
-		})
+		this.playerUpdates.push(message.payload)
 	}
 
 	handleBallUpdate = (message: typeof guardBallUpdate['M']) => {
@@ -222,10 +217,7 @@ class WsClient {
 
 		this.info('Received ball update', message.payload)
 		// this.ballUpdates = []
-		this.ballUpdates.push({
-			receivedAt: Date.now(),
-			...message.payload,
-		})
+		this.ballUpdates.push(message.payload)
 	}
 
 	handleOpen = () => {
@@ -345,7 +337,7 @@ class WsClient {
 		this.send(m)
 	}
 
-	getPlayerUpdate(): Received<PlayerUpdate> | undefined {
+	getPlayerUpdate(): PlayerUpdate | undefined {
 		return this.playerUpdates.shift()
 	}
 
@@ -366,7 +358,7 @@ class WsClient {
 		this.send(m)
 	}
 
-	getBallUpdate(): Received<BallUpdate> | undefined {
+	getBallUpdate(): BallUpdate | undefined {
 		return this.ballUpdates.shift()
 	}
 
@@ -413,7 +405,7 @@ const NAMES = [
 	'Towel',
 ] as const
 const generateName = (): string => {
-	return sample(NAMES) || NAMES[0]
+	return _.sample(NAMES) || NAMES[0]
 }
 
 const GnopC = {
