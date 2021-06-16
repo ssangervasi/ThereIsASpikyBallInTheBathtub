@@ -12,7 +12,7 @@
   "title": "",
   "v": 3,
   "uiSettings": {
-    "grid": true,
+    "grid": false,
     "gridB": 255,
     "gridG": 180,
     "gridHeight": 6,
@@ -21,7 +21,7 @@
     "gridR": 158,
     "gridType": "rectangular",
     "gridWidth": 6,
-    "snap": true,
+    "snap": false,
     "windowMask": false,
     "zoomFactor": 0.5284878867149347
   },
@@ -3552,6 +3552,14 @@
               "subInstructions": []
             }
           ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
           "events": []
         },
         {

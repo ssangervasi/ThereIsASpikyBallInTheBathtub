@@ -8,6 +8,7 @@
 	},
 	"files": [
 		"cli.ts",
-		"inject.ts"
+		"inject.ts",
+		"stats.ts",
 	]
 }
