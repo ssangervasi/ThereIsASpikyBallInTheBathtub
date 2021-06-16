@@ -78,7 +78,9 @@ export class BallTracker {
 	}
 
 	get(): M | undefined {
-		return this.received.shift()
+		const result = this.received.pop()
+		this.received.splice(0)
+		return result
 	}
 }
 

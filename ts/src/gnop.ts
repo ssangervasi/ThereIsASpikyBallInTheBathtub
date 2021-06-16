@@ -15,6 +15,8 @@ import {
 import { guardCreated } from '@sangervasi/common/lib/messages/session'
 import { Message, parseMessage } from '@sangervasi/common/lib/messages/index'
 
+import { BallTracker } from './ballTracker'
+
 type MetaPromise<T> = {
 	promise: Promise<T>
 	resolve: (value?: T) => void
@@ -86,7 +88,7 @@ class WsClient {
 	}
 
 	playerUpdates: Array<PlayerUpdate> = []
-	ballUpdates: Array<BallUpdate> = []
+	ballTracker = new BallTracker()
 
 	constructor(options: Partial<Options>) {
 		Object.assign(this.options, options)
@@ -216,8 +218,7 @@ class WsClient {
 		}
 
 		this.info('Received ball update', message.payload)
-		// this.ballUpdates = []
-		this.ballUpdates.push(message.payload)
+		this.ballTracker.trackReceived(message)
 	}
 
 	handleOpen = () => {
@@ -355,11 +356,13 @@ class WsClient {
 			},
 		})
 
+		this.ballTracker.trackSent(m)
 		this.send(m)
 	}
 
 	getBallUpdate(): BallUpdate | undefined {
-		return this.ballUpdates.shift()
+		const m = this.ballTracker.get()
+		return m?.payload
 	}
 
 	private send(m: Message<string, unknown>) {
