@@ -312,10 +312,8 @@ class WsClient {
 	}
 
 	disconnect() {
-		if (!this.state.ws) {
-			return
-		}
-		this.state.ws.close()
+		this.state.ws?.close()
+		this.state = { state: 'init' }
 	}
 
 	sendPlayerUpdate(payload: PlayerUpdate) {
@@ -357,8 +355,13 @@ class WsClient {
 		})
 
 		this.ballTracker.trackSent(m)
-		this.send(m)
+		this._sendBallUpdate(m)
+		// this.send(m)
 	}
+
+	private _sendBallUpdate = _.throttle((m: typeof guardBallUpdate['M']) => {
+		this.send(m)
+	}, 100)
 
 	getBallUpdate(): BallUpdate | undefined {
 		const m = this.ballTracker.get()

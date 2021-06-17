@@ -23,7 +23,7 @@
     "gridWidth": 6,
     "snap": false,
     "windowMask": false,
-    "zoomFactor": 0.5284878867149347
+    "zoomFactor": 0.6284878867149348
   },
   "objectsGroups": [],
   "variables": [
@@ -6106,7 +6106,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": true,
+          "folded": false,
           "name": "Button",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",

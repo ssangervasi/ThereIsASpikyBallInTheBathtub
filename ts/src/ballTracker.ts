@@ -8,7 +8,8 @@ import {
 type M = typeof guardBallUpdate['M']
 
 type S = {
-	received: M
+	matches: number
+	misses: number
 	diffs: Array<D>
 }
 type D = {
@@ -20,12 +21,26 @@ type D = {
 export class BallTracker {
 	timeWindowMs = 1_000
 	positionWindowPx = 120 * 2
-	maxSentLen = 128
+	maxSentLen = 1_000
 
 	sent: Array<M> = []
 	received: Array<M> = []
 
-	stats: Array<S> = []
+	stats: S = {
+		matches: 0,
+		misses: 0,
+		diffs: [],
+	}
+
+	summarize() {
+		console.log(`matches : misses `)
+		console.log(`${this.stats.matches} : ${this.stats.misses} `)
+		console.log(
+			`${Math.round(
+				(100 * this.stats.matches) / (this.stats.matches + this.stats.misses),
+			)}% matches `,
+		)
+	}
 
 	trackSent(m: M) {
 		this.sent.push(m)
@@ -35,7 +50,10 @@ export class BallTracker {
 
 	trackReceived(m: M): M | undefined {
 		const match = this.matchReceived(m)
-		if (!match) {
+		if (match) {
+			this.stats.matches += 1
+		} else {
+			this.stats.misses += 1
 			this.received.push(m)
 		}
 
@@ -43,34 +61,29 @@ export class BallTracker {
 	}
 
 	private matchReceived(m: M): M | undefined {
-		const nearestIndex = _.sortedIndexBy(this.sent, m, u => {
-			u === m ? m.sentAt! - this.timeWindowMs : u.sentAt
-		})
-		const searchStart = _.clamp(nearestIndex - 1, 0, this.sent.length)
-
-		const stat: S = {
-			received: m,
-			diffs: [],
-		}
-		this.stats.push(stat)
+		// const nearestIndex = _.sortedIndexBy(this.sent, m, u => {
+		// 	u === m ? m.sentAt! - this.timeWindowMs : u.sentAt
+		// })
+		// const searchStart = _.clamp(nearestIndex - 1, 0, this.sent.length)
+		const searchStart = 0
 
 		for (let i = searchStart; i < this.sent.length; i++) {
 			const sent = this.sent[i]
 
-			const diff: D = {
-				sentAt: sent.sentAt! - m.sentAt!,
-				x: sent.payload.position.x - m.payload.position.x,
-				y: sent.payload.position.y - m.payload.position.y,
-				matched: false,
-			}
-			stat.diffs.push(diff)
+			// const diff: D = {
+			// 	sentAt: sent.sentAt! - m.sentAt!,
+			// 	x: sent.payload.position.x - m.payload.position.x,
+			// 	y: sent.payload.position.y - m.payload.position.y,
+			// 	matched: false,
+			// }
+			// this.stats.diffs.push(diff)
 
-			if (!this.isMsMatch(sent.sentAt!, m.sentAt!)) {
-				break
-			}
+			// if (!this.isMsMatch(sent.sentAt!, m.sentAt!)) {
+			// 	break
+			// }
 
 			if (this.isMatch(sent, m)) {
-				diff.matched = true
+				// diff.matched = true
 				return sent
 			}
 		}
@@ -81,22 +94,13 @@ export class BallTracker {
 	private isMatch = (toMatch: M, toTest: M): boolean => {
 		const matchPos = toMatch.payload.position
 		const testPos = toTest.payload.position
-		// return (
-		// 	this.isPxMatch(matchPos.x, testPos.x) &&
-		// 	this.isPxMatch(matchPos.y, testPos.y)
-		// )
 
 		return (
+			isWithin(toMatch.sentAt!, this.timeWindowMs, toTest.sentAt!) &&
 			isWithin(matchPos.x, matchPos.dx, testPos.x) &&
 			isWithin(matchPos.y, matchPos.dy, testPos.y)
 		)
 	}
-
-	private isPxMatch = (toMatch: number, toTest: number): boolean =>
-		isWithin(toMatch, this.positionWindowPx, toTest)
-
-	private isMsMatch = (toMatch: number, toTest: number): boolean =>
-		isWithin(toMatch, this.timeWindowMs, toTest)
 
 	get(): M | undefined {
 		const result = this.received.pop()
@@ -106,7 +110,7 @@ export class BallTracker {
 }
 
 const isWithin = (toMatch: number, windowSize: number, toTest: number) =>
-	_.clamp(toTest, toMatch - windowSize / 2, toMatch + windowSize / 2) === toTest
+	_.clamp(toTest, toMatch - windowSize, toMatch + windowSize) === toTest
 
 const clampLen = (a: Array<unknown>, len: number): void => {
 	const excess = Math.max(0, a.length - len)
