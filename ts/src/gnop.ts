@@ -97,7 +97,6 @@ class WsClient {
 			...this.options,
 			...options,
 		}
-		this.ballTracker = new BallTracker(this.options.ballTracker)
 	}
 
 	connect() {
@@ -183,6 +182,8 @@ class WsClient {
 			self,
 			opponent,
 		}
+		this.ballTracker = new BallTracker(this.options.ballTracker)
+
 		this.promises.join.resolve()
 	}
 
@@ -213,7 +214,6 @@ class WsClient {
 
 		this.info('Received player update', message.payload)
 		this.state.opponent = message.payload.player
-		// this.playerUpdates = []
 		this.playerUpdates.push(message.payload)
 	}
 
@@ -343,7 +343,9 @@ class WsClient {
 	}
 
 	getPlayerUpdate(): PlayerUpdate | undefined {
-		return this.playerUpdates.shift()
+		const result = this.playerUpdates.pop()
+		this.playerUpdates.splice(0)
+		return result
 	}
 
 	sendBallUpdate(position: Position) {

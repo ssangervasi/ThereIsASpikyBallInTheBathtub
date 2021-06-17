@@ -191,7 +191,7 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::JsCode",
-          "inlineCode": "const { Gnop } = globalThis\n\n// const isPreview = runtimeScene.getGame().isPreview()\nconst isPreview = false\nconst host = isPreview ? 'ws://localhost:42992' : 'wss://sangervasi.net'\n\n// Turn off update filtering\nconst ballTracker = {\n    timeWindowMs: 0,\n    maxSentLen: 0,\n}\n\nGnop.client = new Gnop.WsClient({\n    host,\n    // verbose: true,\n    verbose: false,\n    ballTracker,\n})\n\nconst connect = async () => {\n    const client = Gnop.client\n    \n    console.log('Connecting', client)\n    await client.connect()\n    console.log('Connected', client)\n} \n\nconnect()\n",
+          "inlineCode": "const { Gnop } = globalThis\n\nconst isPreview = runtimeScene.getGame().isPreview()\n\nconst useLocal = false\nconst host = useLocal ? 'ws://localhost:42992' : 'wss://sangervasi.net'\n\nconst useFiltering = false\nconst ballTracker = useFiltering\n  ? {\n      timeWindowMs: 0,\n      maxSentLen: 0,\n    }\n  : {\n      timeWindowMs: 0,\n      maxSentLen: 0,\n    };\n\nGnop.client = new Gnop.WsClient({\n    host,\n    // verbose: true,\n    verbose: false,\n    ballTracker,\n})\n\nconst connect = async () => {\n    const client = Gnop.client\n    \n    console.log('Connecting', client)\n    await client.connect()\n    console.log('Connected', client)\n} \n\nconnect()\n",
           "parameterObjects": "",
           "useStrict": true,
           "eventsSheetExpanded": true
@@ -3075,70 +3075,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Comment",
-              "color": {
-                "b": 109,
-                "g": 230,
-                "r": 255,
-                "textB": 0,
-                "textG": 0,
-                "textR": 0
-              },
-              "comment": "Trying to only send ball updates when the ball is near apaddle",
-              "comment2": ""
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjetTxt"
-                  },
-                  "parameters": [
-                    "HitZone",
-                    "HitState",
-                    "=",
-                    "\"ready\""
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjetTxt"
-                  },
-                  "parameters": [
-                    "Ball",
-                    "OutgoingUpdate.State",
-                    "=",
-                    "\"none\""
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjetTxt"
-                  },
-                  "parameters": [
-                    "Ball",
-                    "OutgoingUpdate.State",
-                    "=",
-                    "\"ready\""
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
             }
           ],
           "parameters": [
@@ -3798,7 +3734,7 @@
                     "Object",
                     "OutgoingUpdate.State",
                     "=",
-                    "\"none\""
+                    "\"pending\""
                   ],
                   "subInstructions": []
                 }
@@ -4114,26 +4050,12 @@
                         "Object",
                         "OutgoingUpdate.State",
                         "=",
-                        "\"ready\""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjetTxt"
-                      },
-                      "parameters": [
-                        "Object",
-                        "OutgoingUpdate.State",
-                        "=",
                         "\"pending\""
                       ],
                       "subInstructions": []
                     }
                   ],
+                  "actions": [],
                   "events": [
                     {
                       "disabled": false,
@@ -4675,10 +4597,10 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::JsCode",
-                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\n\nif (stateVar.getAsString() !== 'pending') {\n    return\n}\nconsole.log(\"sending update\")\n\nconst xVar = outgoingUpdateVar.getChild('X')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\n\n// if (Math.random() > 0.5) {\n//     console.log('fake packet loss')\n//     return\n// }\n\nstateVar.setString('none')\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n    a: aVar.getAsNumber(),\n    da: daVar.getAsNumber(),\n})\n",
+                          "inlineCode": "const { Gnop } = globalThis\nconst { client } = Gnop\n\nconst obj = objects[0]\nconst vars = obj.getVariables()\n\nconst outgoingUpdateVar = vars.get(\"OutgoingUpdate\")\nconst stateVar = outgoingUpdateVar.getChild('State')\n\nif (stateVar.getAsString() !== 'pending') {\n    return\n}\n\nconst xVar = outgoingUpdateVar.getChild('X')\nconst dxVar = outgoingUpdateVar.getChild('DX')\nconst yVar = outgoingUpdateVar.getChild('Y')\nconst dyVar = outgoingUpdateVar.getChild('DY')\nconst aVar = outgoingUpdateVar.getChild('A')\nconst daVar = outgoingUpdateVar.getChild('DA')\n\nclient.sendBallUpdate({\n    x: xVar.getAsNumber(),\n    dx: dxVar.getAsNumber(),\n    y: yVar.getAsNumber(),\n    dy: dyVar.getAsNumber(),\n    a: aVar.getAsNumber(),\n    da: daVar.getAsNumber(),\n})\n",
                           "parameterObjects": "Object",
                           "useStrict": true,
-                          "eventsSheetExpanded": true
+                          "eventsSheetExpanded": false
                         }
                       ]
                     }

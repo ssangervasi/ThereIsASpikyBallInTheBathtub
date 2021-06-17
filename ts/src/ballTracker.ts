@@ -113,10 +113,10 @@ export class BallTracker {
 	}
 }
 
-const isWithin = (toMatch: number, windowSize: number, toTest: number) =>
+export const isWithin = (toMatch: number, windowSize: number, toTest: number) =>
 	_.clamp(toTest, toMatch - windowSize, toMatch + windowSize) === toTest
 
-const clampLen = (a: Array<unknown>, len: number): void => {
+export const clampLen = (a: Array<unknown>, len: number): void => {
 	const excess = Math.max(0, a.length - len)
 	a.splice(0, excess)
 }
