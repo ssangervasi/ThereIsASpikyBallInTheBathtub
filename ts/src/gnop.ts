@@ -15,7 +15,7 @@ import {
 import { guardCreated } from '@sangervasi/common/lib/messages/session'
 import { Message, parseMessage } from '@sangervasi/common/lib/messages/index'
 
-import { BallTracker } from './ballTracker'
+import { BallTracker, Opts } from './ballTracker'
 
 type MetaPromise<T> = {
 	promise: Promise<T>
@@ -65,12 +65,14 @@ type StateAny =
 interface Options {
 	host: string
 	verbose: boolean
+	ballTracker: Partial<Opts>
 }
 
 class WsClient {
 	options = {
 		host: 'ws://sangervasi.net',
 		verbose: false,
+		ballTracker: {},
 	}
 
 	name = generateName()
@@ -90,8 +92,12 @@ class WsClient {
 	playerUpdates: Array<PlayerUpdate> = []
 	ballTracker = new BallTracker()
 
-	constructor(options: Partial<Options>) {
-		Object.assign(this.options, options)
+	constructor(options: Partial<Options> = {}) {
+		this.options = {
+			...this.options,
+			...options,
+		}
+		this.ballTracker = new BallTracker(this.options.ballTracker)
 	}
 
 	connect() {

@@ -18,10 +18,23 @@ type D = {
 	y: number
 	matched: boolean
 }
+
+export type Opts = {
+	timeWindowMs: number
+	maxSentLen: number
+}
 export class BallTracker {
-	timeWindowMs = 1_000
-	positionWindowPx = 120 * 2
-	maxSentLen = 1_000
+	opts: Opts = {
+		timeWindowMs: 1_000,
+		maxSentLen: 1_000,
+	}
+
+	constructor(opts: Partial<Opts> = {}) {
+		this.opts = {
+			...this.opts,
+			...opts,
+		}
+	}
 
 	sent: Array<M> = []
 	received: Array<M> = []
@@ -35,17 +48,20 @@ export class BallTracker {
 	summarize() {
 		console.log(`matches : misses `)
 		console.log(`${this.stats.matches} : ${this.stats.misses} `)
-		console.log(
-			`${Math.round(
-				(100 * this.stats.matches) / (this.stats.matches + this.stats.misses),
-			)}% matches `,
+		console.log(`${this.percentMatches()}% matches `)
+	}
+
+	percentMatches() {
+		return (
+			100 *
+			Math.round(this.stats.matches / (this.stats.matches + this.stats.misses))
 		)
 	}
 
 	trackSent(m: M) {
 		this.sent.push(m)
 
-		clampLen(this.sent, this.maxSentLen)
+		clampLen(this.sent, this.opts.maxSentLen)
 	}
 
 	trackReceived(m: M): M | undefined {
@@ -70,20 +86,7 @@ export class BallTracker {
 		for (let i = searchStart; i < this.sent.length; i++) {
 			const sent = this.sent[i]
 
-			// const diff: D = {
-			// 	sentAt: sent.sentAt! - m.sentAt!,
-			// 	x: sent.payload.position.x - m.payload.position.x,
-			// 	y: sent.payload.position.y - m.payload.position.y,
-			// 	matched: false,
-			// }
-			// this.stats.diffs.push(diff)
-
-			// if (!this.isMsMatch(sent.sentAt!, m.sentAt!)) {
-			// 	break
-			// }
-
 			if (this.isMatch(sent, m)) {
-				// diff.matched = true
 				return sent
 			}
 		}
@@ -94,11 +97,12 @@ export class BallTracker {
 	private isMatch = (toMatch: M, toTest: M): boolean => {
 		const matchPos = toMatch.payload.position
 		const testPos = toTest.payload.position
+		const sec = this.opts.timeWindowMs / 1000
 
 		return (
-			isWithin(toMatch.sentAt!, this.timeWindowMs, toTest.sentAt!) &&
-			isWithin(matchPos.x, matchPos.dx, testPos.x) &&
-			isWithin(matchPos.y, matchPos.dy, testPos.y)
+			isWithin(toMatch.sentAt!, this.opts.timeWindowMs, toTest.sentAt!) &&
+			isWithin(matchPos.x, matchPos.dx * sec, testPos.x) &&
+			isWithin(matchPos.y, matchPos.dy * sec, testPos.y)
 		)
 	}
 
