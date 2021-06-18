@@ -12,7 +12,7 @@
   "title": "",
   "v": 3,
   "uiSettings": {
-    "grid": false,
+    "grid": true,
     "gridB": 255,
     "gridG": 180,
     "gridHeight": 6,
@@ -21,9 +21,9 @@
     "gridR": 158,
     "gridType": "rectangular",
     "gridWidth": 6,
-    "snap": false,
+    "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.7484878867149349
+    "zoomFactor": 0.868487886714935
   },
   "objectsGroups": [],
   "variables": [
@@ -482,14 +482,14 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 510,
+      "height": 390,
       "layer": "Zones",
       "locked": false,
       "name": "HitZone",
       "persistentUuid": "4b1d189e-7c88-4b0e-93e9-237a298474e8",
-      "width": 408,
-      "x": 918,
-      "y": 570,
+      "width": 258,
+      "x": 996,
+      "y": 630,
       "zOrder": 20,
       "numberProperties": [
         {
@@ -503,14 +503,14 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 510,
+      "height": 390,
       "layer": "Zones",
       "locked": false,
       "name": "HitZone",
       "persistentUuid": "47c736f6-3345-43dc-929e-b9028b02d45a",
-      "width": 408,
-      "x": 576,
-      "y": -12,
+      "width": 258,
+      "x": 654,
+      "y": 60,
       "zOrder": 30,
       "numberProperties": [],
       "stringProperties": [],

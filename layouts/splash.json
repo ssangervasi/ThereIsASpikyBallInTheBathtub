@@ -30,7 +30,7 @@
     {
       "name": "UseFiltering",
       "type": "boolean",
-      "value": false
+      "value": true
     }
   ],
   "instances": [

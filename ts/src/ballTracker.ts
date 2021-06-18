@@ -16,12 +16,14 @@ type S = {
 
 export type Opts = {
 	timeWindowMs: number
+	dMs: number
 	maxSentLen: number
 }
 export class BallTracker {
 	opts: Opts = {
-		timeWindowMs: 1_000,
-		maxSentLen: 1_000,
+		timeWindowMs: 3_000,
+		dMs: 800,
+		maxSentLen: 128,
 	}
 
 	constructor(opts: Partial<Opts> = {}) {
@@ -97,12 +99,12 @@ export class BallTracker {
 	private isMatch = (toMatch: M, toTest: M): boolean => {
 		const matchPos = toMatch.payload.position
 		const testPos = toTest.payload.position
-		const sec = this.opts.timeWindowMs / 1000
+		const dSec = this.opts.dMs / 1000
 
 		return (
 			isWithin(toMatch.sentAt!, this.opts.timeWindowMs, toTest.sentAt!) &&
-			isWithin(matchPos.x, matchPos.dx * sec, testPos.x) &&
-			isWithin(matchPos.y, matchPos.dy * sec, testPos.y)
+			isWithin(matchPos.x, matchPos.dx * dSec, testPos.x) &&
+			isWithin(matchPos.y, matchPos.dy * dSec, testPos.y)
 		)
 	}
 
