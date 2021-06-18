@@ -10,13 +10,8 @@ type M = typeof guardBallUpdate['M']
 type S = {
 	matches: number
 	misses: number
-	diffs: Array<D>
-}
-type D = {
-	sentAt: number
-	x: number
-	y: number
-	matched: boolean
+	searches: number
+	searchLen: number
 }
 
 export type Opts = {
@@ -42,19 +37,22 @@ export class BallTracker {
 	stats: S = {
 		matches: 0,
 		misses: 0,
-		diffs: [],
+		searches: 0,
+		searchLen: 0,
 	}
 
 	summarize() {
-		console.log(`matches : misses `)
-		console.log(`${this.stats.matches} : ${this.stats.misses} `)
-		console.log(`${this.percentMatches()}% matches `)
+		return `${this.percentMatches()}% matches, ${this.averageSearchLen()}`
 	}
 
 	percentMatches() {
 		return Math.round(
 			(100 * this.stats.matches) / (this.stats.matches + this.stats.misses),
 		)
+	}
+
+	averageSearchLen() {
+		return Math.round(this.stats.searchLen / this.stats.searches)
 	}
 
 	trackSent(m: M) {
@@ -83,7 +81,10 @@ export class BallTracker {
 			u === m ? m.sentAt! + this.opts.timeWindowMs : u.sentAt,
 		)
 
+		this.stats.searches += 1
 		for (let i = startIndex; i < endIndex && i < this.sent.length; i++) {
+			this.stats.searchLen += 1
+
 			const sent = this.sent[i]
 			if (this.isMatch(sent, m)) {
 				return sent

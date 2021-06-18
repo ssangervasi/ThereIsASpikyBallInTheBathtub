@@ -97,6 +97,20 @@ describe('BallTracker', () => {
 			)
 			bt.trackSent(
 				guardBallUpdate.build({
+					sentAt: 22_300,
+					sessionUuid,
+					payload: {
+						position: buildPosition({
+							x: 400,
+							dx: 100,
+							y: 400,
+							dy: 100,
+						}),
+					},
+				}),
+			)
+			bt.trackSent(
+				guardBallUpdate.build({
 					sentAt: 30_000,
 					sessionUuid,
 					payload: {
@@ -187,6 +201,40 @@ describe('BallTracker', () => {
 			)
 
 			expect(matched).toEqual(toMatch)
+		})
+
+		it('searches through many to find a rough time', () => {
+			const bt = setupBt()
+			const toMatch = guardBallUpdate.build({
+				sentAt: 22_300,
+				sessionUuid,
+				payload: {
+					position: buildPosition({
+						x: 400,
+						dx: 100,
+						y: 400,
+						dy: 100,
+					}),
+				},
+			})
+
+			const matched = bt.trackReceived(
+				guardBallUpdate.build({
+					sentAt: 22_000,
+					sessionUuid,
+					payload: {
+						position: buildPosition({
+							x: 499,
+							dx: 100,
+							y: 499,
+							dy: 100,
+						}),
+					},
+				}),
+			)
+
+			expect(matched).toEqual(toMatch)
+			expect(bt.stats.searchLen).toEqual(2)
 		})
 
 		it('does not find a match with too rough a position', () => {
