@@ -14,7 +14,7 @@ describe('BallTracker', () => {
 	describe('.trackSent', () => {
 		it('clamps the sent size', () => {
 			const bt = new BallTracker()
-			const excess = bt.maxSentLen * 2
+			const excess = bt.opts.maxSentLen * 2
 			_.range(1, excess + 1).forEach(t => {
 				bt.trackSent(
 					guardBallUpdate.build({
@@ -30,7 +30,7 @@ describe('BallTracker', () => {
 				)
 			})
 
-			expect(bt.sent.length).toEqual(bt.maxSentLen)
+			expect(bt.sent.length).toEqual(bt.opts.maxSentLen)
 			expect(bt.sent[bt.sent.length - 1].sentAt).toEqual(excess * 1000)
 		})
 	})
@@ -46,7 +46,9 @@ describe('BallTracker', () => {
 					payload: {
 						position: buildPosition({
 							x: 100,
+							dx: 10,
 							y: 200,
+							dy: 10,
 						}),
 					},
 				}),
@@ -58,19 +60,9 @@ describe('BallTracker', () => {
 					payload: {
 						position: buildPosition({
 							x: 300,
+							dx: 0,
 							y: 400,
-						}),
-					},
-				}),
-			)
-			bt.trackSent(
-				guardBallUpdate.build({
-					sentAt: 20_050,
-					sessionUuid,
-					payload: {
-						position: buildPosition({
-							x: 310,
-							y: 410,
+							dy: 0,
 						}),
 					},
 				}),
@@ -81,8 +73,24 @@ describe('BallTracker', () => {
 					sessionUuid,
 					payload: {
 						position: buildPosition({
+							x: 310,
+							dx: 10,
+							y: 410,
+							dy: 10,
+						}),
+					},
+				}),
+			)
+			bt.trackSent(
+				guardBallUpdate.build({
+					sentAt: 22_200,
+					sessionUuid,
+					payload: {
+						position: buildPosition({
 							x: 320,
+							dx: 10,
 							y: 430,
+							dy: 10,
 						}),
 					},
 				}),
@@ -94,7 +102,9 @@ describe('BallTracker', () => {
 					payload: {
 						position: buildPosition({
 							x: 500,
+							dx: 10,
 							y: 600,
+							dy: 10,
 						}),
 					},
 				}),
@@ -109,8 +119,7 @@ describe('BallTracker', () => {
 
 			const matched = bt.trackReceived(
 				guardBallUpdate.build({
-					// Slightly greater than exact match b/c _.sortedIndexBy returns the lowest index.
-					sentAt: toMatch.sentAt! + 1,
+					sentAt: toMatch.sentAt,
 					sessionUuid,
 					payload: {
 						position: toMatch.payload.position,

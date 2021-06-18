@@ -52,9 +52,8 @@ export class BallTracker {
 	}
 
 	percentMatches() {
-		return (
-			100 *
-			Math.round(this.stats.matches / (this.stats.matches + this.stats.misses))
+		return Math.round(
+			(100 * this.stats.matches) / (this.stats.matches + this.stats.misses),
 		)
 	}
 
@@ -77,15 +76,15 @@ export class BallTracker {
 	}
 
 	private matchReceived(m: M): M | undefined {
-		// const nearestIndex = _.sortedIndexBy(this.sent, m, u => {
-		// 	u === m ? m.sentAt! - this.timeWindowMs : u.sentAt
-		// })
-		// const searchStart = _.clamp(nearestIndex - 1, 0, this.sent.length)
-		const searchStart = 0
+		const startIndex = _.sortedIndexBy(this.sent, m, u =>
+			u === m ? m.sentAt! - this.opts.timeWindowMs : u.sentAt,
+		)
+		const endIndex = _.sortedIndexBy(this.sent, m, u =>
+			u === m ? m.sentAt! + this.opts.timeWindowMs : u.sentAt,
+		)
 
-		for (let i = searchStart; i < this.sent.length; i++) {
+		for (let i = startIndex; i < endIndex && i < this.sent.length; i++) {
 			const sent = this.sent[i]
-
 			if (this.isMatch(sent, m)) {
 				return sent
 			}

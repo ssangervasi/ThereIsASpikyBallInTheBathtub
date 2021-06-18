@@ -23,7 +23,7 @@
     "gridWidth": 6,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.6284878867149348
+    "zoomFactor": 0.7484878867149349
   },
   "objectsGroups": [],
   "variables": [
@@ -89,14 +89,14 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 60,
+      "height": 372,
       "layer": "Collision_1",
       "locked": false,
       "name": "Wall",
       "persistentUuid": "3c632d6f-8b33-41e4-8f32-2b135de6b3cf",
       "width": 1920,
       "x": 0,
-      "y": 0,
+      "y": -312,
       "zOrder": 2,
       "numberProperties": [],
       "stringProperties": [],
@@ -121,7 +121,7 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 60,
+      "height": 372,
       "layer": "Collision_1",
       "locked": false,
       "name": "Wall",
@@ -785,8 +785,8 @@
       "name": "BG",
       "persistentUuid": "d1ce3a45-2b66-4a77-9068-87f53703708d",
       "width": 0,
-      "x": 12,
-      "y": 1086,
+      "x": 6,
+      "y": 1398,
       "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
@@ -1039,6 +1039,22 @@
           "value": "1"
         }
       ]
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "Debug",
+      "locked": false,
+      "name": "DebugMatchPercent",
+      "persistentUuid": "ce064eb6-10aa-434d-8270-674e2df8ca35",
+      "width": 0,
+      "x": 318,
+      "y": 1026,
+      "zOrder": 36,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
     }
   ],
   "objects": [
@@ -1769,6 +1785,25 @@
     {
       "bold": false,
       "italic": false,
+      "name": "DebugMatchPercent",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "Matches: 60%",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 232,
+        "g": 255,
+        "r": 217
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
       "name": "DebugUpdate",
       "smoothed": true,
       "tags": "",
@@ -2058,7 +2093,7 @@
       "particleSizeRandomness1": 0,
       "particleSizeRandomness2": 0,
       "redParam": "Enabled",
-      "rendererParam1": 2,
+      "rendererParam1": 3,
       "rendererParam2": 1,
       "rendererType": "Point",
       "sizeParam": "Mutable",
@@ -2249,7 +2284,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "Debugs",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -2315,7 +2350,7 @@
           "actions": [],
           "events": [
             {
-              "disabled": true,
+              "disabled": false,
               "folded": false,
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
@@ -2852,6 +2887,27 @@
                     "DebugUpdate",
                     "=",
                     "srs_gnop::OpponentUpdate()"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "DebugMatchPercent",
+                    "=",
+                    "ToString(srs_gnop::PercentMatches()) + \"%\""
                   ],
                   "subInstructions": []
                 }
@@ -3563,8 +3619,35 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [],
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "StrEqual"
+              },
+              "parameters": [
+                "VariableString(State.Ball)",
+                "=",
+                "\"play\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_gnop::Ball::setSync"
+              },
+              "parameters": [
+                "Ball",
+                "Ball",
+                "True",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
           "events": []
         },
         {
@@ -3702,6 +3785,28 @@
                         "StartPoint.Y()",
                         "\"easeInOutQuad\"",
                         "srs_utils::ms(Variable(ResetSec))",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_gnop::Ball::setSync"
+                      },
+                      "parameters": [
+                        "Ball",
+                        "Ball",
+                        "",
                         ""
                       ],
                       "subInstructions": []
@@ -6330,7 +6435,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Collision_1",
-      "visibility": false,
+      "visibility": true,
       "cameras": [],
       "effects": []
     },
@@ -6385,7 +6490,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Debug",
-      "visibility": false,
+      "visibility": true,
       "cameras": [],
       "effects": []
     }

@@ -12,21 +12,27 @@
   "title": "",
   "v": 3,
   "uiSettings": {
-    "grid": false,
+    "grid": true,
     "gridB": 255,
     "gridG": 180,
-    "gridHeight": 32,
+    "gridHeight": 25,
     "gridOffsetX": 0,
     "gridOffsetY": 0,
     "gridR": 158,
     "gridType": "rectangular",
-    "gridWidth": 32,
+    "gridWidth": 25,
     "snap": true,
     "windowMask": false,
     "zoomFactor": 0.6199999999999997
   },
   "objectsGroups": [],
-  "variables": [],
+  "variables": [
+    {
+      "name": "UseFiltering",
+      "type": "boolean",
+      "value": false
+    }
+  ],
   "instances": [
     {
       "angle": 0,
@@ -235,6 +241,38 @@
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 75,
+      "layer": "",
+      "locked": false,
+      "name": "UseFiltering_Button",
+      "persistentUuid": "30ef68a2-fe7c-4b3d-9cf0-92f32c35b82d",
+      "width": 475,
+      "x": 300,
+      "y": 875,
+      "zOrder": 18,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "UseFiltering_Label",
+      "persistentUuid": "fea14597-2edb-4b30-9310-f2579dc8a14b",
+      "width": 0,
+      "x": 325,
+      "y": 875,
+      "zOrder": 19,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
     }
   ],
   "objects": [
@@ -413,6 +451,48 @@
       "string": "Waiting for opponent...",
       "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
       "characterSize": 40,
+      "color": {
+        "b": 185,
+        "g": 128,
+        "r": 192
+      }
+    },
+    {
+      "bottomMargin": 10,
+      "height": 52,
+      "leftMargin": 10,
+      "name": "UseFiltering_Button",
+      "rightMargin": 10,
+      "tags": "",
+      "texture": "Assets\\Button.png",
+      "tiled": false,
+      "topMargin": 10,
+      "type": "PanelSpriteObject::PanelSprite",
+      "width": 52,
+      "variables": [],
+      "behaviors": [
+        {
+          "name": "Button",
+          "type": "srs_utils::Button",
+          "HoverTint": "\"230;255;255\"",
+          "ActiveTint": "\"150;230;255\"",
+          "DisabledTint": "\"200;200;200\""
+        }
+      ]
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "UseFiltering_Label",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "Use Filtering: No",
+      "font": "Assets\\Fonts\\reglisse\\ReglisseFill-WyWzn.otf",
+      "characterSize": 60,
       "color": {
         "b": 185,
         "g": 128,
@@ -1097,6 +1177,250 @@
               "events": []
             }
           ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "disabled": false,
+      "folded": false,
+      "name": "Filtering",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SetSceneVariableAsBoolean"
+              },
+              "parameters": [
+                "UseFiltering_Toggle",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SceneVariableAsBoolean"
+              },
+              "parameters": [
+                "UseFiltering",
+                "True"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "UseFiltering_Label",
+                "=",
+                "\"Use Filtering: Yes\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_utils::Button::Clicked"
+                  },
+                  "parameters": [
+                    "UseFiltering_Button",
+                    "Button",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "UseFiltering_Toggle",
+                    "False"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "UseFiltering",
+                    "False"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "UseFiltering_Toggle",
+                    "True"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SceneVariableAsBoolean"
+              },
+              "parameters": [
+                "UseFiltering",
+                "False"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "UseFiltering_Label",
+                "=",
+                "\"Use Filtering: No\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "srs_utils::Button::Clicked"
+                  },
+                  "parameters": [
+                    "UseFiltering_Button",
+                    "Button",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "UseFiltering_Toggle",
+                    "False"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "UseFiltering",
+                    "True"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "UseFiltering_Toggle",
+                    "True"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SceneVariableAsBoolean"
+              },
+              "parameters": [
+                "UseFiltering_Toggle",
+                "True"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "srs_gnop::disconnect"
+              },
+              "parameters": [
+                "",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "parameters": []
