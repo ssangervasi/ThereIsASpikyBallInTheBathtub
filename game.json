@@ -157,6 +157,96 @@
         "name": "Assets\\SpikyBathtub\\Portal.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_0.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_0.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_2.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_3.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_3.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_4.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_4.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_5.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_5.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_6.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_6.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_7.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_7.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_8.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_8.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/PortalRotations/Portal_9.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_9.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
