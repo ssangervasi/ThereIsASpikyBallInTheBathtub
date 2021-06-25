@@ -247,6 +247,78 @@
         "name": "Assets\\SpikyBathtub\\PortalRotations\\Portal_9.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_0.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_0.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_2.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_3.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_3.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_4.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_4.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_5.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_5.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_6.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_6.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_7.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_7.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
