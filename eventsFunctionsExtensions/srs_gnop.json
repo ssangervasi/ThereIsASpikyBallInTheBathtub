@@ -116,7 +116,7 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::JsCode",
-          "inlineCode": "const { Gnop } = globalThis\n\nconst vars = runtimeScene.getVariables()\nconst isPreview = runtimeScene.getGame().isPreview()\n\nconst useLocal = false\nconst host = useLocal ? 'ws://localhost:42992' : 'wss://sangervasi.net'\n\nconst useFiltering = vars.get('UseFiltering').getAsBoolean()\nconst ballTracker = useFiltering\n    ? {\n        timeWindowMs: 3_000,\n        dMs: 800,\n        maxSentLen: 128,\n      }\n    : {\n        timeWindowMs: 0,\n        dMs: 0,\n        maxSentLen: 0,\n    };\n\n\nconst connect = async () => {\n    if (Gnop.client) {\n        Gnop.client.disconnect()\n    }\n\n    Gnop.client = new Gnop.WsClient({\n        host,\n        verbose: false,\n        ballTracker,\n    })\n\n    console.log('Connecting', Gnop.client)\n    await Gnop.client.connect()\n    console.log('Connected', Gnop.client)\n} \n\nconnect()\n",
+          "inlineCode": "const { Gnop } = globalThis\n\nconst vars = runtimeScene.getVariables()\nconst isPreview = runtimeScene.getGame().isPreview()\n\nconst useLocal = false\nconst host = useLocal ? 'ws://localhost:42992' : 'wss://sangervasi.net'\n\nconst useFiltering = vars.get('UseFiltering').getAsBoolean()\nconst ballTracker = useFiltering\n    // ? {\n    //     timeWindowMs: 3_000,\n    //     dMs: 800,\n    //     maxSentLen: 128,\n    //   }\n    ? {\n        timeWindowMs: 2_000,\n        dMs: 500,\n        maxSentLen: 128,\n      }\n    : {\n        timeWindowMs: 0,\n        dMs: 0,\n        maxSentLen: 0,\n    };\n\n\nconst connect = async () => {\n    if (Gnop.client) {\n        Gnop.client.disconnect()\n    }\n\n    Gnop.client = new Gnop.WsClient({\n        host,\n        verbose: false,\n        ballTracker,\n    })\n\n    console.log('Connecting', Gnop.client)\n    await Gnop.client.connect()\n    console.log('Connected', Gnop.client)\n} \n\nconnect()\n",
           "parameterObjects": "",
           "useStrict": true,
           "eventsSheetExpanded": true
@@ -705,6 +705,46 @@
         }
       ],
       "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "",
+      "fullName": "PlayerName",
+      "functionType": "StringExpression",
+      "name": "PlayerName",
+      "private": false,
+      "sentence": "",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "const { Gnop } = globalThis\n\neventsFunctionContext.returnValue = (() => {\n    const playerNumber = eventsFunctionContext.getArgument('Number')\n    const self = Gnop.client?.state?.self\n    const opponent = Gnop.client?.state?.opponent\n    if (!(self && opponent)) {\n        return\n    }\n    const nToP = {\n        [self.number]: self,\n        [opponent.number]: opponent,\n    }\n    return nToP[playerNumber]?.name\n})()\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": true
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
+        }
+      ],
+      "parameters": [
+        {
+          "codeOnly": false,
+          "defaultValue": "",
+          "description": "",
+          "longDescription": "",
+          "name": "Number",
+          "optional": false,
+          "supplementaryInformation": "",
+          "type": "expression"
+        }
+      ],
       "objectGroups": []
     }
   ],

@@ -23,7 +23,7 @@
     "gridWidth": 6,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.868487886714935
+    "zoomFactor": 0.6084878867149348
   },
   "objectsGroups": [],
   "variables": [
@@ -35,6 +35,11 @@
           "name": "Ball",
           "type": "string",
           "value": "start"
+        },
+        {
+          "name": "Overlay",
+          "type": "string",
+          "value": "closed"
         },
         {
           "name": "Play",
@@ -3563,7 +3568,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": false,
+      "folded": true,
       "name": "Ball",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -4286,7 +4291,7 @@
               "parameters": [
                 "Ball",
                 "Physics2",
-                "0.25"
+                "0.15"
               ],
               "subInstructions": []
             }
@@ -4594,25 +4599,6 @@
                   "disabled": false,
                   "folded": false,
                   "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "Cache"
-                      },
-                      "parameters": [
-                        "Connection"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
                   "conditions": [
                     {
                       "type": {
@@ -4636,17 +4622,37 @@
                         {
                           "type": {
                             "inverted": false,
-                            "value": "LayerVisible"
+                            "value": "StrEqual"
                           },
                           "parameters": [
-                            "",
-                            "\"UI\""
+                            "VariableString(State.Play)",
+                            "=",
+                            "\"pause\""
                           ],
                           "subInstructions": []
                         }
                       ],
                       "actions": [],
                       "events": [
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "Cache"
+                              },
+                              "parameters": [
+                                "Connection"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
                         {
                           "disabled": true,
                           "folded": false,
@@ -4755,6 +4761,29 @@
                             {
                               "type": {
                                 "inverted": false,
+                                "value": "MettreAutourPos"
+                              },
+                              "parameters": [
+                                "Timer",
+                                "CameraWidth(\"\", 0) / 2",
+                                "CameraHeight(\"\", 0) / 2",
+                                "0",
+                                "0"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
                                 "value": "TextObject::String"
                               },
                               "parameters": [
@@ -4845,7 +4874,7 @@
                                   "parameters": [
                                     "StartPoint",
                                     "=",
-                                    "1"
+                                    "2"
                                   ],
                                   "subInstructions": []
                                 }
@@ -4871,6 +4900,18 @@
                       "parameters": [
                         "",
                         ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "StrEqual"
+                      },
+                      "parameters": [
+                        "VariableString(State.Play)",
+                        "=",
+                        "\"play\""
                       ],
                       "subInstructions": []
                     }
@@ -5017,7 +5058,7 @@
                           "parameters": [
                             "Connection",
                             "=",
-                            "\"You won\""
+                            "\"You won!\""
                           ],
                           "subInstructions": []
                         },
@@ -5102,7 +5143,7 @@
                           "parameters": [
                             "Connection",
                             "=",
-                            "\"You lost\""
+                            "\"You lost :(\""
                           ],
                           "subInstructions": []
                         },
@@ -5592,49 +5633,6 @@
             {
               "type": {
                 "inverted": false,
-                "value": "Visible"
-              },
-              "parameters": [
-                "Paddle_Label"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "MettreAutourPos"
-                  },
-                  "parameters": [
-                    "Timer",
-                    "CameraWidth(\"\", 0) / 2",
-                    "CameraHeight(\"\", 0) / 2",
-                    "0",
-                    "0"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            }
-          ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
                 "value": "LayerVisible"
               },
               "parameters": [
@@ -5690,6 +5688,208 @@
           "events": []
         },
         {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "KeyReleased"
+              },
+              "parameters": [
+                "",
+                "Escape"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarSceneTxt"
+                  },
+                  "parameters": [
+                    "State.Overlay",
+                    "=",
+                    "\"closed\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarSceneTxt"
+                  },
+                  "parameters": [
+                    "State.Overlay",
+                    "=",
+                    "\"opening\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarSceneTxt"
+                  },
+                  "parameters": [
+                    "State.Overlay",
+                    "=",
+                    "\"open\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarSceneTxt"
+                  },
+                  "parameters": [
+                    "State.Overlay",
+                    "=",
+                    "\"closing\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarSceneTxt"
+              },
+              "parameters": [
+                "State.Overlay",
+                "=",
+                "\"opening\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ShowLayer"
+              },
+              "parameters": [
+                "",
+                "\"UI\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Montre"
+              },
+              "parameters": [
+                "Connection",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "Connection",
+                "=",
+                "\"Game in progress\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarSceneTxt"
+              },
+              "parameters": [
+                "State.Overlay",
+                "=",
+                "\"open\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarSceneTxt"
+              },
+              "parameters": [
+                "State.Overlay",
+                "=",
+                "\"closing\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "HideLayer"
+              },
+              "parameters": [
+                "",
+                "\"UI\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarSceneTxt"
+              },
+              "parameters": [
+                "State.Overlay",
+                "=",
+                "\"closed\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
           "colorB": 228,
           "colorG": 176,
           "colorR": 74,
@@ -5728,7 +5928,7 @@
                   "events": [
                     {
                       "disabled": false,
-                      "folded": true,
+                      "folded": false,
                       "type": "BuiltinCommonInstructions::ForEach",
                       "object": "Paddle_Label",
                       "conditions": [
@@ -5752,6 +5952,28 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjetTxt"
+                              },
+                              "parameters": [
+                                "Paddle_Label",
+                                "Name",
+                                "=",
+                                "srs_gnop::PlayerName(Paddle_Label.Variable(Player))"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
                           "conditions": [
                             {
                               "type": {
@@ -5768,19 +5990,6 @@
                             }
                           ],
                           "actions": [
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "ModVarObjetTxt"
-                              },
-                              "parameters": [
-                                "Paddle_Label",
-                                "Name",
-                                "=",
-                                "srs_gnop::SelfName()"
-                              ],
-                              "subInstructions": []
-                            },
                             {
                               "type": {
                                 "inverted": false,
@@ -5816,19 +6025,6 @@
                             }
                           ],
                           "actions": [
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "ModVarObjetTxt"
-                              },
-                              "parameters": [
-                                "Paddle_Label",
-                                "Name",
-                                "=",
-                                "srs_gnop::OpponentName()"
-                              ],
-                              "subInstructions": []
-                            },
                             {
                               "type": {
                                 "inverted": false,
@@ -5991,7 +6187,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "Player_Name",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -6111,6 +6307,27 @@
                           "disabled": false,
                           "folded": false,
                           "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "TextObject::String"
+                              },
+                              "parameters": [
+                                "Player_Name",
+                                "=",
+                                "srs_gnop::PlayerName(Player_Name.Variable(Player))"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
                           "conditions": [
                             {
                               "type": {
@@ -6127,18 +6344,6 @@
                             }
                           ],
                           "actions": [
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "TextObject::String"
-                              },
-                              "parameters": [
-                                "Player_Name",
-                                "=",
-                                "srs_gnop::SelfName()"
-                              ],
-                              "subInstructions": []
-                            },
                             {
                               "type": {
                                 "inverted": false,
@@ -6174,18 +6379,6 @@
                             }
                           ],
                           "actions": [
-                            {
-                              "type": {
-                                "inverted": false,
-                                "value": "TextObject::String"
-                              },
-                              "parameters": [
-                                "Player_Name",
-                                "=",
-                                "srs_gnop::OpponentName()"
-                              ],
-                              "subInstructions": []
-                            },
                             {
                               "type": {
                                 "inverted": false,
@@ -6435,7 +6628,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Collision_1",
-      "visibility": true,
+      "visibility": false,
       "cameras": [],
       "effects": []
     },

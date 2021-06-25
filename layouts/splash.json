@@ -23,7 +23,7 @@
     "gridWidth": 25,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.6199999999999997
+    "zoomFactor": 0.5799999999999996
   },
   "objectsGroups": [],
   "variables": [
@@ -251,8 +251,8 @@
       "name": "UseFiltering_Button",
       "persistentUuid": "30ef68a2-fe7c-4b3d-9cf0-92f32c35b82d",
       "width": 475,
-      "x": 300,
-      "y": 875,
+      "x": 350,
+      "y": 1225,
       "zOrder": 18,
       "numberProperties": [],
       "stringProperties": [],
@@ -267,9 +267,25 @@
       "name": "UseFiltering_Label",
       "persistentUuid": "fea14597-2edb-4b30-9310-f2579dc8a14b",
       "width": 0,
-      "x": 325,
-      "y": 875,
+      "x": 375,
+      "y": 1225,
       "zOrder": 19,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "Cursor",
+      "persistentUuid": "69b1ea20-bf6e-438a-b077-86c911568811",
+      "width": 0,
+      "x": 1925,
+      "y": 575,
+      "zOrder": 20,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -498,6 +514,28 @@
         "g": 128,
         "r": 192
       }
+    },
+    {
+      "name": "Cursor",
+      "tags": "",
+      "type": "PrimitiveDrawing::Drawer",
+      "variables": [],
+      "behaviors": [],
+      "fillOpacity": 0,
+      "outlineSize": 1,
+      "outlineOpacity": 255,
+      "fillColor": {
+        "b": 255,
+        "g": 255,
+        "r": 255
+      },
+      "outlineColor": {
+        "b": 185,
+        "g": 128,
+        "r": 192
+      },
+      "absoluteCoordinates": false,
+      "clearBetweenFrames": true
     }
   ],
   "events": [
@@ -575,7 +613,7 @@
               "colorR": 74,
               "creationTime": 0,
               "disabled": false,
-              "folded": true,
+              "folded": false,
               "name": "Entry Box",
               "source": "",
               "type": "BuiltinCommonInstructions::Group",
@@ -755,6 +793,18 @@
                     "\"233;158;225\""
                   ],
                   "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Name_Entry",
+                    "Active",
+                    "True"
+                  ],
+                  "subInstructions": []
                 }
               ],
               "events": []
@@ -875,6 +925,18 @@
                     "\"192;128;185\""
                   ],
                   "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Name_Entry",
+                    "Active",
+                    "False"
+                  ],
+                  "subInstructions": []
                 }
               ],
               "events": []
@@ -987,6 +1049,195 @@
               "events": []
             }
           ]
+        },
+        {
+          "colorB": 228,
+          "colorG": 176,
+          "colorR": 74,
+          "creationTime": 0,
+          "disabled": false,
+          "folded": false,
+          "name": "Cursor",
+          "source": "",
+          "type": "BuiltinCommonInstructions::Group",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Name_Entry",
+                    "Active",
+                    "True"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "MettreXY"
+                      },
+                      "parameters": [
+                        "Cursor",
+                        "=",
+                        "Name_Display.X()",
+                        "=",
+                        "Name_Display.Y()"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "PrimitiveDrawing::Rectangle"
+                      },
+                      "parameters": [
+                        "Cursor",
+                        "Name_Display.Width() * ((StrLength(Name_Display.String()) - 1) / StrLength(Name_Display.String()))",
+                        "0",
+                        "Name_Display.Width()",
+                        "Name_Display.Height() "
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_utils::Throttle"
+                      },
+                      "parameters": [
+                        "",
+                        "\"Cursor.show\"",
+                        "srs_utils::ms(1.35)",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Montre"
+                      },
+                      "parameters": [
+                        "Cursor",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Egal"
+                      },
+                      "parameters": [
+                        "srs_utils::getLimitedTimerFraction(\"Cursor.show\")",
+                        ">",
+                        "0.70"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Cache"
+                      },
+                      "parameters": [
+                        "Cursor"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Name_Entry",
+                    "Active",
+                    "False"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Cache"
+                      },
+                      "parameters": [
+                        "Cursor"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ],
+          "parameters": []
         }
       ],
       "parameters": []
