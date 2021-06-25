@@ -23,7 +23,7 @@
     "gridWidth": 6,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.6084878867149348
+    "zoomFactor": 0.6884878867149349
   },
   "objectsGroups": [],
   "variables": [
@@ -880,14 +880,14 @@
     {
       "angle": 180,
       "customSize": true,
-      "height": 432,
+      "height": 474,
       "layer": "",
       "locked": false,
       "name": "Portal",
       "persistentUuid": "4316b00f-9f84-4cb5-bea2-a57316058792",
-      "width": 144,
-      "x": 1814,
-      "y": 324,
+      "width": 139,
+      "x": 1782,
+      "y": 300,
       "zOrder": 32,
       "numberProperties": [],
       "stringProperties": [],
@@ -896,14 +896,14 @@
     {
       "angle": 0,
       "customSize": true,
-      "height": 432,
+      "height": 474,
       "layer": "",
       "locked": false,
       "name": "Portal",
       "persistentUuid": "41dedaba-541e-4a86-bcd6-50db36caf6e0",
-      "width": 144,
-      "x": -36,
-      "y": 324,
+      "width": 138,
+      "x": 0,
+      "y": 300,
       "zOrder": 32,
       "numberProperties": [],
       "stringProperties": [],
@@ -1057,6 +1057,22 @@
       "x": 318,
       "y": 1026,
       "zOrder": 36,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "Point",
+      "locked": false,
+      "name": "Point",
+      "persistentUuid": "42ecc48f-5990-4057-b8f3-0d6b7e774e2d",
+      "width": 0,
+      "x": 810,
+      "y": 408,
+      "zOrder": 37,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -1828,6 +1844,25 @@
     {
       "bold": false,
       "italic": false,
+      "name": "Point",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "POINT!",
+      "font": "Assets\\Fonts\\reglisse\\Reglisse-0WOD9.otf",
+      "characterSize": 140,
+      "color": {
+        "b": 185,
+        "g": 128,
+        "r": 192
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
       "name": "Timer",
       "smoothed": true,
       "tags": "",
@@ -2192,7 +2227,7 @@
   "events": [
     {
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "type": "BuiltinCommonInstructions::Standard",
       "conditions": [
         {
@@ -2246,6 +2281,17 @@
                 "\"FX\""
               ],
               "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ShowLayer"
+              },
+              "parameters": [
+                "",
+                "\"Collision_2\""
+              ],
+              "subInstructions": []
             }
           ],
           "events": []
@@ -2270,11 +2316,11 @@
             {
               "type": {
                 "inverted": false,
-                "value": "ShowLayer"
+                "value": "HideLayer"
               },
               "parameters": [
                 "",
-                "\"Collision_2\""
+                "\"Point\""
               ],
               "subInstructions": []
             }
@@ -2289,7 +2335,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": false,
+      "folded": true,
       "name": "Debugs",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -4552,7 +4598,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": false,
+      "folded": true,
       "name": "Net",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -5895,7 +5941,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "Paddle_Label",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -6409,7 +6455,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "Button",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -6571,6 +6617,269 @@
             }
           ],
           "parameters": []
+        },
+        {
+          "colorB": 228,
+          "colorG": 176,
+          "colorR": 74,
+          "creationTime": 0,
+          "disabled": false,
+          "folded": false,
+          "name": "Point",
+          "source": "",
+          "type": "BuiltinCommonInstructions::Group",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "VariableString(State.Play)",
+                    "=",
+                    "\"slow\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ShowLayer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Point\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "srs_utils::Throttle"
+                      },
+                      "parameters": [
+                        "",
+                        "\"Point.glow\"",
+                        "30",
+                        ""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Egal"
+                          },
+                          "parameters": [
+                            "Point.Variable(Glow)",
+                            "<=",
+                            "0"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Point",
+                            "Step",
+                            "=",
+                            "0.25"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Egal"
+                          },
+                          "parameters": [
+                            "6",
+                            "<=",
+                            "Point.Variable(Glow)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Point",
+                            "Step",
+                            "=",
+                            "-0.25"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Point",
+                            "Glow",
+                            "+",
+                            "Point.Variable(Step)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Egal"
+                          },
+                          "parameters": [
+                            "Point.Variable(GlowA)",
+                            "<=",
+                            "Point.Variable(GlowB)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "SetLayerEffectParameter"
+                          },
+                          "parameters": [
+                            "",
+                            "\"Point\"",
+                            "\"Glow\"",
+                            "\"outerStrength\"",
+                            "Point.Variable(Glow)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "SetLayerEffectParameter"
+                          },
+                          "parameters": [
+                            "",
+                            "\"Point\"",
+                            "\"Glow\"",
+                            "\"innerStrength\"",
+                            "6 - Point.Variable(Glow)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StrEqual"
+                  },
+                  "parameters": [
+                    "VariableString(State.Play)",
+                    "!=",
+                    "\"slow\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "HideLayer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Point\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ],
+          "parameters": []
         }
       ],
       "parameters": []
@@ -6617,7 +6926,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Zones",
-      "visibility": true,
+      "visibility": false,
       "cameras": [],
       "effects": []
     },
@@ -6628,7 +6937,7 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Collision_1",
-      "visibility": false,
+      "visibility": true,
       "cameras": [],
       "effects": []
     },
@@ -6683,9 +6992,34 @@
       "followBaseLayerCamera": false,
       "isLightingLayer": false,
       "name": "Debug",
-      "visibility": true,
+      "visibility": false,
       "cameras": [],
       "effects": []
+    },
+    {
+      "ambientLightColorB": 1702453580,
+      "ambientLightColorG": 0,
+      "ambientLightColorR": 10346040,
+      "followBaseLayerCamera": false,
+      "isLightingLayer": false,
+      "name": "Point",
+      "visibility": true,
+      "cameras": [],
+      "effects": [
+        {
+          "effectType": "Glow",
+          "name": "Glow",
+          "doubleParameters": {
+            "distance": 15,
+            "innerStrength": 1,
+            "outerStrength": 2
+          },
+          "stringParameters": {
+            "color": "#ffc1c1"
+          },
+          "booleanParameters": {}
+        }
+      ]
     }
   ],
   "behaviorsSharedData": [
