@@ -66,15 +66,6 @@
         "userAdded": true
       },
       {
-        "alwaysLoaded": false,
-        "file": "Assets/Butt.png",
-        "kind": "image",
-        "metadata": "",
-        "name": "Assets\\Butt.png",
-        "smoothed": true,
-        "userAdded": true
-      },
-      {
         "file": "Assets/Fonts/reglisse/Reglisse-0WOD9.otf",
         "kind": "font",
         "metadata": "",
@@ -112,15 +103,6 @@
         "name": "Assets\\BG.png",
         "smoothed": true,
         "userAdded": true
-      },
-      {
-        "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtPaddle.png",
-        "kind": "image",
-        "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtPaddle.png",
-        "smoothed": true,
-        "userAdded": false
       },
       {
         "alwaysLoaded": false,
@@ -250,75 +232,120 @@
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_0.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_00.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_0.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_00.png",
         "smoothed": true,
         "userAdded": true
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_1.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_01.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_1.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_01.png",
         "smoothed": true,
         "userAdded": true
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_2.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_02.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_2.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_02.png",
         "smoothed": true,
         "userAdded": true
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_3.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_03.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_3.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_03.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_04.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_04.png",
         "smoothed": true,
         "userAdded": false
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_4.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_05.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_4.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_05.png",
         "smoothed": true,
         "userAdded": true
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_5.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_06.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_5.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_06.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_07.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_07.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_08.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_08.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_09.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_09.png",
         "smoothed": true,
         "userAdded": true
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_6.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_10.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_6.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_10.png",
         "smoothed": true,
         "userAdded": true
       },
       {
         "alwaysLoaded": false,
-        "file": "Assets/SpikyBathtub/ButtOwies/Butt_7.png",
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_11.png",
         "kind": "image",
         "metadata": "",
-        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_7.png",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_11.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/SpikyBathtub/ButtOwies/Butt_12.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\SpikyBathtub\\ButtOwies\\Butt_12.png",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []

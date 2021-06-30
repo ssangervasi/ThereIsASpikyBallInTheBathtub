@@ -12,7 +12,7 @@
   "title": "",
   "v": 3,
   "uiSettings": {
-    "grid": true,
+    "grid": false,
     "gridB": 255,
     "gridG": 180,
     "gridHeight": 6,
@@ -21,7 +21,7 @@
     "gridR": 158,
     "gridType": "rectangular",
     "gridWidth": 6,
-    "snap": true,
+    "snap": false,
     "windowMask": false,
     "zoomFactor": 0.6284878867149348
   },
@@ -1459,7 +1459,7 @@
               "sprites": [
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_0.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_00.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1488,7 +1488,7 @@
               "sprites": [
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_0.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_00.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1505,7 +1505,7 @@
                 },
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_1.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_01.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1522,7 +1522,7 @@
                 },
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_2.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_02.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1539,7 +1539,7 @@
                 },
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_3.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_03.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1556,7 +1556,7 @@
                 },
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_4.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_04.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1573,7 +1573,7 @@
                 },
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_5.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_05.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1590,7 +1590,7 @@
                 },
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_6.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_06.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1607,7 +1607,92 @@
                 },
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_7.png",
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_07.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                },
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_08.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                },
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_09.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                },
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_10.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                },
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_11.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                },
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "Assets\\SpikyBathtub\\ButtOwies\\Butt_12.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
